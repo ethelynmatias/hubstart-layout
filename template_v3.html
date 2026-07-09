@@ -69,14 +69,44 @@
             </div>
           </div>
           <div class="reveal">
-            <div class="hero-masonry" aria-hidden="true">
-              <img src="https://picsum.photos/seed/hshero1/440/560" alt="" loading="lazy" />
-              <img src="https://picsum.photos/seed/hshero2/440/380" alt="" loading="lazy" />
-              <img src="https://picsum.photos/seed/hshero3/440/440" alt="" loading="lazy" />
-              <img src="https://picsum.photos/seed/hshero4/440/520" alt="" loading="lazy" />
-              <img src="https://picsum.photos/seed/hshero5/440/360" alt="" loading="lazy" />
-              <img src="https://picsum.photos/seed/hshero6/440/460" alt="" loading="lazy" />
-            </div>
+            <figure class="hero-visual">
+              <svg class="auto-graphic" viewBox="0 0 520 520" role="img" aria-label="AI Agents orchestrating agency workflows">
+                <defs>
+                  <linearGradient id="agBg" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="#f6faff" />
+                    <stop offset="1" stop-color="#e7f0fa" />
+                  </linearGradient>
+                </defs>
+                <rect x="2" y="2" width="516" height="516" fill="url(#agBg)" stroke="#dbe3ec" />
+                <!-- connectors -->
+                <g stroke="#cdd8e4" stroke-width="2">
+                  <line x1="260" y1="260" x2="130" y2="95" /><line x1="260" y1="260" x2="390" y2="95" />
+                  <line x1="260" y1="260" x2="130" y2="425" /><line x1="260" y1="260" x2="390" y2="425" />
+                </g>
+                <g stroke="#0078d4" stroke-width="2" fill="none" class="flow">
+                  <line x1="260" y1="260" x2="130" y2="95" /><line x1="260" y1="260" x2="390" y2="95" />
+                  <line x1="260" y1="260" x2="130" y2="425" /><line x1="260" y1="260" x2="390" y2="425" />
+                </g>
+                <!-- task nodes -->
+                <g font-family="Inter, sans-serif" font-size="15" font-weight="600" fill="#fff" text-anchor="middle">
+                  <rect x="70" y="60" width="120" height="70" fill="#0078d4" /><text x="130" y="100">Quote</text>
+                  <rect x="330" y="60" width="120" height="70" fill="#009e8e" /><text x="390" y="100">Route</text>
+                  <rect x="70" y="390" width="120" height="70" fill="#2f74b5" /><text x="130" y="430">Claims</text>
+                  <rect x="330" y="390" width="120" height="70" fill="#16324f" /><text x="390" y="430">Follow-up</text>
+                </g>
+                <!-- travelling pulses -->
+                <g fill="#0078d4" class="pulses">
+                  <circle cx="205" cy="205" r="6" /><circle cx="315" cy="205" r="6" />
+                  <circle cx="205" cy="315" r="6" /><circle cx="315" cy="315" r="6" />
+                </g>
+                <!-- processing ring + hub -->
+                <circle cx="260" cy="260" r="78" fill="none" stroke="#0078d4" stroke-width="2" stroke-dasharray="4 12" class="spin" />
+                <rect x="196" y="214" width="128" height="92" fill="#12233a" />
+                <text x="260" y="256" font-family="Inter, sans-serif" font-size="20" font-weight="800" fill="#fff" text-anchor="middle">AI AGENT</text>
+                <text x="260" y="284" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#4cc2ff" text-anchor="middle" letter-spacing="1.5">IN HUBSPOT</text>
+              </svg>
+              <figcaption class="hero-visual-cap"><span class="dot"></span> AI Agents orchestrate every workflow</figcaption>
+            </figure>
           </div>
         </div>
       </div>
@@ -85,36 +115,22 @@
     <!-- ===================== THE AUTOMATION CEILING ===================== -->
     <section class="section" id="ceiling" aria-labelledby="ceiling-title">
       <div class="container-x">
-        <div class="hero-grid">
-          <div class="reveal">
-            <p class="eyebrow"><i class="bi bi-graph-up me-1"></i> The automation ceiling</p>
-            <h2 class="band-title" id="ceiling-title" style="margin-bottom:1.4rem;">If you've bought the tech, why is growth still a grind?</h2>
-            <p class="lead" style="margin-bottom:1.4rem;">
-              Agencies invest in AMS systems, raters, and automation tools, yet stay reactive. Efficiency
-              plateaus when the underlying structure is still chaotic — you save time, but that time never
-              turns into production, prospecting, or revenue.
-            </p>
-            <div class="stat-mini">
-              <div>
-                <div class="band-stat">$<span class="counter" data-target="466">0</span>k</div>
-                <div class="stat-label">RHL at an agentic agency</div>
-              </div>
-              <div>
-                <div class="band-stat"><span class="counter" data-target="90">0</span>%</div>
-                <div class="stat-label">Less manual busywork</div>
-              </div>
+        <div class="section-head center reveal">
+          <p class="eyebrow"><i class="bi bi-graph-up me-1"></i> The automation ceiling</p>
+          <h2 class="band-title" id="ceiling-title" style="margin-bottom:1.4rem;">If you've bought the tech, why is growth still a grind?</h2>
+          <p class="lead" style="margin:0 auto 1.6rem;">
+            Agencies invest in AMS systems, raters, and automation tools, yet stay reactive. Efficiency
+            plateaus when the underlying structure is still chaotic — you save time, but that time never
+            turns into production, prospecting, or revenue.
+          </p>
+          <div class="stat-mini" style="justify-content:center;">
+            <div>
+              <div class="band-stat">$<span class="counter" data-target="466">0</span>k</div>
+              <div class="stat-label">RHL at an agentic agency</div>
             </div>
-          </div>
-          <div class="reveal">
-            <div class="media-masonry">
-              <img src="https://picsum.photos/seed/hsceil1/400/520" alt="Team reviewing agency workflows" loading="lazy" />
-              <img src="https://picsum.photos/seed/hsceil2/400/360" alt="" loading="lazy" />
-              <img src="https://picsum.photos/seed/hsceil3/400/300" alt="" loading="lazy" />
-              <img src="https://picsum.photos/seed/hsceil4/400/460" alt="" loading="lazy" />
-              <img src="https://picsum.photos/seed/hsceil5/400/340" alt="" loading="lazy" />
-              <img src="https://picsum.photos/seed/hsceil6/400/420" alt="" loading="lazy" />
-              <img src="https://picsum.photos/seed/hsceil7/400/300" alt="" loading="lazy" />
-              <img src="https://picsum.photos/seed/hsceil8/400/380" alt="" loading="lazy" />
+            <div>
+              <div class="band-stat"><span class="counter" data-target="90">0</span>%</div>
+              <div class="stat-label">Less manual busywork</div>
             </div>
           </div>
         </div>
@@ -184,18 +200,47 @@
     <!-- ===================== TESTIMONIALS ===================== -->
     <section class="section" id="testimonials" aria-labelledby="testi-title">
       <div class="container-x">
-        <div class="d-flex" style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:1rem; margin-bottom:2.4rem;">
+        <div class="testi-head">
           <div class="section-head reveal">
             <p class="eyebrow">What our clients are saying</p>
             <h2 class="h-lg" id="testi-title">Trusted from (Hub)start to finish</h2>
           </div>
-          <a class="btn btn-outline reveal" href="#">Read all reviews <i class="bi bi-arrow-up-right"></i></a>
+          <div class="testi-nav reveal">
+            <button class="testi-arrow" type="button" data-dir="-1" aria-label="Previous testimonials"><i class="bi bi-arrow-left"></i></button>
+            <button class="testi-arrow" type="button" data-dir="1" aria-label="Next testimonials"><i class="bi bi-arrow-right"></i></button>
+          </div>
         </div>
-        <div class="news-grid">
-          <article class="news reveal"><a href="#" class="thumb"><img src="https://picsum.photos/seed/hstesti1/600/400" width="600" height="400" alt="" loading="lazy" /></a><div class="body"><span class="tag">★★★★★</span><h3>"A topnotch team that sets you up for success with a customized, client-centered approach."</h3><a class="link-arrow" href="#">Fisch, S. · Consulting</a></div></article>
-          <article class="news reveal"><a href="#" class="thumb"><img src="https://picsum.photos/seed/hstesti2/600/400" width="600" height="400" alt="" loading="lazy" /></a><div class="body"><span class="tag">★★★★★</span><h3>"A great team of smart people who get it done — strong on sales automation and enablement."</h3><a class="link-arrow" href="#">Company, T.O. · Advisory</a></div></article>
-          <article class="news reveal"><a href="#" class="thumb"><img src="https://picsum.photos/seed/hstesti3/600/400" width="600" height="400" alt="" loading="lazy" /></a><div class="body"><span class="tag">★★★★★</span><h3>"Our go-to provider for HubSpot support — real expertise and quick response times."</h3><a class="link-arrow" href="#">Gray, C. · Manufacturing</a></div></article>
-          <article class="news reveal"><a href="#" class="thumb"><img src="https://picsum.photos/seed/hstesti4/600/400" width="600" height="400" alt="" loading="lazy" /></a><div class="body"><span class="tag">★★★★★</span><h3>"Vital HubSpot expertise and good customer service — specialist knowledge, speedy response."</h3><a class="link-arrow" href="#">Cicmil, H. · Business Services</a></div></article>
+        <div class="testi-scroller" id="testiScroller">
+          <article class="testi-card">
+            <div class="stars">★★★★★</div>
+            <p class="quote">A topnotch team that sets you up for success with a customized, client-centered approach — from start to finish.</p>
+            <div class="testi-author"><img class="avatar" src="https://picsum.photos/seed/hsav1/120/120" alt="" loading="lazy" /><div><div class="name">Fisch, S.</div><div class="role">Consulting &amp; Advisory</div></div></div>
+          </article>
+          <article class="testi-card">
+            <div class="stars">★★★★★</div>
+            <p class="quote">A great team of smart people who get it done — strong on sales automation, pricing builds, and stakeholder enablement.</p>
+            <div class="testi-author"><img class="avatar" src="https://picsum.photos/seed/hsav2/120/120" alt="" loading="lazy" /><div><div class="name">Company, T.O.</div><div class="role">Consulting &amp; Advisory</div></div></div>
+          </article>
+          <article class="testi-card">
+            <div class="stars">★★★★★</div>
+            <p class="quote">Our go-to provider for HubSpot support — real expertise, pragmatic advice, and quick response times. Highly recommended.</p>
+            <div class="testi-author"><img class="avatar" src="https://picsum.photos/seed/hsav3/120/120" alt="" loading="lazy" /><div><div class="name">Gray, C.</div><div class="role">Manufacturing</div></div></div>
+          </article>
+          <article class="testi-card">
+            <div class="stars">★★★★★</div>
+            <p class="quote">Vital HubSpot expertise and good customer service — specialist knowledge with a speedy response every time.</p>
+            <div class="testi-author"><img class="avatar" src="https://picsum.photos/seed/hsav4/120/120" alt="" loading="lazy" /><div><div class="name">Cicmil, H.</div><div class="role">Business Services</div></div></div>
+          </article>
+          <article class="testi-card">
+            <div class="stars">★★★★★</div>
+            <p class="quote">The Aegis Protocol gave our producers their time back — routing just works, and growth finally followed.</p>
+            <div class="testi-author"><img class="avatar" src="https://picsum.photos/seed/hsav5/120/120" alt="" loading="lazy" /><div><div class="name">Okoye, A.</div><div class="role">Insurance Agency</div></div></div>
+          </article>
+          <article class="testi-card">
+            <div class="stars">★★★★★</div>
+            <p class="quote">AI Agents took over the busywork and our team hasn't looked back. Onboarding was smooth and fast.</p>
+            <div class="testi-author"><img class="avatar" src="https://picsum.photos/seed/hsav6/120/120" alt="" loading="lazy" /><div><div class="name">Bianchi, L.</div><div class="role">Staffing</div></div></div>
+          </article>
         </div>
       </div>
     </section>
@@ -205,7 +250,31 @@
       <div class="container-x">
         <div class="team-band reveal">
           <div class="grid">
-            <img src="https://picsum.photos/seed/hsteam/900/760" width="900" height="760" alt="The Hubstart team at work" loading="lazy" />
+            <div class="team-visual">
+              <svg viewBox="0 0 520 440" role="img" aria-label="Agency growth dashboard with HubSpot certification">
+                <rect x="16" y="16" width="488" height="408" fill="#ffffff" stroke="#dbe3ec" />
+                <text x="44" y="58" font-family="Inter, sans-serif" font-size="18" font-weight="800" fill="#12233a">Agency growth</text>
+                <g fill="#cdd8e4"><circle cx="452" cy="46" r="4" /><circle cx="468" cy="46" r="4" /><circle cx="484" cy="46" r="4" /></g>
+                <line x1="16" y1="84" x2="504" y2="84" stroke="#eef2f6" stroke-width="2" />
+                <!-- bar chart -->
+                <g class="bars">
+                  <rect x="60"  y="230" width="36" height="70"  fill="#9cc4e8" />
+                  <rect x="120" y="200" width="36" height="100" fill="#6ea9df" />
+                  <rect x="180" y="212" width="36" height="88"  fill="#4a92d6" />
+                  <rect x="240" y="160" width="36" height="140" fill="#0078d4" />
+                  <rect x="300" y="130" width="36" height="170" fill="#0a8fb0" />
+                  <rect x="360" y="95"  width="36" height="205" fill="#009e8e" />
+                </g>
+                <polyline class="chart-line" points="78,230 138,200 198,212 258,160 318,130 378,95" fill="none" stroke="#009e8e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <!-- KPI -->
+                <text x="50" y="356" font-family="Inter, sans-serif" font-size="27" font-weight="800" fill="#12233a">$466k</text>
+                <text x="50" y="378" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#64748b">Revenue per human layer</text>
+                <!-- certified badge -->
+                <circle class="badge" cx="432" cy="352" r="23" fill="#eaf3fb" stroke="#0078d4" stroke-width="2" />
+                <path d="M421 352 l7 8 l15 -17" fill="none" stroke="#0078d4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <text x="432" y="392" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#0078d4" text-anchor="middle">Certified</text>
+              </svg>
+            </div>
             <div class="content">
               <p class="eyebrow">Why HubSpot</p>
               <h2 class="h-md" id="team-title" style="color:#fff; margin-bottom:0.8rem;">Certified specialists who get it done.</h2>
@@ -329,7 +398,7 @@
         <div class="contact-grid reveal">
           <div class="contact-card"><div class="ico"><i class="bi bi-calendar-check"></i></div><h3 style="font-size:1rem; font-weight:600; margin:0 0 0.25rem;">Book a consultation</h3><p class="row-meta" style="margin:0;">Talk through your agency goals</p></div>
           <div class="contact-card"><div class="ico"><i class="bi bi-envelope"></i></div><h3 style="font-size:1rem; font-weight:600; margin:0 0 0.25rem;">Email us</h3><p class="row-meta" style="margin:0;">hello@hubstart.io</p></div>
-          <div class="contact-card"><div class="ico"><i class="bi bi-hubspot"></i></div><h3 style="font-size:1rem; font-weight:600; margin:0 0 0.25rem;">Why HubSpot</h3><p class="row-meta" style="margin:0;">Certified solutions partner</p></div>
+          <div class="contact-card"><div class="ico"><i class="bi bi-patch-check-fill"></i></div><h3 style="font-size:1rem; font-weight:600; margin:0 0 0.25rem;">Why HubSpot</h3><p class="row-meta" style="margin:0;">Certified solutions partner</p></div>
           <div class="contact-card"><div class="ico"><i class="bi bi-graph-up"></i></div><h3 style="font-size:1rem; font-weight:600; margin:0 0 0.25rem;">Agentic Integration Score</h3><p class="row-meta" style="margin:0;">Discover your AIS</p></div>
         </div>
       </div>
@@ -386,5 +455,20 @@
   <button class="to-top" id="toTop" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
 
   <script src="assets/js/main.js" defer></script>
+  <script>
+    // Testimonial scroller arrows
+    (function () {
+      var scroller = document.getElementById('testiScroller');
+      if (!scroller) return;
+      document.querySelectorAll('.testi-arrow').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var dir = parseInt(btn.dataset.dir, 10) || 1;
+          var card = scroller.querySelector('.testi-card');
+          var step = card ? card.getBoundingClientRect().width + 16 : scroller.clientWidth * 0.8;
+          scroller.scrollBy({ left: dir * step, behavior: 'smooth' });
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
