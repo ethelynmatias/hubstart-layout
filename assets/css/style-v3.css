@@ -139,18 +139,49 @@ body.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-6px) rotat
    HERO
    ============================================================ */
 .hero {
-  position: relative; min-height: 92svh;
+  position: relative; min-height: 94svh;
   display: flex; align-items: center;
   padding: calc(var(--nav-h) + var(--safe-t) + 48px) 0 64px;
-  overflow: hidden; background: var(--surface);
+  overflow: hidden;
+  background: linear-gradient(180deg, #f6faff 0%, #eef3f9 100%);
 }
+/* animated gradient mesh */
+.hero::before {
+  content: ""; position: absolute; inset: -22%; z-index: 0;
+  background:
+    radial-gradient(38% 42% at 82% 14%, rgba(0,120,212,0.20), transparent 60%),
+    radial-gradient(40% 44% at 10% 86%, rgba(0,158,142,0.16), transparent 60%),
+    radial-gradient(30% 34% at 58% 60%, rgba(0,120,212,0.12), transparent 60%);
+  animation: heroMesh 22s ease-in-out infinite alternate;
+}
+/* faint fading grid */
+.hero::after {
+  content: ""; position: absolute; inset: 0; z-index: 0;
+  background-image: linear-gradient(rgba(10,32,60,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(10,32,60,0.06) 1px, transparent 1px);
+  background-size: 62px 62px;
+  -webkit-mask-image: radial-gradient(78% 72% at 32% 42%, #000, transparent 82%);
+  mask-image: radial-gradient(78% 72% at 32% 42%, #000, transparent 82%);
+}
+.hero .container-x { position: relative; z-index: 1; }
+@keyframes heroMesh { to { transform: translate3d(-3%, 2%, 0) scale(1.08); } }
+
 .hero-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; width: 100%; }
+/* modern animated gradient on the accent words */
+.hero h1 .text-blue {
+  background: linear-gradient(100deg, var(--ms-blue), #00c2b2 50%, var(--ms-blue));
+  background-size: 220% auto; -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  animation: heroGrad 6s linear infinite;
+}
+@keyframes heroGrad { to { background-position: 220% center; } }
 .hero-badge {
-  display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem;
-  padding: 0.4rem 0.9rem; background: #eaf3fb; color: var(--ms-blue-dark);
+  display: inline-flex; align-items: center; gap: 0.55rem; margin-bottom: 1.5rem;
+  padding: 0.45rem 1rem; background: rgba(255,255,255,0.7); backdrop-filter: blur(8px);
+  border: 1px solid rgba(0,120,212,0.22); color: var(--ms-blue-dark);
   font-size: 0.82rem; font-weight: 600;
 }
-.hero-badge .dot { width: 8px; height: 8px; background: var(--ms-blue); }
+.hero-badge .dot { width: 8px; height: 8px; background: var(--ms-blue); animation: dotPulse 2s infinite; }
+@keyframes dotPulse { 0% { box-shadow: 0 0 0 0 rgba(0,120,212,0.5); } 70% { box-shadow: 0 0 0 8px rgba(0,120,212,0); } 100% { box-shadow: 0 0 0 0 rgba(0,120,212,0); } }
 .hero-cta { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 2rem; }
 
 /* Metro live-tile cluster in hero */
@@ -171,11 +202,11 @@ body.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-6px) rotat
 .tile.wide { grid-column: span 2; }
 /* restrained blue / navy family (less "Metro rainbow") */
 .tile.c-blue { background: var(--ms-blue); }
-.tile.c-teal { background: #0b3d63; }
+.tile.c-teal { background: #009e8e; }
 .tile.c-green { background: #16324f; }
 .tile.c-orange { background: #2f74b5; }
 .tile.c-purple { background: #1b1f2a; }
-.tile.c-magenta { background: #0b3d63; }
+.tile.c-magenta { background: #009e8e; }
 @keyframes tileIn { to { opacity: 1; transform: translateY(0); } }
 @keyframes glowDrift { 0% { transform: translate(0, 0); } 100% { transform: translate(-14px, 12px); } }
 
@@ -183,6 +214,10 @@ body.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-6px) rotat
    NARRATIVE BANDS
    ============================================================ */
 .band-dark { background: #1f1f1f; color: #fff; }
+/* full-bleed parallax background band */
+.band-parallax { position: relative; background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; min-height: 78vh; display: flex; align-items: center; }
+.band-parallax .threat-content { max-width: 640px; }
+@media (max-width: 767.98px) { .band-parallax { background-attachment: scroll; min-height: 0; } }
 .band-dark .band-title, .band-dark .h-lg { color: #fff; }
 .band-dark .lead { color: rgba(255,255,255,0.78); }
 .band-stat { font-size: clamp(2.4rem, 5vw, 3.4rem); font-weight: 300; color: var(--ms-blue); line-height: 1; }
@@ -201,6 +236,20 @@ body.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-6px) rotat
 .media::before { content: ""; position: absolute; left: 0; bottom: 0; height: 4px; width: 100%; background: var(--ms-blue); z-index: 2; transform: scaleX(0); transform-origin: left; transition: transform 0.5s var(--ease); }
 .media:hover::before { transform: scaleX(1); }
 @keyframes kenburns { 0% { transform: scale(1) translate(0, 0); } 100% { transform: scale(1.08) translate(-2%, 1.6%); } }
+
+/* masonry image gallery (varied heights) */
+.media-masonry { column-count: 2; column-gap: 10px; }
+.media-masonry img { width: 100%; display: block; margin: 0 0 10px; break-inside: avoid; border: 1px solid var(--line); box-shadow: 0 14px 28px -18px rgba(10,32,60,0.45); opacity: 1; transform: none; animation: ctaTileIn 0.6s var(--ease) both; transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), filter 0.4s var(--ease); }
+.media-masonry img:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 20px 34px -16px rgba(10,32,60,0.55); filter: saturate(1.08); }
+.media-masonry img:nth-child(1) { animation-delay: 0.05s; }
+.media-masonry img:nth-child(2) { animation-delay: 0.11s; }
+.media-masonry img:nth-child(3) { animation-delay: 0.17s; }
+.media-masonry img:nth-child(4) { animation-delay: 0.23s; }
+.media-masonry img:nth-child(5) { animation-delay: 0.29s; }
+.media-masonry img:nth-child(6) { animation-delay: 0.35s; }
+.media-masonry img:nth-child(7) { animation-delay: 0.41s; }
+.media-masonry img:nth-child(8) { animation-delay: 0.47s; }
+@media (max-width: 480px) { .media-masonry { column-count: 2; } }
 
 .check { list-style: none; padding: 0; margin: 0 0 1.6rem; }
 .check li { display: flex; gap: 0.7rem; align-items: flex-start; margin-bottom: 0.8rem; color: var(--ink-soft); }
