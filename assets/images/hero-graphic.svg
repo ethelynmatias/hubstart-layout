@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" role="img" aria-label="Circular recycling loop illustration">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7fe0da"/>
+      <stop offset="1" stop-color="#14b8b0"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d2a4a"/>
+      <stop offset="1" stop-color="#0f2740"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="620" rx="26" fill="#f2f6f7"/>
+  <circle cx="600" cy="310" r="180" fill="none" stroke="url(#g1)" stroke-width="26" stroke-linecap="round" stroke-dasharray="760 1131" transform="rotate(-30 600 310)"/>
+  <circle cx="600" cy="310" r="120" fill="none" stroke="url(#g2)" stroke-width="14" opacity="0.35"/>
+  <circle cx="600" cy="310" r="60" fill="url(#g2)"/>
+  <path d="M600 250 l18 34 -36 0 z" fill="#7fe0da"/>
+  <g fill="#14b8b0" opacity="0.7">
+    <circle cx="230" cy="150" r="10"/><circle cx="980" cy="470" r="10"/>
+    <circle cx="300" cy="480" r="7"/><circle cx="920" cy="150" r="7"/>
+  </g>
+  <g fill="#0d2a4a" opacity="0.12">
+    <rect x="150" y="360" width="70" height="70" rx="14"/>
+    <rect x="980" y="200" width="54" height="54" rx="12"/>
+  </g>
+</svg>

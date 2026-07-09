@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hubstart — Beyond Automation for Insurance Agencies</title>
+  <meta name="description" content="Hubstart deploys AI Agents and the Aegis Protocol in HubSpot to unlock insurance agency growth and end producer walkouts." />
+
+  <!-- Bootstrap 5.3 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <!-- Google Font: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --nv-bg: #ffffff;
+      --nv-ink: #0b0d12;
+      --nv-ink-soft: #4b515e;
+      --nv-muted: #8a90a0;
+      --nv-line: #e9ebf0;
+      --nv-surface: #f6f7f9;
+      --nv-accent: #6c5ce7;
+      --nv-accent-2: #00d2ff;
+      --nv-accent-3: #ff7a59;
+      --nv-radius: 20px;
+      --nv-shadow: 0 18px 50px -24px rgba(16, 20, 40, 0.35);
+      --nv-shadow-soft: 0 10px 30px -18px rgba(16, 20, 40, 0.25);
+      --nv-ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { scroll-behavior: smooth; }
+
+    html { scroll-padding-top: 90px; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--nv-ink);
+      background: var(--nv-bg);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    ::selection { background: var(--nv-accent); color: #fff; }
+
+    .display-hero {
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.02;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--nv-muted);
+    }
+
+    .section { padding: 120px 0; }
+    .section-tight { padding: 90px 0; }
+
+    .text-gradient {
+      background: linear-gradient(100deg, var(--nv-accent), var(--nv-accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* ---------- Navbar ---------- */
+    .navbar {
+      transition: background 0.4s var(--nv-ease), box-shadow 0.4s var(--nv-ease), padding 0.4s var(--nv-ease);
+      padding-top: 1.25rem;
+      padding-bottom: 1.25rem;
+    }
+    .navbar .navbar-brand { font-weight: 800; letter-spacing: -0.03em; font-size: 1.4rem; }
+    .brand-logo {
+      height: 34px; width: auto; display: block;
+      /* logo art is dark; invert to white over the dark hero */
+      filter: brightness(0) invert(1);
+      transition: filter 0.4s var(--nv-ease);
+    }
+    .navbar.scrolled .brand-logo { filter: none; }
+    .foot-logo { height: 34px; width: auto; filter: brightness(0) invert(1); }
+    .navbar .nav-link {
+      font-weight: 500;
+      color: rgba(255,255,255,0.82) !important;
+      margin: 0 0.35rem;
+      position: relative;
+      transition: color 0.25s ease;
+    }
+    .navbar .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0.5rem; right: 0.5rem; bottom: 2px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--nv-accent), var(--nv-accent-2));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s var(--nv-ease);
+    }
+    .navbar .nav-link:hover::after { transform: scaleX(1); }
+    .navbar .nav-link:hover { color: #fff !important; }
+
+    .navbar.scrolled {
+      background: rgba(255,255,255,0.86);
+      backdrop-filter: saturate(180%) blur(16px);
+      box-shadow: 0 8px 30px -18px rgba(0,0,0,0.3);
+      padding-top: 0.7rem;
+      padding-bottom: 0.7rem;
+    }
+    .navbar.scrolled .navbar-brand { color: var(--nv-ink) !important; }
+    .navbar.scrolled .nav-link { color: var(--nv-ink-soft) !important; }
+    .navbar.scrolled .nav-link:hover { color: var(--nv-ink) !important; }
+    .navbar.scrolled .navbar-toggler { filter: invert(1); }
+
+    .btn-nv {
+      border-radius: 999px;
+      font-weight: 600;
+      padding: 0.7rem 1.5rem;
+      transition: transform 0.3s var(--nv-ease), box-shadow 0.3s var(--nv-ease), background 0.3s ease;
+      border: 0;
+    }
+    .btn-nv-primary {
+      background: linear-gradient(100deg, var(--nv-accent), var(--nv-accent-2));
+      color: #fff;
+      box-shadow: 0 12px 28px -12px rgba(108, 92, 231, 0.7);
+    }
+    .btn-nv-primary:hover {
+      color: #fff;
+      transform: translateY(-3px);
+      box-shadow: 0 20px 36px -14px rgba(108, 92, 231, 0.85);
+    }
+    .btn-nv-ghost {
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.28);
+      backdrop-filter: blur(6px);
+    }
+    .btn-nv-ghost:hover { color: #fff; background: rgba(255,255,255,0.16); transform: translateY(-3px); }
+    .btn-nv-dark {
+      background: var(--nv-ink);
+      color: #fff;
+    }
+    .btn-nv-dark:hover { color: #fff; transform: translateY(-3px); box-shadow: var(--nv-shadow); }
+    .btn-nv-outline {
+      background: transparent;
+      color: var(--nv-ink);
+      border: 1px solid var(--nv-line);
+    }
+    .btn-nv-outline:hover { transform: translateY(-3px); border-color: var(--nv-ink); }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      /* clear the fixed navbar so the headline never crowds the logo on short screens */
+      padding-top: 120px;
+      padding-bottom: 60px;
+      overflow: hidden;
+      background:
+        radial-gradient(1200px 600px at 80% -10%, rgba(108,92,231,0.35), transparent 60%),
+        radial-gradient(900px 500px at 10% 110%, rgba(0,210,255,0.22), transparent 60%),
+        linear-gradient(160deg, #070a16 0%, #0d1226 55%, #0a0f1f 100%);
+      color: #fff;
+    }
+    .hero .grid-overlay {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 64px 64px;
+      -webkit-mask-image: radial-gradient(circle at 50% 40%, #000 0%, transparent 75%);
+      mask-image: radial-gradient(circle at 50% 40%, #000 0%, transparent 75%);
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 3; }
+
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(2px);
+      opacity: 0.85;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .shape-1 {
+      width: 320px; height: 320px;
+      top: 12%; right: 8%;
+      background: radial-gradient(circle at 30% 30%, rgba(108,92,231,0.9), rgba(108,92,231,0.05));
+      animation: float1 9s ease-in-out infinite;
+    }
+    .shape-2 {
+      width: 200px; height: 200px;
+      bottom: 14%; right: 26%;
+      background: radial-gradient(circle at 40% 40%, rgba(0,210,255,0.8), rgba(0,210,255,0.03));
+      animation: float2 11s ease-in-out infinite;
+    }
+    .shape-3 {
+      width: 140px; height: 140px;
+      top: 22%; left: 6%;
+      background: radial-gradient(circle at 40% 40%, rgba(255,122,89,0.7), rgba(255,122,89,0.02));
+      animation: float3 8s ease-in-out infinite;
+    }
+    .shape-ring {
+      position: absolute;
+      top: 45%; right: 14%;
+      width: 460px; height: 460px;
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 50%;
+      z-index: 1;
+      animation: spin 26s linear infinite;
+    }
+    .shape-ring::before {
+      content: "";
+      position: absolute; inset: 60px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 50%;
+    }
+
+    @keyframes float1 { 0%,100%{transform:translateY(0) translateX(0);} 50%{transform:translateY(-30px) translateX(-16px);} }
+    @keyframes float2 { 0%,100%{transform:translateY(0) translateX(0);} 50%{transform:translateY(26px) translateX(18px);} }
+    @keyframes float3 { 0%,100%{transform:translateY(0) translateX(0);} 50%{transform:translateY(-22px) translateX(14px);} }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.45rem 1rem;
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.85);
+    }
+    .hero-badge .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #35e08f; box-shadow: 0 0 0 4px rgba(53,224,143,0.2);
+    }
+    .hero-stats { border-top: 1px solid rgba(255,255,255,0.12); }
+    .hero-avatars img {
+      width: 42px; height: 42px; border-radius: 50%;
+      border: 2px solid #0d1226; margin-left: -12px; object-fit: cover;
+    }
+
+    /* ---------- Section headings ---------- */
+    .section-head h2 {
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      font-size: clamp(2rem, 4vw, 3rem);
+    }
+    .section-sub { color: var(--nv-ink-soft); font-size: 1.08rem; max-width: 620px; }
+
+    /* ---------- Cards ---------- */
+    .nv-card {
+      background: #fff;
+      border: 1px solid var(--nv-line);
+      border-radius: var(--nv-radius);
+      padding: 2.2rem;
+      height: 100%;
+      transition: transform 0.4s var(--nv-ease), box-shadow 0.4s var(--nv-ease), border-color 0.4s ease;
+    }
+    .nv-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--nv-shadow);
+      border-color: transparent;
+    }
+    .nv-ico {
+      width: 58px; height: 58px;
+      border-radius: 16px;
+      display: grid; place-items: center;
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 1.4rem;
+      background: linear-gradient(135deg, var(--nv-accent), var(--nv-accent-2));
+    }
+    .nv-ico.alt { background: linear-gradient(135deg, var(--nv-accent-3), #ffb199); }
+    .nv-ico.alt2 { background: linear-gradient(135deg, #0b0d12, #3a3f52); }
+    .nv-card h3 { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; }
+    .nv-card p { color: var(--nv-ink-soft); margin-bottom: 0; }
+    .card-link {
+      color: var(--nv-accent); font-weight: 600; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      transition: gap 0.3s var(--nv-ease);
+    }
+    .nv-card:hover .card-link { gap: 0.75rem; }
+
+    /* ---------- About ---------- */
+    .about-img-wrap { position: relative; border-radius: 24px; overflow: hidden; box-shadow: var(--nv-shadow); }
+    .about-img-wrap img { width: 100%; display: block; }
+    .about-float-card {
+      position: absolute; bottom: 22px; left: 22px; right: 22px;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.6);
+      border-radius: 16px;
+      padding: 1rem 1.2rem;
+      box-shadow: var(--nv-shadow-soft);
+    }
+    .check-list li { display: flex; gap: 0.75rem; align-items: flex-start; margin-bottom: 0.9rem; color: var(--nv-ink-soft); }
+    .check-list i { color: var(--nv-accent); margin-top: 0.15rem; }
+
+    /* ---------- Stats ---------- */
+    .stats-band {
+      background: linear-gradient(160deg, #0b0d12, #171b2e);
+      color: #fff;
+      border-radius: 28px;
+    }
+    .stat-num { font-size: clamp(2.4rem, 5vw, 3.4rem); font-weight: 800; letter-spacing: -0.03em; }
+    .stat-label { color: rgba(255,255,255,0.6); font-size: 0.95rem; }
+    .stat-divider { border-color: rgba(255,255,255,0.1) !important; }
+
+    /* ---------- Services ---------- */
+    .service-card {
+      background: #fff;
+      border: 1px solid var(--nv-line);
+      border-radius: var(--nv-radius);
+      padding: 2rem;
+      height: 100%;
+      transition: transform 0.4s var(--nv-ease), box-shadow 0.4s var(--nv-ease);
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(108,92,231,0.06), rgba(0,210,255,0.06));
+      opacity: 0; transition: opacity 0.4s ease;
+    }
+    .service-card:hover { transform: translateY(-8px); box-shadow: var(--nv-shadow); }
+    .service-card:hover::before { opacity: 1; }
+    .service-card > * { position: relative; z-index: 1; }
+    .service-num { font-size: 0.8rem; color: var(--nv-muted); font-weight: 600; }
+    .service-card i.big { font-size: 1.8rem; color: var(--nv-accent); }
+
+    /* ---------- Process ---------- */
+    .timeline { position: relative; }
+    .timeline::before {
+      content: ""; position: absolute; left: 27px; top: 10px; bottom: 10px;
+      width: 2px; background: linear-gradient(var(--nv-accent), var(--nv-accent-2));
+      opacity: 0.35;
+    }
+    .timeline-item { position: relative; padding-left: 78px; margin-bottom: 2.5rem; }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-dot {
+      position: absolute; left: 0; top: 0;
+      width: 56px; height: 56px; border-radius: 16px;
+      background: #fff; border: 1px solid var(--nv-line);
+      display: grid; place-items: center;
+      font-weight: 700; color: var(--nv-accent);
+      box-shadow: var(--nv-shadow-soft);
+    }
+    .timeline-item h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.02em; }
+    .timeline-item p { color: var(--nv-ink-soft); margin-bottom: 0; }
+
+    /* ---------- Testimonials ---------- */
+    .testi-card {
+      background: #fff;
+      border: 1px solid var(--nv-line);
+      border-radius: 24px;
+      padding: 2.6rem;
+      box-shadow: var(--nv-shadow-soft);
+    }
+    .testi-card .quote { font-size: 1.35rem; font-weight: 500; letter-spacing: -0.01em; line-height: 1.5; }
+    .testi-stars i { color: #ffb400; }
+    .testi-author img { width: 54px; height: 54px; border-radius: 50%; object-fit: cover; }
+    .carousel-btn {
+      width: 48px; height: 48px; border-radius: 50%;
+      border: 1px solid var(--nv-line); background: #fff;
+      display: grid; place-items: center; color: var(--nv-ink);
+      transition: all 0.3s var(--nv-ease);
+    }
+    .carousel-btn:hover { background: var(--nv-ink); color: #fff; transform: translateY(-2px); }
+
+    /* ---------- CTA ---------- */
+    .cta-band {
+      position: relative;
+      overflow: hidden;
+      border-radius: 32px;
+      background:
+        radial-gradient(700px 400px at 85% 0%, rgba(108,92,231,0.5), transparent 60%),
+        radial-gradient(600px 400px at 0% 100%, rgba(0,210,255,0.35), transparent 60%),
+        linear-gradient(150deg, #0b0d12, #171b2e);
+      color: #fff;
+      padding: 5rem 3rem;
+    }
+    .cta-band h2 { font-weight: 800; letter-spacing: -0.03em; font-size: clamp(2rem, 4.5vw, 3.2rem); }
+
+    /* ---------- Footer ---------- */
+    footer { background: #070a12; color: rgba(255,255,255,0.7); }
+    footer h6 { color: #fff; font-weight: 600; letter-spacing: 0.02em; margin-bottom: 1.2rem; }
+    footer a { color: rgba(255,255,255,0.62); text-decoration: none; transition: color 0.25s ease; }
+    footer a:hover { color: #fff; }
+    footer .foot-link { display: block; margin-bottom: 0.7rem; }
+    .foot-social a {
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.14);
+      display: inline-grid; place-items: center;
+      margin-right: 0.5rem; transition: all 0.3s var(--nv-ease);
+    }
+    .foot-social a:hover { background: var(--nv-accent); border-color: var(--nv-accent); transform: translateY(-3px); }
+    .foot-brand { font-weight: 800; font-size: 1.4rem; color: #fff; letter-spacing: -0.03em; }
+
+    /* ---------- Scroll animations ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.8s var(--nv-ease), transform 0.8s var(--nv-ease);
+      will-change: opacity, transform;
+    }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+
+    /* ---------- Scroll-down hint ---------- */
+    .scroll-hint {
+      position: absolute; left: 50%; bottom: 28px;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: inline-flex; flex-direction: column; align-items: center;
+      gap: 0.4rem;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      transition: color 0.3s ease, opacity 0.4s ease;
+    }
+    .scroll-hint:hover { color: #fff; }
+    .scroll-hint .chevron { font-size: 1.5rem; animation: bounceDown 1.8s var(--nv-ease) infinite; }
+    @keyframes bounceDown {
+      0%, 100% { transform: translateY(0); opacity: 0.6; }
+      50% { transform: translateY(10px); opacity: 1; }
+    }
+
+    /* ---------- Back-to-top ---------- */
+    .to-top {
+      position: fixed; right: 24px; bottom: 24px;
+      width: 52px; height: 52px; border-radius: 50%;
+      border: 0;
+      background: linear-gradient(100deg, var(--nv-accent), var(--nv-accent-2));
+      color: #fff; font-size: 1.2rem;
+      display: grid; place-items: center;
+      box-shadow: 0 14px 30px -12px rgba(108,92,231,0.75);
+      z-index: 1030;
+      opacity: 0;
+      transform: translateY(24px);
+      pointer-events: none;
+      transition: opacity 0.4s var(--nv-ease), transform 0.4s var(--nv-ease), box-shadow 0.3s ease;
+    }
+    .to-top.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .to-top:hover { transform: translateY(-4px); box-shadow: 0 20px 38px -14px rgba(108,92,231,0.9); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .shape, .shape-ring { animation: none; }
+      .scroll-hint .chevron { animation: none; }
+    }
+
+    @media (max-width: 991px) {
+      .section { padding: 80px 0; }
+      .navbar-collapse {
+        background: rgba(10,14,26,0.96);
+        backdrop-filter: blur(14px);
+        border-radius: 16px;
+        padding: 1rem 1.2rem;
+        margin-top: 1rem;
+      }
+      .navbar.scrolled .navbar-collapse .nav-link { color: rgba(255,255,255,0.85) !important; }
+      .shape-ring { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#home">
+        <img src="https://hubstart.io/img/hubstart.png" alt="Hubstart" class="brand-logo" />
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+        <ul class="navbar-nav align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="#features">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">Aegis Model</a></li>
+          <li class="nav-item"><a class="nav-link" href="#services">Industry</a></li>
+          <li class="nav-item"><a class="nav-link" href="#process">How We Work</a></li>
+          <li class="nav-item"><a class="nav-link" href="#testimonials">Clients</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <a class="btn btn-nv btn-nv-primary" href="#cta">Book a Consultation</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <header class="hero" id="home">
+    <div class="grid-overlay"></div>
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    <div class="shape-ring"></div>
+
+    <div class="container hero-content">
+      <div class="row align-items-center">
+        <div class="col-lg-9">
+          <div class="hero-badge mb-4 reveal">
+            <span class="dot"></span> The Aegis Protocol, built in HubSpot
+          </div>
+          <h1 class="display-hero mb-4 reveal" style="font-size: clamp(2.6rem, 6vw, 5rem);">
+            Beyond automation: how <span class="text-gradient">AI Agents</span><br class="d-none d-md-block" />
+            grow your agency.
+          </h1>
+          <p class="lead reveal" style="max-width: 640px; color: rgba(255,255,255,0.72);">
+            Standard automation only completes tasks. AI Agents initiate and orchestrate entire
+            workflows — from renewal quoting to claims follow-ups — so you unlock growth and end
+            producer walkouts.
+          </p>
+          <div class="d-flex flex-wrap gap-3 mt-4 reveal">
+            <a href="#cta" class="btn btn-nv btn-nv-primary btn-lg">
+              Discover your AIS <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+            <a href="#services" class="btn btn-nv btn-nv-ghost btn-lg">
+              <i class="bi bi-play-circle me-1"></i> See how it works
+            </a>
+          </div>
+
+          <div class="hero-stats mt-5 pt-4 reveal">
+            <div class="d-flex flex-wrap align-items-center gap-4">
+              <div class="d-flex align-items-center hero-avatars">
+                <img src="https://picsum.photos/seed/hs1/80" alt="Client" />
+                <img src="https://picsum.photos/seed/hs2/80" alt="Client" />
+                <img src="https://picsum.photos/seed/hs3/80" alt="Client" />
+                <img src="https://picsum.photos/seed/hs4/80" alt="Client" />
+              </div>
+              <div>
+                <div class="testi-stars mb-1">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                </div>
+                <small style="color: rgba(255,255,255,0.65);">5.0/5 from happy HubSpot clients</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <a href="#features" class="scroll-hint" aria-label="Scroll down">
+      <span>Scroll</span>
+      <i class="bi bi-chevron-down chevron"></i>
+    </a>
+  </header>
+
+  <!-- ===================== FEATURES ===================== -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="row justify-content-center text-center mb-5 section-head">
+        <div class="col-lg-8 reveal">
+          <p class="eyebrow mb-3">Why Hubstart</p>
+          <h2>If you've bought the tech, why is growth still a grind?</h2>
+          <p class="section-sub mx-auto mt-3">Agencies invest in AMS systems, raters, and automation — yet stay reactive. We turn saved time into real revenue.</p>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4 reveal">
+          <div class="nv-card">
+            <div class="nv-ico"><i class="bi bi-speedometer2"></i></div>
+            <h3 class="mb-2">Break the ceiling</h3>
+            <p class="mb-3">Efficiency plateaus when the underlying structure stays chaotic. We fix the model, not just the tooling.</p>
+            <a href="#services" class="card-link">Learn more <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 reveal">
+          <div class="nv-card">
+            <div class="nv-ico alt"><i class="bi bi-people"></i></div>
+            <h3 class="mb-2">End producer walkouts</h3>
+            <p class="mb-3">Top producers leave from burnout on low-value work. Intelligent routing keeps talent doing what they're licensed for.</p>
+            <a href="#services" class="card-link">Learn more <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 reveal">
+          <div class="nv-card">
+            <div class="nv-ico alt2"><i class="bi bi-robot"></i></div>
+            <h3 class="mb-2">Deploy AI Agents</h3>
+            <p class="mb-3">Agents initiate and orchestrate complete workflows — from renewal quoting to claims follow-ups — that drive growth.</p>
+            <a href="#services" class="card-link">Learn more <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section class="section-tight" id="about" style="background: var(--nv-surface);">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6 reveal">
+          <div class="about-img-wrap">
+            <img src="https://picsum.photos/seed/hsabout/900/700" alt="Agency team at work" />
+            <div class="about-float-card">
+              <div class="d-flex align-items-center gap-3">
+                <div class="nv-ico mb-0" style="width:46px;height:46px;font-size:1.1rem;"><i class="bi bi-graph-up-arrow"></i></div>
+                <div>
+                  <div style="font-weight:700; color: var(--nv-ink);">$171k vs. $466k RHL</div>
+                  <small style="color: var(--nv-ink-soft);">Model intelligence, not headcount.</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 reveal">
+          <p class="eyebrow mb-3">The Aegis Model</p>
+          <h2 class="section-head mb-4" style="font-weight:800; letter-spacing:-0.03em; font-size: clamp(1.9rem,3.5vw,2.8rem);">
+            It's your model, not your people.
+          </h2>
+          <p class="section-sub mb-4" style="max-width:none;">
+            When tasks route by availability or outdated job titles, bottlenecks form and talent walks
+            out. The Aegis Protocol is an intelligent operating system that routes every task to the
+            right place — so your team focuses on high-value conversations that drive growth.
+          </p>
+          <ul class="list-unstyled check-list mb-4">
+            <li><i class="bi bi-check-circle-fill"></i> Intelligent routing that ends operational chaos</li>
+            <li><i class="bi bi-check-circle-fill"></i> Efficiency savings redirected into real production</li>
+            <li><i class="bi bi-check-circle-fill"></i> Proactive AI Agents built natively in HubSpot</li>
+          </ul>
+          <a href="#cta" class="btn btn-nv btn-nv-dark btn-lg">Book a consultation <i class="bi bi-arrow-right ms-1"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== STATS ===================== -->
+  <section class="section">
+    <div class="container">
+      <div class="stats-band p-5 reveal">
+        <div class="row text-center g-0">
+          <div class="col-6 col-lg-3 py-3">
+            <div class="stat-num">$<span class="counter" data-target="466">0</span>k</div>
+            <div class="stat-label">Revenue per human layer</div>
+          </div>
+          <div class="col-6 col-lg-3 py-3 border-start stat-divider">
+            <div class="stat-num"><span class="counter" data-target="3">0</span></div>
+            <div class="stat-label">Phase Aegis Protocol</div>
+          </div>
+          <div class="col-6 col-lg-3 py-3 border-lg-start stat-divider">
+            <div class="stat-num"><span class="counter" data-target="9">0</span>+</div>
+            <div class="stat-label">HubSpot certifications</div>
+          </div>
+          <div class="col-6 col-lg-3 py-3 border-start stat-divider">
+            <div class="stat-num"><span class="counter" data-target="90">0</span>%</div>
+            <div class="stat-label">Less manual busywork</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SERVICES ===================== -->
+  <section class="section-tight" id="services">
+    <div class="container">
+      <div class="row align-items-end mb-5 section-head">
+        <div class="col-lg-8 reveal">
+          <p class="eyebrow mb-3">What we do</p>
+          <h2>Everything your agency needs, under one roof</h2>
+        </div>
+        <div class="col-lg-4 text-lg-end reveal">
+          <a href="#cta" class="btn btn-nv btn-nv-outline">Book a consultation <i class="bi bi-arrow-up-right ms-1"></i></a>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4 reveal">
+          <div class="service-card">
+            <div class="d-flex justify-content-between align-items-start mb-4">
+              <i class="bi bi-shield-check big"></i><span class="service-num">01</span>
+            </div>
+            <h3 class="h5 fw-bold mb-2">Aegis Model</h3>
+            <p style="color:var(--nv-ink-soft); margin:0;">An intelligent operating system that routes every task to the right place across your agency.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 reveal">
+          <div class="service-card">
+            <div class="d-flex justify-content-between align-items-start mb-4">
+              <i class="bi bi-cpu big"></i><span class="service-num">02</span>
+            </div>
+            <h3 class="h5 fw-bold mb-2">Insurance AI Advantage</h3>
+            <p style="color:var(--nv-ink-soft); margin:0;">AI Agents that orchestrate complete workflows end to end — from quoting to claims follow-ups.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 reveal">
+          <div class="service-card">
+            <div class="d-flex justify-content-between align-items-start mb-4">
+              <i class="bi bi-graph-up-arrow big"></i><span class="service-num">03</span>
+            </div>
+            <h3 class="h5 fw-bold mb-2">Sales Transformation</h3>
+            <p style="color:var(--nv-ink-soft); margin:0;">Turn efficiency savings into real production, prospecting, and measurable revenue growth.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 reveal">
+          <div class="service-card">
+            <div class="d-flex justify-content-between align-items-start mb-4">
+              <i class="bi bi-map big"></i><span class="service-num">04</span>
+            </div>
+            <h3 class="h5 fw-bold mb-2">Implementation Roadmap</h3>
+            <p style="color:var(--nv-ink-soft); margin:0;">A clear, phased rollout of the Aegis Protocol that builds momentum with a win at every stage.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 reveal">
+          <div class="service-card">
+            <div class="d-flex justify-content-between align-items-start mb-4">
+              <i class="bi bi-hubspot big"></i><span class="service-num">05</span>
+            </div>
+            <h3 class="h5 fw-bold mb-2">HubSpot Enablement</h3>
+            <p style="color:var(--nv-ink-soft); margin:0;">Certified solutions-partner expertise across Sales, Marketing, Service, and Content Hub.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 reveal">
+          <div class="service-card">
+            <div class="d-flex justify-content-between align-items-start mb-4">
+              <i class="bi bi-buildings big"></i><span class="service-num">06</span>
+            </div>
+            <h3 class="h5 fw-bold mb-2">Industry Solutions</h3>
+            <p style="color:var(--nv-ink-soft); margin:0;">Tailored plays for Finance &amp; Insurance, Coaching, Education, and Staffing teams.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROCESS ===================== -->
+  <section class="section" id="process" style="background: var(--nv-surface);">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-5 reveal">
+          <p class="eyebrow mb-3">How we work</p>
+          <h2 class="section-head mb-4" style="font-weight:800; letter-spacing:-0.03em; font-size: clamp(1.9rem,3.5vw,2.8rem);">
+            A 3-step plan to reclaim control and scale intelligently.
+          </h2>
+          <p class="section-sub mb-4" style="max-width:none;">
+            Transformation doesn't require a chaotic overhaul. The Aegis Protocol follows a clear,
+            phased rollout that builds momentum with a win at every stage.
+          </p>
+          <a href="#cta" class="btn btn-nv btn-nv-dark btn-lg">Book a consultation <i class="bi bi-arrow-right ms-1"></i></a>
+        </div>
+        <div class="col-lg-7">
+          <div class="timeline ps-lg-4">
+            <div class="timeline-item reveal">
+              <div class="timeline-dot">01</div>
+              <h3>Stabilize</h3>
+              <p>Gain full clarity on your current workflows, so nothing stays hidden, misrouted, or unmeasured.</p>
+            </div>
+            <div class="timeline-item reveal">
+              <div class="timeline-dot">02</div>
+              <h3>Structure</h3>
+              <p>Build the routing engine that eliminates chaos and sends every task to exactly the right place.</p>
+            </div>
+            <div class="timeline-item reveal">
+              <div class="timeline-dot">03</div>
+              <h3>Scale</h3>
+              <p>Deploy proactive AI Agents that drive growth — freeing producers for high-value conversations.</p>
+            </div>
+            <div class="timeline-item reveal">
+              <div class="timeline-dot">04</div>
+              <h3>Measure &amp; Compound</h3>
+              <p>Track Revenue per Human Layer and reinvest efficiency gains so results build quarter over quarter.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TESTIMONIALS ===================== -->
+  <section class="section" id="testimonials">
+    <div class="container">
+      <div class="row justify-content-center text-center mb-5 section-head">
+        <div class="col-lg-8 reveal">
+          <p class="eyebrow mb-3">Client stories</p>
+          <h2>Trusted from (Hub)start to finish</h2>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-9 reveal">
+          <div id="testiCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
+            <div class="carousel-inner">
+
+              <div class="carousel-item active">
+                <div class="testi-card text-center">
+                  <div class="testi-stars mb-3">
+                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                  </div>
+                  <p class="quote mb-4">"A topnotch team that sets you up for success — a customized, client-centered approach that took us from start to finish."</p>
+                  <div class="testi-author d-flex align-items-center justify-content-center gap-3">
+                    <img src="https://picsum.photos/seed/hstesti1/120" alt="Author" />
+                    <div class="text-start">
+                      <div class="fw-bold">Fisch, S.</div>
+                      <small style="color:var(--nv-ink-soft);">Consulting &amp; Advisory</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="carousel-item">
+                <div class="testi-card text-center">
+                  <div class="testi-stars mb-3">
+                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                  </div>
+                  <p class="quote mb-4">"A great team of smart people who get it done — strong on sales automation, pricing builds, and stakeholder enablement."</p>
+                  <div class="testi-author d-flex align-items-center justify-content-center gap-3">
+                    <img src="https://picsum.photos/seed/hstesti2/120" alt="Author" />
+                    <div class="text-start">
+                      <div class="fw-bold">Company, T.O.</div>
+                      <small style="color:var(--nv-ink-soft);">Consulting &amp; Advisory</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="carousel-item">
+                <div class="testi-card text-center">
+                  <div class="testi-stars mb-3">
+                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                  </div>
+                  <p class="quote mb-4">"Our go-to provider for HubSpot support — real expertise, pragmatic advice, and quick response times. Highly recommended."</p>
+                  <div class="testi-author d-flex align-items-center justify-content-center gap-3">
+                    <img src="https://picsum.photos/seed/hstesti3/120" alt="Author" />
+                    <div class="text-start">
+                      <div class="fw-bold">Gray, C.</div>
+                      <small style="color:var(--nv-ink-soft);">Manufacturing</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="d-flex justify-content-center gap-3 mt-4">
+              <button class="carousel-btn" type="button" data-bs-target="#testiCarousel" data-bs-slide="prev" aria-label="Previous">
+                <i class="bi bi-arrow-left"></i>
+              </button>
+              <button class="carousel-btn" type="button" data-bs-target="#testiCarousel" data-bs-slide="next" aria-label="Next">
+                <i class="bi bi-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA ===================== -->
+  <section class="section-tight" id="cta">
+    <div class="container">
+      <div class="cta-band text-center reveal">
+        <p class="eyebrow mb-3" style="color: rgba(255,255,255,0.6);">Get resources now</p>
+        <h2 class="mb-3">Ready to end the walkouts and scale?</h2>
+        <p class="mx-auto mb-4" style="max-width: 620px; color: rgba(255,255,255,0.72); font-size:1.1rem;">
+          Talk with our specialists about your project and the resources you need. Satisfaction guaranteed — or we'll find the right fit.
+        </p>
+        <div class="d-flex flex-wrap gap-3 justify-content-center">
+          <a href="#" class="btn btn-nv btn-nv-primary btn-lg">Book a Consultation <i class="bi bi-arrow-right ms-1"></i></a>
+          <a href="#" class="btn btn-nv btn-nv-ghost btn-lg"><i class="bi bi-graph-up me-1"></i> Discover your AIS</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="pt-5 pb-4">
+    <div class="container">
+      <div class="row g-4 pb-4">
+        <div class="col-lg-4 col-md-6">
+          <a href="#home" class="text-decoration-none d-inline-block mb-3">
+            <img src="https://hubstart.io/img/hubstart.png" alt="Hubstart" class="foot-logo" />
+          </a>
+          <p style="max-width: 320px;">Transform your insurance agency with the Aegis Protocol — an intelligent operating system built for the modern agency.</p>
+          <div class="foot-social mt-3">
+            <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+            <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6 col-6">
+          <h6>Services</h6>
+          <a href="#services" class="foot-link">Aegis Model</a>
+          <a href="#services" class="foot-link">AI Advantage</a>
+          <a href="#services" class="foot-link">Sales Transformation</a>
+          <a href="#process" class="foot-link">Implementation Roadmap</a>
+        </div>
+        <div class="col-lg-2 col-md-6 col-6">
+          <h6>Industry</h6>
+          <a href="#services" class="foot-link">Finance &amp; Insurance</a>
+          <a href="#services" class="foot-link">Coaching</a>
+          <a href="#services" class="foot-link">Education</a>
+          <a href="#services" class="foot-link">Staffing</a>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <h6>Stay in the loop</h6>
+          <p class="mb-3">Occasional insights on AI Agents, HubSpot, and agency growth. No spam.</p>
+          <form class="d-flex gap-2" onsubmit="return false;">
+            <input type="email" class="form-control" placeholder="you@company.com" style="border-radius:999px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.16); color:#fff;" />
+            <button class="btn btn-nv btn-nv-primary" type="submit"><i class="bi bi-send"></i></button>
+          </form>
+        </div>
+      </div>
+      <hr style="border-color: rgba(255,255,255,0.1);" />
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-center pt-2 gap-2">
+        <small>© 2026 Hubstart. All rights reserved.</small>
+        <div class="d-flex gap-4">
+          <a href="#"><small>Privacy</small></a>
+          <a href="#"><small>Terms</small></a>
+          <a href="#"><small>Cookies</small></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back-to-top button -->
+  <button class="to-top" id="toTop" aria-label="Back to top">
+    <i class="bi bi-arrow-up"></i>
+  </button>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // ---------- Navbar scroll state ----------
+    const nav = document.getElementById('mainNav');
+    const toTop = document.getElementById('toTop');
+    const scrollHint = document.querySelector('.scroll-hint');
+    const onScroll = () => {
+      const y = window.scrollY;
+      nav.classList.toggle('scrolled', y > 40);
+      // back-to-top slides up into view after 400px
+      toTop.classList.toggle('show', y > 400);
+      // fade the hero scroll hint out as soon as the user starts scrolling
+      if (scrollHint) scrollHint.style.opacity = y > 60 ? '0' : '1';
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // smooth scroll back to top
+    toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // ---------- Fade-up on scroll ----------
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const delay = Math.min([...el.parentElement.children].indexOf(el), 5) * 90;
+          setTimeout(() => el.classList.add('in'), delay);
+          revealObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach((el) => revealObserver.observe(el));
+
+    // ---------- Animated counters ----------
+    const counters = document.querySelectorAll('.counter');
+    const runCounter = (el) => {
+      const target = +el.dataset.target;
+      const duration = 1600;
+      const start = performance.now();
+      const tick = (now) => {
+        const p = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
+        el.textContent = Math.round(eased * target);
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          runCounter(entry.target);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach((el) => counterObserver.observe(el));
+
+    // ---------- Close mobile menu on link click ----------
+    document.querySelectorAll('#navMenu .nav-link, #navMenu .btn').forEach((link) => {
+      link.addEventListener('click', () => {
+        const collapse = bootstrap.Collapse.getInstance(document.getElementById('navMenu'));
+        if (collapse && window.innerWidth < 992) collapse.hide();
+      });
+    });
+  </script>
+</body>
+</html>
