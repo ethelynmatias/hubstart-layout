@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hubstart — Theme Colors</title>
+  <link rel="stylesheet" href="theme.css" />
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+           background: var(--color-bg); color: var(--color-body); padding: 3rem clamp(1rem,4vw,3rem); }
+    h1 { color: var(--color-heading); font-size: 2rem; margin: 0 0 .3rem; }
+    .sub { margin: 0 0 2.5rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); gap: 1rem; margin-bottom: 3rem; }
+    .swatch { border: 1px solid var(--color-line); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-card); }
+    .swatch .chip { height: 96px; }
+    .swatch .meta { padding: .75rem .9rem; background: var(--color-white); }
+    .swatch .name { color: var(--color-heading); font-weight: 700; font-size: .9rem; }
+    .swatch .hex { font-family: ui-monospace, Menlo, monospace; font-size: .8rem; color: var(--color-muted); text-transform: uppercase; }
+    .demo { border: 1px solid var(--color-line); border-radius: var(--radius); padding: 2rem; background: var(--color-white); box-shadow: var(--shadow-card); max-width: 640px; }
+    .badge { display: inline-block; background: var(--color-primary-tint); color: var(--color-primary); font-weight: 700; font-size: .78rem; padding: .35rem .8rem; border-radius: var(--radius-pill); margin-bottom: 1rem; }
+    .demo h2 { color: var(--color-heading); margin: 0 0 .6rem; font-size: 1.6rem; }
+    .demo p { margin: 0 0 1.4rem; }
+    .stat { color: var(--color-primary); font-size: 3rem; font-weight: 800; line-height: 1; }
+  </style>
+</head>
+<body>
+  <h1>Hubstart Theme Colors</h1>
+  <p class="sub">Palette extracted from <code>theme-color.png</code>.</p>
+
+  <div class="grid">
+    <div class="swatch"><div class="chip" style="background:#F1592A"></div><div class="meta"><div class="name">Primary</div><div class="hex">#F1592A</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#D8461B"></div><div class="meta"><div class="name">Primary Hover</div><div class="hex">#D8461B</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#FCEAE3"></div><div class="meta"><div class="name">Primary Tint</div><div class="hex">#FCEAE3</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#0E1E36"></div><div class="meta"><div class="name">Heading</div><div class="hex">#0E1E36</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#5F7183"></div><div class="meta"><div class="name">Body</div><div class="hex">#5F7183</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#8A97A5"></div><div class="meta"><div class="name">Muted</div><div class="hex">#8A97A5</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#F6F7F8"></div><div class="meta"><div class="name">Surface</div><div class="hex">#F6F7F8</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#E6E9ED"></div><div class="meta"><div class="name">Line</div><div class="hex">#E6E9ED</div></div></div>
+  </div>
+
+  <div class="demo">
+    <span class="badge">About Our Company</span>
+    <h2>Tailored Solutions, Proven Results</h2>
+    <p>At Hubstart, we specialize in forward-thinking solutions designed to drive business growth and success.</p>
+    <div class="stat">78%</div>
+    <p style="margin:.4rem 0 1.6rem;">Data Investment</p>
+    <a class="btn-theme" href="#">More About Us →</a>
+  </div>
+</body>
+</html>

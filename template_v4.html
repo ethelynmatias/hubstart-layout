@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#000000" />
+  <title>Hubstart — Menu (v4)</title>
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <!-- Theme palette (from theme/theme-color.png) -->
+  <link rel="stylesheet" href="theme/theme.css" />
+
+  <!-- ===================== Menu on black (v4) ===================== -->
+  <style>
+    :root {
+      --bg: #000000;
+      --surface: #0d0d0f;
+      --ink: #ffffff;
+      --ink-soft: #c9c9d1;
+      --muted: #8a8a94;
+      --line: #26262c;
+      /* Accent pulled from the theme palette */
+      --blue: var(--color-primary);        /* #F1592A coral-orange */
+      --blue-dark: var(--color-primary-hover); /* #D8461B */
+      --nav-h: 74px;
+      --container-max: 1320px;
+      --safe-t: env(safe-area-inset-top, 0px);
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Segoe UI", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    .container-x { width: 100%; max-width: var(--container-max); margin-inline: auto; padding-inline: clamp(1rem, 4vw, 2.6rem); }
+
+    /* Buttons */
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; font-size: 0.9rem; padding: 0.7rem 1.4rem; border: 1px solid transparent; text-decoration: none; cursor: pointer; transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease; border-radius: 999px; }
+    .btn-primary { background: var(--blue); color: #fff; }
+    .btn-primary:hover { background: var(--blue-dark); }
+    .btn-outline { background: transparent; color: #fff; border-color: rgba(255,255,255,0.4); }
+    .btn-outline:hover { border-color: var(--blue); color: var(--blue); background: rgba(241,89,42,0.08); }
+    .btn-lg { padding: 0.85rem 1.7rem; font-size: 1rem; }
+
+    /* ---------- Header shell (transparent, overlays the banner) ---------- */
+    .site-header {
+      position: absolute; top: 0; left: 0; right: 0; z-index: 1200;
+      padding-top: var(--safe-t);
+      background: transparent;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .nav-inner { height: var(--nav-h); display: flex; align-items: center; justify-content: space-between; gap: 1.4rem; }
+
+    /* Brand */
+    .brand { display: inline-flex; align-items: center; text-decoration: none; }
+    .brand img { height: 32px; width: auto; display: block; filter: brightness(0) invert(1); }
+
+    /* ---------- Primary nav (simple links) ---------- */
+    .nav-menu { display: flex; align-items: center; gap: 0.2rem; }
+    .nav-item { position: relative; }
+    .nav-link {
+      position: relative; display: inline-flex; align-items: center; gap: 0.35rem;
+      text-decoration: none; font-size: 0.95rem; font-weight: 500;
+      color: var(--ink-soft); padding: 0.6rem 0.95rem; line-height: 1.2;
+      background: transparent; border: 0; cursor: pointer; font-family: inherit;
+    }
+    .nav-link .caret { font-size: 0.68rem; transition: transform 0.2s ease; }
+    .nav-item.open .nav-link .caret { transform: rotate(180deg); }
+    .nav-link:hover, .nav-link.active, .nav-item:hover .nav-link, .nav-item.open .nav-link { color: var(--ink); }
+    .nav-link::after {
+      content: ""; position: absolute; left: 0.95rem; right: 0.95rem; bottom: 0.4rem; height: 2px;
+      background: var(--blue); transform: scaleX(0); transform-origin: left; transition: transform 0.2s ease;
+    }
+    .nav-link:hover::after, .nav-link.active::after,
+    .nav-item:hover .nav-link::after, .nav-item.open .nav-link::after { transform: scaleX(1); }
+
+    /* ---------- Dropdown submenu ---------- */
+    .submenu {
+      position: absolute; top: calc(100% + 10px); left: 0; width: 320px;
+      list-style: none; margin: 0; padding: 0.5rem;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.65);
+      border-radius: 14px;
+      opacity: 0; visibility: hidden; transform: translateY(-10px);
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s; z-index: 5;
+    }
+    /* little pointer arrow */
+    .submenu::before {
+      content: ""; position: absolute; top: -7px; left: 26px; width: 12px; height: 12px;
+      background: var(--surface); border-left: 1px solid var(--line); border-top: 1px solid var(--line);
+      transform: rotate(45deg);
+    }
+    /* invisible bridge so moving the cursor into the panel doesn't lose hover */
+    .submenu::after { content: ""; position: absolute; top: -12px; left: 0; right: 0; height: 12px; }
+    .nav-item:hover .submenu, .nav-item.open .submenu {
+      opacity: 1; visibility: visible; transform: translateY(0);
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s;
+    }
+    .submenu li { list-style: none; }
+    .submenu a {
+      display: flex; align-items: flex-start; gap: 0.85rem;
+      padding: 0.7rem 0.75rem; text-decoration: none; color: var(--ink-soft);
+      border-radius: 10px; transition: background 0.15s ease;
+    }
+    .submenu a .s-ico {
+      flex: 0 0 auto; width: 40px; height: 40px; display: grid; place-items: center;
+      background: var(--color-primary-tint); color: var(--color-primary);
+      border-radius: 10px; font-size: 1.1rem; transition: background 0.15s ease, color 0.15s ease;
+    }
+    .submenu a .s-txt { display: flex; flex-direction: column; gap: 2px; }
+    .submenu a .s-txt strong { font-size: 0.92rem; font-weight: 600; color: var(--ink); line-height: 1.2; }
+    .submenu a .s-txt span { font-size: 0.78rem; color: var(--muted); line-height: 1.3; }
+    .submenu a:hover { background: #17171c; }
+    .submenu a:hover .s-ico { background: var(--color-primary); color: #fff; }
+    .submenu a:hover .s-txt strong { color: var(--color-primary); }
+
+    /* ---------- Right actions ---------- */
+    .nav-actions { display: flex; align-items: center; gap: 0.7rem; }
+    .icon-btn {
+      display: inline-grid; place-items: center; width: 42px; height: 42px;
+      border: 1px solid rgba(255,255,255,0.28); background: rgba(255,255,255,0.06); color: #fff;
+      cursor: pointer; border-radius: 999px; font-size: 1.05rem;
+      transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+    .icon-btn:hover { color: #fff; border-color: var(--blue); background: rgba(241,89,42,0.2); }
+    .desktop-only { display: inline-flex; }
+
+    /* ---------- Hamburger ---------- */
+    .nav-toggle { display: none; width: 44px; height: 44px; border: 0; background: transparent; cursor: pointer; position: relative; z-index: 1301; }
+    .nav-toggle span { position: absolute; left: 10px; right: 10px; height: 2px; background: var(--ink); transition: transform 0.3s ease, opacity 0.2s ease; }
+    .nav-toggle span:nth-child(1) { top: 15px; }
+    .nav-toggle span:nth-child(2) { top: 21px; }
+    .nav-toggle span:nth-child(3) { top: 27px; }
+    body.menu-open .nav-toggle span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    body.menu-open .nav-toggle span:nth-child(2) { opacity: 0; }
+    body.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    /* ---------- Mobile full-screen menu ---------- */
+    .mobile-menu {
+      position: fixed; inset: 0; z-index: 1300;
+      background: var(--bg);
+      padding: calc(var(--nav-h) + var(--safe-t) + 24px) clamp(1.2rem, 6vw, 3rem) 40px;
+      overflow-y: auto;
+      opacity: 0; visibility: hidden; transform: translateY(-8px);
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s;
+    }
+    body.menu-open .mobile-menu { opacity: 1; visibility: visible; transform: translateY(0); transition: opacity 0.25s ease, transform 0.25s ease; }
+    .m-link {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 0; font-size: 1.2rem; font-weight: 600; color: var(--ink);
+      text-decoration: none; border-bottom: 1px solid var(--line);
+    }
+    .m-link:hover { color: var(--blue); }
+    .m-group { border-bottom: 1px solid var(--line); }
+    .m-group > summary {
+      list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 0; font-size: 1.2rem; font-weight: 600; color: var(--ink);
+    }
+    .m-group > summary::-webkit-details-marker { display: none; }
+    .m-group > summary .chev { transition: transform 0.2s ease; color: var(--muted); }
+    .m-group[open] > summary .chev { transform: rotate(180deg); }
+    .m-sub { padding: 0 0 0.9rem 0.4rem; display: flex; flex-direction: column; gap: 0.1rem; }
+    .m-sub a { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; color: var(--ink-soft); font-size: 1rem; padding: 0.5rem 0; }
+    .m-sub a i { color: var(--blue); }
+    .m-sub a:hover { color: var(--blue); }
+    .m-footer { margin-top: 1.8rem; }
+    .m-footer .btn { width: 100%; justify-content: center; }
+
+    /* ---------- Hero banner ---------- */
+    .hero-banner {
+      position: relative; text-align: left; overflow: hidden;
+      padding: calc(var(--nav-h) + var(--safe-t) + clamp(3.5rem, 9vw, 6.5rem)) 0 clamp(8rem, 18vw, 13rem);
+      background: #08080c;
+      border-bottom: 1px solid var(--line);
+    }
+    /* moving background image (slow Ken Burns pan + zoom) */
+    .hero-bg {
+      position: absolute; inset: -6%; z-index: 0; pointer-events: none;
+      background: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      will-change: transform;
+      animation: kenburns 26s ease-in-out infinite alternate;
+    }
+    /* gradient darken + subtle dot texture overlay */
+    .hero-banner::before {
+      content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background:
+        radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px) 0 0 / 22px 22px,
+        linear-gradient(115deg, rgba(8,8,12,0.92) 0%, rgba(8,8,12,0.6) 55%, rgba(241,89,42,0.28) 100%);
+    }
+    @keyframes kenburns {
+      0%   { transform: scale(1.05) translate(0, 0); }
+      100% { transform: scale(1.2) translate(-2.5%, -2%); }
+    }
+    @keyframes heroReveal {
+      from { opacity: 0; transform: translateY(26px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    .hero-inner { position: relative; z-index: 2; max-width: 780px; }
+    .hero-inner > * { opacity: 0; animation: heroReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+    .hero-inner > *:nth-child(1) { animation-delay: 0.05s; }
+    .hero-inner > *:nth-child(2) { animation-delay: 0.18s; }
+    .hero-inner > *:nth-child(3) { animation-delay: 0.32s; }
+    .hero-inner > *:nth-child(4) { animation-delay: 0.46s; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem; margin: 0 0 1.1rem;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--color-primary);
+    }
+    .hero-eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--color-primary); }
+    .hero-title { margin: 0 0 1rem; color: #fff; font-weight: 800; letter-spacing: -0.015em; line-height: 1.08; font-size: clamp(2.1rem, 5vw, 3.4rem); }
+    .hero-sub { margin: 0 0 2rem; color: var(--ink-soft); font-size: clamp(1rem, 1.5vw, 1.12rem); line-height: 1.6; max-width: 660px; }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.9rem; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-bg { animation: none; }
+      .hero-inner > * { opacity: 1; animation: none; }
+    }
+    .text-link { color: var(--muted); font-size: 0.85rem; text-decoration: none; border-bottom: 1px dashed transparent; padding-bottom: 2px; transition: color 0.2s ease, border-color 0.2s ease; }
+    .text-link:hover { color: #fff; border-color: var(--muted); }
+
+    /* ---------- Services grid ---------- */
+    .services { position: relative; z-index: 3; padding: 0 0 clamp(3rem, 6vw, 5rem); }
+    .svc-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem;
+      margin-top: clamp(-150px, -9vw, -90px);   /* lift cards over the banner */
+    }
+    .svc-card {
+      display: flex; flex-direction: column; justify-content: space-between; gap: 1.6rem;
+      min-height: 220px; padding: 1.9rem; border-radius: 18px;
+      background: var(--surface); border: 1px solid var(--line);
+      text-decoration: none; transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    }
+    .svc-card:hover { transform: translateY(-4px); border-color: var(--color-primary); }
+    .svc-card .svc-ico { font-size: 2.1rem; color: var(--ink); transition: color 0.25s ease; }
+    .svc-card:hover .svc-ico { color: var(--color-primary); }
+    .svc-card .svc-foot { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; }
+    .svc-card .svc-cat { display: block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.35rem; }
+    .svc-card .svc-title { font-size: 1.05rem; font-weight: 700; color: var(--ink); line-height: 1.25; }
+    .svc-card .svc-arrow { flex: 0 0 auto; width: 38px; height: 38px; display: grid; place-items: center; border-radius: 999px; border: 1px solid var(--line); color: var(--ink-soft); transition: all 0.25s ease; }
+    .svc-card:hover .svc-arrow { background: var(--color-primary); border-color: var(--color-primary); color: #fff; }
+
+    /* Dark feature tile */
+    .svc-feature {
+      justify-content: flex-end; color: #fff; position: relative; overflow: hidden;
+      border: 0;
+      background:
+        linear-gradient(180deg, rgba(14,30,54,0.35) 0%, rgba(8,8,12,0.9) 100%),
+        url('https://picsum.photos/seed/hubstartteam/800/900') center/cover no-repeat;
+    }
+    .svc-feature .svc-cat { color: var(--color-primary); }
+    .svc-feature h3 { margin: 0.3rem 0 0; font-size: clamp(1.4rem, 2.4vw, 1.9rem); font-weight: 800; line-height: 1.05; color: #fff; }
+
+    /* CTA tile */
+    .svc-cta {
+      align-items: center; justify-content: center; text-align: center; gap: 0.9rem;
+      background: transparent; border: 1.5px dashed var(--color-primary);
+    }
+    .svc-cta .svc-arrow { border-color: var(--color-primary); color: var(--color-primary); }
+    .svc-cta:hover { background: rgba(241,89,42,0.06); transform: translateY(-4px); }
+    .svc-cta:hover .svc-arrow { background: var(--color-primary); color: #fff; }
+    .svc-cta span.q { color: var(--ink-soft); font-size: 1rem; font-weight: 600; }
+
+    @media (max-width: 860px) {
+      .nav-menu, .desktop-only { display: none; }
+      .nav-toggle { display: block; }
+      .svc-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .svc-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== HEADER / NAV (black) ===================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="container-x nav-inner">
+
+      <!-- Brand -->
+      <a class="brand" href="#" aria-label="Hubstart home">
+        <img src="assets/images/hubstart.png" alt="Hubstart" />
+      </a>
+
+      <!-- Center: primary nav -->
+      <nav class="nav-menu" aria-label="Primary">
+        <div class="nav-item">
+          <a class="nav-link active" href="#">Home</a>
+        </div>
+
+        <div class="nav-item">
+          <button class="nav-link" type="button" aria-haspopup="true" aria-expanded="false">Services <i class="bi bi-chevron-down caret"></i></button>
+          <ul class="submenu">
+            <li><a href="#"><span class="s-ico"><i class="bi bi-shield-check"></i></span><span class="s-txt"><strong>Aegis Model</strong><span>Intelligent task routing</span></span></a></li>
+            <li><a href="#"><span class="s-ico"><i class="bi bi-cpu"></i></span><span class="s-txt"><strong>Insurance AI Advantage</strong><span>AI Agents end to end</span></span></a></li>
+            <li><a href="#"><span class="s-ico"><i class="bi bi-diagram-3"></i></span><span class="s-txt"><strong>Intelligent Routing</strong><span>Route by skill &amp; licensing</span></span></a></li>
+            <li><a href="#"><span class="s-ico"><i class="bi bi-graph-up-arrow"></i></span><span class="s-txt"><strong>Sales Transformation</strong><span>Turn savings into revenue</span></span></a></li>
+            <li><a href="#"><span class="s-ico"><i class="bi bi-hubspot"></i></span><span class="s-txt"><strong>HubSpot Enablement</strong><span>Certified partner expertise</span></span></a></li>
+          </ul>
+        </div>
+
+        <div class="nav-item">
+          <button class="nav-link" type="button" aria-haspopup="true" aria-expanded="false">Industry <i class="bi bi-chevron-down caret"></i></button>
+          <ul class="submenu">
+            <li><a href="#"><span class="s-ico"><i class="bi bi-bank"></i></span><span class="s-txt"><strong>Finance &amp; Insurance</strong><span>End producer walkouts</span></span></a></li>
+            <li><a href="#"><span class="s-ico"><i class="bi bi-mortarboard"></i></span><span class="s-txt"><strong>Coaching</strong><span>Automate enrollment</span></span></a></li>
+            <li><a href="#"><span class="s-ico"><i class="bi bi-book"></i></span><span class="s-txt"><strong>Education</strong><span>Orchestrate admissions</span></span></a></li>
+            <li><a href="#"><span class="s-ico"><i class="bi bi-briefcase"></i></span><span class="s-txt"><strong>Staffing</strong><span>Match, route &amp; place faster</span></span></a></li>
+          </ul>
+        </div>
+
+        <div class="nav-item">
+          <button class="nav-link" type="button" aria-haspopup="true" aria-expanded="false">Resources <i class="bi bi-chevron-down caret"></i></button>
+          <ul class="submenu">
+            <li><a href="#"><span class="s-ico"><i class="bi bi-chat-quote"></i></span><span class="s-txt"><strong>Customer Stories</strong><span>Results from real agencies</span></span></a></li>
+            <li><a href="#"><span class="s-ico"><i class="bi bi-journal-text"></i></span><span class="s-txt"><strong>Blog &amp; Insights</strong><span>Guides &amp; playbooks</span></span></a></li>
+            <li><a href="#"><span class="s-ico"><i class="bi bi-tools"></i></span><span class="s-txt"><strong>Tools &amp; Integrations</strong><span>Insurance tech stack</span></span></a></li>
+            <li><a href="#"><span class="s-ico"><i class="bi bi-graph-up"></i></span><span class="s-txt"><strong>Agentic Integration Score</strong><span>Discover your AIS</span></span></a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Right: search + book consultation + hamburger -->
+      <div class="nav-actions">
+        <button class="icon-btn" type="button" aria-label="Search"><i class="bi bi-search"></i></button>
+        <a class="btn btn-primary desktop-only" href="#">Book a Consultation</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile full-screen menu -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile menu" aria-modal="true">
+    <a class="m-link" href="#">Home <i class="bi bi-arrow-right"></i></a>
+    <details class="m-group">
+      <summary>Services <i class="bi bi-chevron-down chev"></i></summary>
+      <div class="m-sub">
+        <a href="#"><i class="bi bi-shield-check"></i> Aegis Model</a>
+        <a href="#"><i class="bi bi-cpu"></i> Insurance AI Advantage</a>
+        <a href="#"><i class="bi bi-diagram-3"></i> Intelligent Routing</a>
+        <a href="#"><i class="bi bi-graph-up-arrow"></i> Sales Transformation</a>
+        <a href="#"><i class="bi bi-hubspot"></i> HubSpot Enablement</a>
+      </div>
+    </details>
+    <details class="m-group">
+      <summary>Industry <i class="bi bi-chevron-down chev"></i></summary>
+      <div class="m-sub">
+        <a href="#"><i class="bi bi-bank"></i> Finance &amp; Insurance</a>
+        <a href="#"><i class="bi bi-mortarboard"></i> Coaching</a>
+        <a href="#"><i class="bi bi-book"></i> Education</a>
+        <a href="#"><i class="bi bi-briefcase"></i> Staffing</a>
+      </div>
+    </details>
+    <details class="m-group">
+      <summary>Resources <i class="bi bi-chevron-down chev"></i></summary>
+      <div class="m-sub">
+        <a href="#"><i class="bi bi-chat-quote"></i> Customer Stories</a>
+        <a href="#"><i class="bi bi-journal-text"></i> Blog &amp; Insights</a>
+        <a href="#"><i class="bi bi-tools"></i> Tools &amp; Integrations</a>
+        <a href="#"><i class="bi bi-graph-up"></i> Agentic Integration Score</a>
+      </div>
+    </details>
+    <a class="m-link" href="#">Search <i class="bi bi-search"></i></a>
+    <div class="m-footer">
+      <a class="btn btn-primary btn-lg" href="#">Book a Consultation <i class="bi bi-arrow-right"></i></a>
+    </div>
+  </div>
+
+  <main>
+    <!-- ===================== HERO BANNER ===================== -->
+    <section class="hero-banner" aria-labelledby="hero-title">
+      <span class="hero-bg" aria-hidden="true"></span>
+      <div class="container-x">
+      <div class="hero-inner">
+        <p class="hero-eyebrow">The Aegis Protocol · Built in HubSpot</p>
+        <h1 class="hero-title" id="hero-title">Beyond automation: how AI Agents grow your agency.</h1>
+        <p class="hero-sub">Standard automation only completes tasks. AI Agents initiate and orchestrate entire workflows — from renewal quoting to claims follow-ups — so you unlock growth and end producer walkouts.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-lg" href="#">Discover your AIS <i class="bi bi-arrow-right"></i></a>
+          <a class="btn btn-outline btn-lg" href="#">See how it works</a>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- ===================== SERVICES GRID ===================== -->
+    <section class="services" aria-label="Our services">
+      <div class="container-x">
+        <div class="svc-grid">
+
+          <!-- Dark feature tile -->
+          <a class="svc-card svc-feature" href="#">
+            <div>
+              <span class="svc-cat">Our Services</span>
+              <h3>What We<br>Can Do?</h3>
+            </div>
+          </a>
+
+          <!-- Service tiles -->
+          <a class="svc-card" href="#">
+            <i class="bi bi-shield-check svc-ico"></i>
+            <div class="svc-foot">
+              <div><span class="svc-cat">Intelligent Routing</span><span class="svc-title">Aegis Model</span></div>
+              <span class="svc-arrow"><i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+
+          <a class="svc-card" href="#">
+            <i class="bi bi-cpu svc-ico"></i>
+            <div class="svc-foot">
+              <div><span class="svc-cat">AI Agents End to End</span><span class="svc-title">Insurance AI Advantage</span></div>
+              <span class="svc-arrow"><i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+
+          <a class="svc-card" href="#">
+            <i class="bi bi-graph-up-arrow svc-ico"></i>
+            <div class="svc-foot">
+              <div><span class="svc-cat">Turn Savings Into Revenue</span><span class="svc-title">Sales Transformation</span></div>
+              <span class="svc-arrow"><i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+
+          <a class="svc-card" href="#">
+            <i class="bi bi-hubspot svc-ico"></i>
+            <div class="svc-foot">
+              <div><span class="svc-cat">Certified Partner</span><span class="svc-title">HubSpot Enablement</span></div>
+              <span class="svc-arrow"><i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+
+          <!-- CTA tile -->
+          <a class="svc-card svc-cta" href="#">
+            <span class="svc-arrow"><i class="bi bi-arrow-right"></i></span>
+            <span class="q">Looking for a New Service?</span>
+          </a>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Hamburger toggle for the mobile menu
+    (function () {
+      var toggle = document.getElementById('navToggle');
+      if (!toggle) return;
+      toggle.addEventListener('click', function () {
+        var open = document.body.classList.toggle('menu-open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    })();
+
+    // Desktop dropdown submenus (click to toggle; hover still opens via CSS)
+    (function () {
+      var items = Array.prototype.slice.call(document.querySelectorAll('.nav-item'));
+      var triggers = items.filter(function (it) { return it.querySelector('.submenu'); });
+
+      function closeAll(except) {
+        triggers.forEach(function (it) {
+          if (it === except) return;
+          it.classList.remove('open');
+          var btn = it.querySelector('.nav-link');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
+        });
+      }
+
+      triggers.forEach(function (it) {
+        var btn = it.querySelector('.nav-link');
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          var willOpen = !it.classList.contains('open');
+          closeAll(it);
+          it.classList.toggle('open', willOpen);
+          btn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+        });
+      });
+
+      // Close when clicking anywhere outside an open dropdown
+      document.addEventListener('click', function (e) {
+        if (!e.target.closest('.nav-item')) closeAll(null);
+      });
+
+      // Close when focus leaves the whole nav (keyboard) or on Escape
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeAll(null);
+      });
+      document.addEventListener('focusin', function (e) {
+        if (!e.target.closest('.nav-item')) closeAll(null);
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+/* =====================================================================
+   Hubstart — Theme colors
+   Palette extracted from Theme/theme-color.png (Arfito-style reference)
+   ===================================================================== */
+
+:root {
+  /* ---- Brand ---- */
+  --color-primary:        #F1592A;   /* coral-orange — buttons, accents, "78%" */
+  --color-primary-hover:  #D8461B;   /* darker orange on hover/press */
+  --color-primary-tint:   #FCEAE3;   /* soft peach — badge / label backgrounds */
+
+  /* ---- Ink / text ---- */
+  --color-heading:        #0E1E36;   /* deep navy — headings */
+  --color-body:           #5F7183;   /* muted blue-gray — paragraph text */
+  --color-muted:          #8A97A5;   /* secondary / captions */
+
+  /* ---- Surfaces ---- */
+  --color-bg:             #FFFFFF;   /* page background */
+  --color-surface:        #F6F7F8;   /* cards / alt sections */
+  --color-line:           #E6E9ED;   /* borders / dividers */
+
+  /* ---- Utility ---- */
+  --color-white:          #FFFFFF;
+  --color-black:          #0E1E36;
+
+  /* ---- Tokens ---- */
+  --radius:               10px;      /* rounded cards in the reference */
+  --radius-pill:          999px;     /* pill buttons */
+  --shadow-card:          0 18px 40px rgba(14, 30, 54, 0.08);
+}
+
+/* ---------- Dark variant (same brand orange on navy) ---------- */
+:root[data-theme="dark"],
+.theme-dark {
+  --color-heading:  #FFFFFF;
+  --color-body:     #C2CBD4;
+  --color-muted:    #8A97A5;
+  --color-bg:       #0E1626;
+  --color-surface:  #16223A;
+  --color-line:     #26344B;
+  --color-black:    #FFFFFF;
+}
+
+/* ---------- Convenience helpers ---------- */
+.bg-primary   { background: var(--color-primary);      color: var(--color-white); }
+.bg-tint      { background: var(--color-primary-tint); }
+.text-primary { color: var(--color-primary); }
+.text-heading { color: var(--color-heading); }
+.text-body    { color: var(--color-body); }
+
+.btn-theme {
+  display: inline-flex; align-items: center; gap: .6rem;
+  background: var(--color-primary); color: var(--color-white);
+  font-weight: 700; padding: .85rem 1.6rem; border: 0;
+  border-radius: var(--radius-pill); cursor: pointer; text-decoration: none;
+  transition: background .2s ease;
+}
+.btn-theme:hover { background: var(--color-primary-hover); }
