@@ -228,7 +228,7 @@
     .text-link:hover { color: #fff; border-color: var(--muted); }
 
     /* ---------- Light content area (below the banner) ---------- */
-    .services, .clients {
+    .services {
       --surface: #ffffff;              /* cards → white */
       --ink: var(--color-heading);     /* titles → navy */
       --ink-soft: var(--color-body);   /* body text */
@@ -315,8 +315,23 @@
     .svc-cta:hover .svc-arrow { background: var(--color-primary); color: #fff; }
     .svc-cta span.q { color: var(--ink-soft); font-size: 1rem; font-weight: 600; }
 
-    /* ---------- Clients / happy customers ---------- */
-    .clients { padding: clamp(2rem, 5vw, 4rem) 0 clamp(3.5rem, 7vw, 6rem); text-align: center; border-top: 1px solid var(--line); }
+    /* ---------- Clients / happy customers (dark) ---------- */
+    .clients {
+      position: relative; overflow: hidden;
+      --ink: #ffffff; --muted: #8a97a5; --line: rgba(255,255,255,0.14);
+      background: #0E1626; color: var(--ink-soft);
+      padding: clamp(2.4rem, 5vw, 4rem) 0 clamp(3.5rem, 7vw, 6rem); text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    /* dot pattern fading from left to right */
+    .clients::before {
+      content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background-image: radial-gradient(rgba(255,255,255,0.14) 1px, transparent 1.4px);
+      background-size: 18px 18px;
+      -webkit-mask-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,0.35) 45%, transparent 78%);
+      mask-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,0.35) 45%, transparent 78%);
+    }
+    .clients > * { position: relative; z-index: 1; }
     .clients-eyebrow {
       display: inline-flex; align-items: center; gap: 0.6rem; margin: 0 0 0.9rem;
       font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-primary);
@@ -324,11 +339,32 @@
     .clients-eyebrow::before, .clients-eyebrow::after { content: ""; width: 26px; height: 2px; background: var(--color-primary); }
     .clients-title { margin: 0 0 0.6rem; color: var(--ink); font-weight: 800; letter-spacing: -0.015em; font-size: clamp(1.6rem, 3.4vw, 2.4rem); }
     .clients-sub { margin: 0 auto; color: var(--muted); max-width: 560px; font-size: 1rem; }
-    .logo-row {
-      display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
-      gap: clamp(1.6rem, 5vw, 3.6rem); margin-top: clamp(2rem, 5vw, 3rem);
+    .logo-carousel { position: relative; margin-top: clamp(2rem, 5vw, 3rem); }
+    .logo-track {
+      display: flex; align-items: center; gap: clamp(1.8rem, 5vw, 3.6rem);
+      overflow-x: auto; scroll-behavior: smooth; scroll-snap-type: x proximity;
+      padding: 0.5rem clamp(3rem, 7vw, 4rem);
+      scrollbar-width: none; -ms-overflow-style: none;
     }
+    .logo-track::-webkit-scrollbar { display: none; }
+    /* fade edges */
+    .logo-carousel::before, .logo-carousel::after {
+      content: ""; position: absolute; top: 0; bottom: 0; width: clamp(2.5rem, 6vw, 4rem); z-index: 1; pointer-events: none;
+    }
+    .logo-carousel::before { left: 0; background: linear-gradient(90deg, #0E1626, rgba(14,22,38,0)); }
+    .logo-carousel::after { right: 0; background: linear-gradient(270deg, #0E1626, rgba(14,22,38,0)); }
+    .clients-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+      width: 44px; height: 44px; display: grid; place-items: center;
+      border-radius: 999px; border: 1px solid rgba(255,255,255,0.22); background: rgba(255,255,255,0.06); color: #fff;
+      cursor: pointer; font-size: 1.05rem; box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+      transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+    .clients-arrow:hover { border-color: var(--color-primary); color: #fff; background: var(--color-primary); }
+    .clients-arrow.prev { left: 0; }
+    .clients-arrow.next { right: 0; }
     .client-logo {
+      flex: 0 0 auto; scroll-snap-align: center;
       display: inline-flex; align-items: center; gap: 0.55rem; text-decoration: none;
       color: var(--ink); font-weight: 800; font-size: 1.3rem; letter-spacing: -0.02em;
       opacity: 0.55; filter: grayscale(1); transition: opacity 0.25s ease, filter 0.25s ease, color 0.25s ease;
@@ -337,11 +373,118 @@
     .client-logo span small { display: block; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
     .client-logo:hover { opacity: 1; filter: none; }
 
+    /* ---------- Automation Ceiling (text left / image right) ---------- */
+    .ceiling {
+      --ink: var(--color-heading); --ink-soft: var(--color-body); --muted: var(--color-muted); --line: var(--color-line);
+      background: #ffffff; color: var(--color-body);
+      padding: clamp(3.5rem, 8vw, 6.5rem) 0;
+    }
+    .ceiling-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+    .ceiling-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem; margin: 0 0 1rem;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-primary);
+    }
+    .ceiling-eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--color-primary); }
+    .ceiling-title {
+      margin: 0 0 1.4rem; color: var(--ink); font-weight: 800; letter-spacing: -0.015em;
+      line-height: 1.1; font-size: clamp(1.8rem, 3.6vw, 2.7rem);
+    }
+    .ceiling-title .accent { color: var(--color-primary); }
+    .ceiling-body { border-left: 2px solid var(--line); padding-left: clamp(1rem, 2vw, 1.6rem); }
+    .ceiling-body p { margin: 0 0 1.1rem; line-height: 1.65; font-size: 1rem; color: var(--ink-soft); }
+    .kw { color: var(--color-primary); background: var(--color-primary-tint); font-weight: 700; padding: 0.1rem 0.45rem; border-radius: 5px; white-space: nowrap; }
+    .ceiling-lead { font-weight: 600; color: var(--ink) !important; }
+    .ceiling-list { list-style: none; margin: 0 0 1.4rem; padding: 0; display: flex; flex-direction: column; gap: 0.7rem; }
+    .ceiling-list li { display: flex; align-items: flex-start; gap: 0.7rem; color: var(--ink); font-weight: 600; font-size: 0.98rem; }
+    .ceiling-list li i { color: var(--color-primary); margin-top: 0.15rem; flex: 0 0 auto; }
+    .ceiling-actions { margin-top: 1.8rem; }
+
+    /* thinner image sitting on top of an offset orange dot grid (peeks out bottom + right) */
+    .ceiling-visual { position: relative; width: max-content; max-width: 100%; justify-self: end; margin-right: 32px; }
+    .ceiling-frame {
+      position: relative; z-index: 1; overflow: hidden; border-radius: 16px;
+      box-shadow: 0 24px 50px rgba(14,30,54,0.15);
+      width: 320px; max-width: 100%;
+    }
+    .ceiling-frame img {
+      width: 100%; aspect-ratio: 3 / 4.2; object-fit: cover; display: block;
+      transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .ceiling-frame:hover img { transform: scale(1.08); }
+    /* orange dot grid behind the image, offset to the bottom-right */
+    .ceiling-visual::after {
+      content: ""; position: absolute; z-index: 0; pointer-events: none;
+      right: -32px; bottom: -40px; width: 82%; height: 84%;
+      background-image: radial-gradient(var(--color-primary) 1.7px, transparent 2px);
+      background-size: 18px 18px;
+      -webkit-mask-image: linear-gradient(315deg, #000 12%, rgba(0,0,0,0.55) 70%, transparent 100%);
+      mask-image: linear-gradient(315deg, #000 12%, rgba(0,0,0,0.55) 70%, transparent 100%);
+    }
+
+    /* reversed variant: image on the left, text on the right */
+    .ceiling.reverse .ceiling-grid { grid-template-columns: 0.95fr 1.05fr; }
+    .ceiling.reverse .ceiling-body { border-left: 0; border-right: 2px solid var(--line); padding-left: 0; padding-right: clamp(1rem, 2vw, 1.6rem); }
+    .ceiling.reverse .ceiling-visual { justify-self: start; margin-right: 0; margin-left: 32px; }
+    .ceiling.reverse .ceiling-visual::after {
+      right: auto; left: -32px; bottom: -40px;
+      -webkit-mask-image: linear-gradient(45deg, #000 12%, rgba(0,0,0,0.55) 70%, transparent 100%);
+      mask-image: linear-gradient(45deg, #000 12%, rgba(0,0,0,0.55) 70%, transparent 100%);
+    }
+
+    /* ---------- The Proof in Two Numbers (dark) ---------- */
+    .proof {
+      --ink: #ffffff; --muted: #8a97a5;
+      position: relative; overflow: hidden; text-align: center;
+      background: #0B1220; color: var(--ink-soft);
+      padding: clamp(3.5rem, 8vw, 6.5rem) 0;
+    }
+    .proof::before {
+      content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1.2px);
+      background-size: 20px 20px;
+      -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 55%);
+      mask-image: linear-gradient(180deg, #000 0%, transparent 55%);
+    }
+    .proof > * { position: relative; z-index: 1; }
+    .proof-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem; margin: 0 0 0.9rem;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-primary);
+    }
+    .proof-eyebrow::before, .proof-eyebrow::after { content: ""; width: 26px; height: 2px; background: var(--color-primary); }
+    .proof-title { margin: 0 0 0.9rem; color: #fff; font-weight: 800; letter-spacing: -0.015em; font-size: clamp(2rem, 5vw, 3.2rem); }
+    .proof-title .accent { color: var(--color-primary); }
+    .proof-sub { margin: 0 auto; color: var(--ink-soft); max-width: 660px; font-size: 1.02rem; line-height: 1.6; }
+    .proof-cards {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;
+      max-width: 900px; margin: clamp(2.5rem, 5vw, 3.5rem) auto 0; text-align: left;
+    }
+    .proof-card {
+      position: relative; padding: 2rem; border-radius: 18px;
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.14);
+    }
+    .proof-card .pc-label { text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; font-weight: 700; color: var(--muted); }
+    .proof-card .pc-num { font-size: clamp(2.4rem, 5vw, 3.4rem); font-weight: 800; color: #fff; line-height: 1; margin: 0.5rem 0 0.25rem; }
+    .proof-card .pc-rhl { font-size: 0.78rem; color: var(--muted); margin-bottom: 1rem; }
+    .proof-card p { margin: 0; color: var(--ink-soft); font-size: 0.95rem; line-height: 1.55; }
+    .proof-card .pc-badge { position: absolute; top: 1.2rem; right: 1.2rem; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; background: var(--color-primary); padding: 0.2rem 0.5rem; border-radius: 999px; }
+    .proof-card.highlight { border-color: var(--color-primary); background: linear-gradient(160deg, rgba(241,89,42,0.16), rgba(241,89,42,0.03)); }
+    .proof-card.highlight .pc-num, .proof-card.highlight .pc-label { color: var(--color-primary); }
+    .proof-note { margin: clamp(2rem, 4vw, 2.6rem) auto 0; max-width: 660px; color: var(--ink-soft); font-size: 1rem; line-height: 1.6; }
+    .proof-note .kw { color: #fff; background: rgba(255,255,255,0.1); }
+
     @media (max-width: 860px) {
       .nav-menu, .desktop-only { display: none; }
       .nav-toggle { display: block; }
       .svc-grid { grid-template-columns: repeat(2, 1fr); }
       .client-logo { font-size: 1.1rem; }
+      .ceiling-grid { grid-template-columns: 1fr; }
+      .ceiling-visual { order: -1; justify-self: center; margin-inline: 0; }
+      .ceiling-visual::after { display: none; }
+      .ceiling-frame { margin-inline: auto; max-width: 420px; }
+      .ceiling.reverse .ceiling-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 680px) {
+      .proof-cards { grid-template-columns: 1fr; }
     }
     @media (max-width: 560px) {
       .svc-grid { grid-template-columns: 1fr; }
@@ -524,13 +667,75 @@
         <p class="clients-eyebrow">Join to succeed</p>
         <h2 class="clients-title" id="clients-title">Here are examples of our happy customers</h2>
         <p class="clients-sub">Agencies growing with AI Agents and the Aegis Protocol on HubSpot.</p>
-        <div class="logo-row">
-          <a class="client-logo" href="#"><i class="bi bi-shield-shaded"></i><span>Northwind<small>Insurance</small></span></a>
-          <a class="client-logo" href="#"><i class="bi bi-triangle-fill"></i><span>Vertex<small>Brokers</small></span></a>
-          <a class="client-logo" href="#"><i class="bi bi-gem"></i><span>BlueRock<small>Advisory</small></span></a>
-          <a class="client-logo" href="#"><i class="bi bi-compass"></i><span>Meridian<small>Group</small></span></a>
-          <a class="client-logo" href="#"><i class="bi bi-hexagon-fill"></i><span>Apex<small>Assurance</small></span></a>
-          <a class="client-logo" href="#"><i class="bi bi-graph-up-arrow"></i><span>Summit<small>Partners</small></span></a>
+        <div class="logo-carousel">
+          <button class="clients-arrow prev" type="button" data-dir="-1" aria-label="Previous logos"><i class="bi bi-arrow-left"></i></button>
+          <div class="logo-track" id="logoTrack">
+            <a class="client-logo" href="#"><i class="bi bi-shield-shaded"></i><span>Northwind<small>Insurance</small></span></a>
+            <a class="client-logo" href="#"><i class="bi bi-triangle-fill"></i><span>Vertex<small>Brokers</small></span></a>
+            <a class="client-logo" href="#"><i class="bi bi-gem"></i><span>BlueRock<small>Advisory</small></span></a>
+            <a class="client-logo" href="#"><i class="bi bi-compass"></i><span>Meridian<small>Group</small></span></a>
+            <a class="client-logo" href="#"><i class="bi bi-hexagon-fill"></i><span>Apex<small>Assurance</small></span></a>
+            <a class="client-logo" href="#"><i class="bi bi-graph-up-arrow"></i><span>Summit<small>Partners</small></span></a>
+            <a class="client-logo" href="#"><i class="bi bi-diamond-fill"></i><span>Keystone<small>Cover</small></span></a>
+            <a class="client-logo" href="#"><i class="bi bi-lightning-charge-fill"></i><span>Volt<small>Underwriting</small></span></a>
+            <a class="client-logo" href="#"><i class="bi bi-globe2"></i><span>Atlas<small>Risk</small></span></a>
+            <a class="client-logo" href="#"><i class="bi bi-hexagon-half"></i><span>Cobalt<small>Agency</small></span></a>
+          </div>
+          <button class="clients-arrow next" type="button" data-dir="1" aria-label="Next logos"><i class="bi bi-arrow-right"></i></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== THE AUTOMATION CEILING ===================== -->
+    <section class="ceiling" aria-labelledby="ceiling-title">
+      <div class="container-x">
+        <div class="ceiling-grid">
+          <div>
+            <p class="ceiling-eyebrow">The Automation Ceiling</p>
+            <h2 class="ceiling-title" id="ceiling-title">If You've Bought the Tech, Why is Growth Still <span class="accent">a Grind?</span></h2>
+            <div class="ceiling-body">
+              <p>You've invested in an AMS, raters, and automation tools. So why does your agency still feel stuck in reactive mode? The truth is, technology alone doesn't fix a broken model. You're experiencing the <span class="kw">Automation Ceiling</span>—the point where efficiency gains stop because the underlying structure is still chaotic.</p>
+              <p class="ceiling-lead">This leads to critical questions the best agencies are asking:</p>
+              <ul class="ceiling-list">
+                <li><i class="bi bi-arrow-right"></i> Are we bloated? Or just misrouted?</li>
+                <li><i class="bi bi-arrow-right"></i> Why is our growth stuck even though we're saving time?</li>
+                <li><i class="bi bi-arrow-right"></i> Are we turning our efficiency savings into actual revenue growth?</li>
+              </ul>
+              <p>This gap is called <span class="kw">Swing Efficiency</span>. Without a system to redirect saved time and money into production, prospecting, and training, your investment in technology will never deliver its full promise.</p>
+              <div class="ceiling-actions">
+                <a class="btn btn-primary btn-lg" href="#">Learn more <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="ceiling-visual">
+            <div class="ceiling-frame">
+              <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1000&q=80" alt="Agency team reviewing operations" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== THE REAL THREAT (reversed) ===================== -->
+    <section class="ceiling reverse" aria-labelledby="threat-title">
+      <div class="container-x">
+        <div class="ceiling-grid">
+          <div class="ceiling-visual">
+            <div class="ceiling-frame">
+              <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1000&q=80" alt="Frustrated agency producer at work" loading="lazy" />
+            </div>
+          </div>
+          <div>
+            <p class="ceiling-eyebrow">The Real Threat</p>
+            <h2 class="ceiling-title" id="threat-title">It's Your Model, <span class="accent">Not Your People.</span></h2>
+            <div class="ceiling-body">
+              <p>Your best producers and CSRs don't leave for a small pay raise. They leave because they are <span class="kw">burned out</span>. They leave because they are bogged down with non-licensed, low-value tasks that a smarter system should handle. They leave because they are tired of fighting a chaotic workflow just to do their job.</p>
+              <p>When you route tasks based on "who's available" or by outdated job titles, you create bottlenecks and frustration. An unstructured agency isn't just inefficient—it's a <span class="kw">high-turnover machine</span> that costs you your best talent and stalls your growth.</p>
+              <div class="ceiling-actions">
+                <a class="btn btn-primary btn-lg" href="#">Learn About the Aegis Model <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -583,6 +788,19 @@
       });
       document.addEventListener('focusin', function (e) {
         if (!e.target.closest('.nav-item')) closeAll(null);
+      });
+    })();
+
+    // Customer logos slider (left / right arrows)
+    (function () {
+      var track = document.getElementById('logoTrack');
+      if (!track) return;
+      document.querySelectorAll('.clients-arrow').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var dir = parseInt(btn.dataset.dir, 10) || 1;
+          var step = Math.max(track.clientWidth * 0.7, 260);
+          track.scrollBy({ left: dir * step, behavior: 'smooth' });
+        });
       });
     })();
   </script>
