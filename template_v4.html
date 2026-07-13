@@ -227,19 +227,63 @@
     .text-link { color: var(--muted); font-size: 0.85rem; text-decoration: none; border-bottom: 1px dashed transparent; padding-bottom: 2px; transition: color 0.2s ease, border-color 0.2s ease; }
     .text-link:hover { color: #fff; border-color: var(--muted); }
 
+    /* ---------- Light content area (below the banner) ---------- */
+    .services, .clients {
+      --surface: #ffffff;              /* cards → white */
+      --ink: var(--color-heading);     /* titles → navy */
+      --ink-soft: var(--color-body);   /* body text */
+      --muted: var(--color-muted);
+      --line: var(--color-line);       /* borders → light */
+      background: #ffffff;
+      color: var(--color-body);
+    }
+
     /* ---------- Services grid ---------- */
-    .services { position: relative; z-index: 3; padding: 0 0 clamp(3rem, 6vw, 5rem); }
+    /* flow-root = new BFC so the cards' negative margin lifts only the cards
+       over the banner, without dragging the white background up with them */
+    .services { position: relative; z-index: 3; display: flow-root; padding: 0 0 clamp(3rem, 6vw, 5rem); }
     .svc-grid {
+      position: relative; z-index: 3;
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem;
       margin-top: clamp(-150px, -9vw, -90px);   /* lift cards over the banner */
     }
     .svc-card {
+      position: relative; overflow: hidden;
       display: flex; flex-direction: column; justify-content: space-between; gap: 1.6rem;
       min-height: 220px; padding: 1.9rem; border-radius: 18px;
       background: var(--surface); border: 1px solid var(--line);
-      text-decoration: none; transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+      text-decoration: none; transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
     }
-    .svc-card:hover { transform: translateY(-4px); border-color: var(--color-primary); }
+    .svc-card:hover { transform: translateY(-4px); border-color: var(--color-primary); box-shadow: 0 18px 40px rgba(14,30,54,0.1); }
+    /* uniform pattern overlay (same fine dot grid on every box) + keep content above it */
+    .svc-card { --pattern-color: rgba(14,30,54,0.06); }
+    .svc-card::before {
+      content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background-image: radial-gradient(var(--pattern-color) 1px, transparent 1.2px);
+      background-size: 16px 16px; background-position: 0 0;
+    }
+    .svc-card > * { position: relative; z-index: 1; }
+
+    /* per-card background colors (uniform pattern stays on top) */
+    .svc-grid .svc-card:nth-child(2) { background: #FCE9E1; border-color: #F7D6C9; }  /* peach  */
+    .svc-grid .svc-card:nth-child(3) { background: #E7F0FB; border-color: #D3E3F5; }  /* blue   */
+    .svc-grid .svc-card:nth-child(4) { background: #E6F5EC; border-color: #CFEAD9; }  /* mint   */
+    .svc-grid .svc-card:nth-child(5) { background: #F2EAFB; border-color: #E2D3F4; }  /* lilac  */
+
+    /* hover: darker navy fill slides in from left to right */
+    .svc-grid .svc-card:nth-child(n+2):nth-child(-n+5)::after {
+      content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background: linear-gradient(160deg, #17294A 0%, #0E1E36 60%, #0A1526 100%);
+      transform: scaleX(0); transform-origin: left center;
+      transition: transform 0.5s cubic-bezier(0.7, 0, 0.2, 1);
+    }
+    .svc-grid .svc-card:nth-child(n+2):nth-child(-n+5):hover::after { transform: scaleX(1); }
+    /* text turns light as the fill sweeps over */
+    .svc-grid .svc-card:nth-child(n+2):nth-child(-n+5):hover .svc-title { color: #fff; }
+    .svc-grid .svc-card:nth-child(n+2):nth-child(-n+5):hover .svc-cat { color: rgba(255,255,255,0.7); }
+    .svc-grid .svc-card:nth-child(n+2):nth-child(-n+5) .svc-ico,
+    .svc-grid .svc-card:nth-child(n+2):nth-child(-n+5) .svc-title,
+    .svc-grid .svc-card:nth-child(n+2):nth-child(-n+5) .svc-cat { transition: color 0.4s ease; }
     .svc-card .svc-ico { font-size: 2.1rem; color: var(--ink); transition: color 0.25s ease; }
     .svc-card:hover .svc-ico { color: var(--color-primary); }
     .svc-card .svc-foot { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; }
@@ -253,11 +297,13 @@
       justify-content: flex-end; color: #fff; position: relative; overflow: hidden;
       border: 0;
       background:
-        linear-gradient(180deg, rgba(14,30,54,0.35) 0%, rgba(8,8,12,0.9) 100%),
-        url('https://picsum.photos/seed/hubstartteam/800/900') center/cover no-repeat;
+        linear-gradient(160deg, rgba(23,41,74,0.82) 0%, rgba(14,30,54,0.86) 58%, rgba(10,21,38,0.92) 100%),
+        url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80') center/cover no-repeat;
     }
     .svc-feature .svc-cat { color: var(--color-primary); }
     .svc-feature h3 { margin: 0.3rem 0 0; font-size: clamp(1.4rem, 2.4vw, 1.9rem); font-weight: 800; line-height: 1.05; color: #fff; }
+    /* same pattern, lighter ink so it reads on the dark feature tile */
+    .svc-grid .svc-feature { --pattern-color: rgba(255,255,255,0.08); }
 
     /* CTA tile */
     .svc-cta {
@@ -269,10 +315,33 @@
     .svc-cta:hover .svc-arrow { background: var(--color-primary); color: #fff; }
     .svc-cta span.q { color: var(--ink-soft); font-size: 1rem; font-weight: 600; }
 
+    /* ---------- Clients / happy customers ---------- */
+    .clients { padding: clamp(2rem, 5vw, 4rem) 0 clamp(3.5rem, 7vw, 6rem); text-align: center; border-top: 1px solid var(--line); }
+    .clients-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem; margin: 0 0 0.9rem;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-primary);
+    }
+    .clients-eyebrow::before, .clients-eyebrow::after { content: ""; width: 26px; height: 2px; background: var(--color-primary); }
+    .clients-title { margin: 0 0 0.6rem; color: var(--ink); font-weight: 800; letter-spacing: -0.015em; font-size: clamp(1.6rem, 3.4vw, 2.4rem); }
+    .clients-sub { margin: 0 auto; color: var(--muted); max-width: 560px; font-size: 1rem; }
+    .logo-row {
+      display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+      gap: clamp(1.6rem, 5vw, 3.6rem); margin-top: clamp(2rem, 5vw, 3rem);
+    }
+    .client-logo {
+      display: inline-flex; align-items: center; gap: 0.55rem; text-decoration: none;
+      color: var(--ink); font-weight: 800; font-size: 1.3rem; letter-spacing: -0.02em;
+      opacity: 0.55; filter: grayscale(1); transition: opacity 0.25s ease, filter 0.25s ease, color 0.25s ease;
+    }
+    .client-logo i { font-size: 1.7rem; color: var(--color-primary); }
+    .client-logo span small { display: block; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+    .client-logo:hover { opacity: 1; filter: none; }
+
     @media (max-width: 860px) {
       .nav-menu, .desktop-only { display: none; }
       .nav-toggle { display: block; }
       .svc-grid { grid-template-columns: repeat(2, 1fr); }
+      .client-logo { font-size: 1.1rem; }
     }
     @media (max-width: 560px) {
       .svc-grid { grid-template-columns: 1fr; }
@@ -445,6 +514,23 @@
             <span class="q">Looking for a New Service?</span>
           </a>
 
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CLIENTS / HAPPY CUSTOMERS ===================== -->
+    <section class="clients" aria-labelledby="clients-title">
+      <div class="container-x">
+        <p class="clients-eyebrow">Join to succeed</p>
+        <h2 class="clients-title" id="clients-title">Here are examples of our happy customers</h2>
+        <p class="clients-sub">Agencies growing with AI Agents and the Aegis Protocol on HubSpot.</p>
+        <div class="logo-row">
+          <a class="client-logo" href="#"><i class="bi bi-shield-shaded"></i><span>Northwind<small>Insurance</small></span></a>
+          <a class="client-logo" href="#"><i class="bi bi-triangle-fill"></i><span>Vertex<small>Brokers</small></span></a>
+          <a class="client-logo" href="#"><i class="bi bi-gem"></i><span>BlueRock<small>Advisory</small></span></a>
+          <a class="client-logo" href="#"><i class="bi bi-compass"></i><span>Meridian<small>Group</small></span></a>
+          <a class="client-logo" href="#"><i class="bi bi-hexagon-fill"></i><span>Apex<small>Assurance</small></span></a>
+          <a class="client-logo" href="#"><i class="bi bi-graph-up-arrow"></i><span>Summit<small>Partners</small></span></a>
         </div>
       </div>
     </section>
