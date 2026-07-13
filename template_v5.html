@@ -43,6 +43,11 @@
     a { color: inherit; text-decoration: none; }
     .container-x { width: 100%; max-width: var(--container-max); margin-inline: auto; padding-inline: var(--pad); }
 
+    /* scroll-reveal (class added by JS; content stays visible without JS) */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); will-change: opacity, transform; }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; transition: none; } }
+
     .btn {
       display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; font-size: 1rem;
       padding: 0.9rem 1.9rem; border: 1px solid transparent; cursor: pointer; border-radius: 4px;
@@ -899,6 +904,31 @@
       build('proofLines', 9);
     })();
 
+
+    // scroll-reveal animations, staggered per section
+    (function () {
+      var selector = [
+        '.wcd-head', '.wcd-card',
+        '.clients-eyebrow', '.clients-title', '.clients-sub', '.logo-carousel',
+        '.ceiling-eyebrow', '.ceiling-title', '.ceiling-body', '.ceiling-visual',
+        '.proof-eyebrow', '.proof-title', '.proof-sub', '.proof-card', '.proof-note',
+        '.how-head', '.how-card', '.how-note',
+        '.testi-head', '.testi-card',
+        '.foot-cta > *', '.footer-grid > *'
+      ].join(', ');
+      var items = document.querySelectorAll(selector);
+      if (!items.length) return;
+      if (!('IntersectionObserver' in window)) { items.forEach(function (el) { el.classList.add('in'); }); return; }
+      items.forEach(function (el) {
+        el.classList.add('reveal');
+        var idx = Array.prototype.indexOf.call(el.parentNode.children, el);
+        el.style.transitionDelay = Math.min(idx * 70, 420) + 'ms';
+      });
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      items.forEach(function (el) { obs.observe(el); });
+    })();
 
     // header: solid background on scroll
     (function () {
