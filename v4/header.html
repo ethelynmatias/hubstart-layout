@@ -1,0 +1,60 @@
+<!-- ===================== HEADER (black, overlays the banner) =====================
+     Paired styles: css/header.css · behaviour: js/navigation.js
+     The primary nav markup lives in navigation.html.
+     ============================================================================ -->
+<header class="site-header" id="siteHeader">
+  <div class="container-x nav-inner">
+
+    <!-- Brand -->
+    <a class="brand" href="#" aria-label="Hubstart home">
+      <img src="../assets/images/hubstart.png" alt="Hubstart" />
+    </a>
+
+    <!-- Center: primary nav (see navigation.html) -->
+    <nav class="nav-menu" aria-label="Primary">
+      <div class="nav-item">
+        <a class="nav-link active" href="#">Home</a>
+      </div>
+
+      <div class="nav-item">
+        <button class="nav-link" type="button" aria-haspopup="true" aria-expanded="false">Services <i class="bi bi-chevron-down caret"></i></button>
+        <ul class="submenu">
+          <li><a href="#"><span class="s-ico"><i class="bi bi-shield-check"></i></span><span class="s-txt"><strong>Aegis Model</strong><span>Intelligent task routing</span></span></a></li>
+          <li><a href="#"><span class="s-ico"><i class="bi bi-cpu"></i></span><span class="s-txt"><strong>Insurance AI Advantage</strong><span>AI Agents end to end</span></span></a></li>
+          <li><a href="#"><span class="s-ico"><i class="bi bi-diagram-3"></i></span><span class="s-txt"><strong>Intelligent Routing</strong><span>Route by skill &amp; licensing</span></span></a></li>
+          <li><a href="#"><span class="s-ico"><i class="bi bi-graph-up-arrow"></i></span><span class="s-txt"><strong>Sales Transformation</strong><span>Turn savings into revenue</span></span></a></li>
+          <li><a href="#"><span class="s-ico"><i class="bi bi-hubspot"></i></span><span class="s-txt"><strong>HubSpot Enablement</strong><span>Certified partner expertise</span></span></a></li>
+        </ul>
+      </div>
+
+      <div class="nav-item">
+        <button class="nav-link" type="button" aria-haspopup="true" aria-expanded="false">Industry <i class="bi bi-chevron-down caret"></i></button>
+        <ul class="submenu">
+          <li><a href="#"><span class="s-ico"><i class="bi bi-bank"></i></span><span class="s-txt"><strong>Finance &amp; Insurance</strong><span>End producer walkouts</span></span></a></li>
+          <li><a href="#"><span class="s-ico"><i class="bi bi-mortarboard"></i></span><span class="s-txt"><strong>Coaching</strong><span>Automate enrollment</span></span></a></li>
+          <li><a href="#"><span class="s-ico"><i class="bi bi-book"></i></span><span class="s-txt"><strong>Education</strong><span>Orchestrate admissions</span></span></a></li>
+          <li><a href="#"><span class="s-ico"><i class="bi bi-briefcase"></i></span><span class="s-txt"><strong>Staffing</strong><span>Match, route &amp; place faster</span></span></a></li>
+        </ul>
+      </div>
+
+      <div class="nav-item">
+        <button class="nav-link" type="button" aria-haspopup="true" aria-expanded="false">Resources <i class="bi bi-chevron-down caret"></i></button>
+        <ul class="submenu">
+          <li><a href="#"><span class="s-ico"><i class="bi bi-chat-quote"></i></span><span class="s-txt"><strong>Customer Stories</strong><span>Results from real agencies</span></span></a></li>
+          <li><a href="#"><span class="s-ico"><i class="bi bi-journal-text"></i></span><span class="s-txt"><strong>Blog &amp; Insights</strong><span>Guides &amp; playbooks</span></span></a></li>
+          <li><a href="#"><span class="s-ico"><i class="bi bi-tools"></i></span><span class="s-txt"><strong>Tools &amp; Integrations</strong><span>Insurance tech stack</span></span></a></li>
+          <li><a href="#"><span class="s-ico"><i class="bi bi-graph-up"></i></span><span class="s-txt"><strong>Agentic Integration Score</strong><span>Discover your AIS</span></span></a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Right: search + book consultation + hamburger -->
+    <div class="nav-actions">
+      <button class="icon-btn" type="button" aria-label="Search"><i class="bi bi-search"></i></button>
+      <a class="btn btn-primary desktop-only" href="#">Book a Consultation</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>

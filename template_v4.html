@@ -458,24 +458,55 @@
       transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
     }
     .ceiling-frame:hover img { transform: scale(1.08); }
-    /* orange dot grid behind the image, offset to the bottom-right */
+    /* soft orange block behind the image, tucked close to the bottom-right */
     .ceiling-visual::after {
       content: ""; position: absolute; z-index: 0; pointer-events: none;
-      right: -32px; bottom: -40px; width: 82%; height: 84%;
-      background-image: radial-gradient(var(--color-primary) 1.7px, transparent 2px);
-      background-size: 18px 18px;
-      -webkit-mask-image: linear-gradient(315deg, #000 12%, rgba(0,0,0,0.55) 70%, transparent 100%);
-      mask-image: linear-gradient(315deg, #000 12%, rgba(0,0,0,0.55) 70%, transparent 100%);
+      right: -16px; bottom: -18px; width: 88%; height: 90%;
+      background: #FBD9CB;
+      border-bottom-right-radius: 16px;
     }
 
     /* reversed variant: image on the left, text on the right */
     .ceiling.reverse .ceiling-grid { grid-template-columns: 0.95fr 1.05fr; }
     .ceiling.reverse .ceiling-body { border-left: 0; border-right: 2px solid var(--line); padding-left: 0; padding-right: clamp(1rem, 2vw, 1.6rem); }
-    .ceiling.reverse .ceiling-visual { justify-self: start; margin-right: 0; margin-left: 32px; }
-    .ceiling.reverse .ceiling-visual::after {
-      right: auto; left: -32px; bottom: -40px;
-      -webkit-mask-image: linear-gradient(45deg, #000 12%, rgba(0,0,0,0.55) 70%, transparent 100%);
-      mask-image: linear-gradient(45deg, #000 12%, rgba(0,0,0,0.55) 70%, transparent 100%);
+    .ceiling.reverse .ceiling-visual { justify-self: start; margin-right: 0; margin-left: 18px; }
+    .ceiling.reverse .ceiling-visual::after { right: auto; left: -16px; bottom: -18px; }
+
+    /* ---------- The Real Threat (reverse variant, no dot grid) ---------- */
+    .ceiling.threat { background: #F7F9FB; }
+    .ceiling.threat .ceiling-grid { grid-template-columns: 0.85fr 1.15fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+    .ceiling.threat .ceiling-visual::after { content: none; }
+    .ceiling.threat .ceiling-visual { margin-left: 0; width: 100%; justify-self: stretch; }
+    .ceiling.threat .ceiling-frame {
+      width: 100%; border-radius: 22px;
+      box-shadow: 0 30px 60px rgba(14,30,54,0.16);
+    }
+    .ceiling.threat .ceiling-frame img { aspect-ratio: 4 / 4.6; }
+    .ceiling.threat .ceiling-body {
+      border: 0; padding: 0;
+      border-top: 3px solid var(--color-primary);
+      padding-top: clamp(1.2rem, 2.5vw, 1.8rem);
+    }
+    .threat-points { list-style: none; margin: 0 0 1.6rem; padding: 0; display: grid; gap: 0.85rem; }
+    .threat-points li {
+      display: flex; align-items: flex-start; gap: 0.85rem;
+      background: #fff; border: 1px solid var(--color-line); border-radius: 14px;
+      padding: 0.95rem 1.1rem;
+      color: var(--ink-soft); font-size: 0.96rem; line-height: 1.55;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .threat-points li:hover { transform: translateX(4px); border-color: var(--color-primary); box-shadow: 0 10px 24px rgba(14,30,54,0.08); }
+    .threat-points li i {
+      flex: 0 0 auto; display: grid; place-items: center;
+      width: 34px; height: 34px; border-radius: 10px;
+      background: var(--color-primary-tint); color: var(--color-primary); font-size: 1rem;
+    }
+    .threat-points li strong { color: var(--ink); display: block; font-weight: 700; }
+    .threat-callout {
+      margin: 0 0 0.4rem !important;
+      padding: 1.1rem 1.3rem; border-radius: 14px;
+      background: var(--color-primary-tint); border-left: 3px solid var(--color-primary);
+      font-weight: 600; color: var(--ink) !important;
     }
 
     /* ---------- The Proof in Two Numbers (dark) ---------- */
@@ -490,13 +521,12 @@
       position: absolute; top: -20%; left: 0; width: 100%; height: 140%; z-index: 0; pointer-events: none;
       overflow: hidden; will-change: transform;
     }
-    /* the image itself, with a slow Ken Burns zoom/pan */
+    /* no photo — subtle color wash only */
     .proof-bg::before {
       content: ""; position: absolute; inset: -8%;
-      background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80');
-      background-position: center; background-size: cover; background-repeat: no-repeat;
-      will-change: transform;
-      animation: kenburns 26s ease-in-out infinite alternate;
+      background:
+        radial-gradient(60% 60% at 20% 15%, rgba(241,89,42,0.18), transparent 60%),
+        radial-gradient(55% 55% at 85% 80%, rgba(60,120,200,0.16), transparent 65%);
     }
     /* orange + dark overlay */
     .proof::after {
@@ -691,7 +721,8 @@
     /* grayscale background image */
     .site-footer::before {
       content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
-      background: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      /* team meeting around a table */
+      background: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
       filter: grayscale(1) contrast(1.05);
       opacity: 0.12;
     }
@@ -765,6 +796,14 @@
       .ceiling-body, .ceiling.reverse .ceiling-body {
         border-left: 2px solid var(--line); border-right: 0;
         padding-left: clamp(0.9rem, 3vw, 1.4rem); padding-right: 0;
+      }
+      /* the threat section keeps its top accent + full-width image */
+      .ceiling.threat .ceiling-grid { grid-template-columns: 1fr; }
+      .ceiling.threat .ceiling-frame { max-width: 520px; }
+      .ceiling.threat .ceiling-frame img { aspect-ratio: 16 / 10; }
+      .ceiling.threat .ceiling-body {
+        border-left: 0; border-right: 0; padding-left: 0; padding-right: 0;
+        border-top: 3px solid var(--color-primary); padding-top: 1.2rem;
       }
     }
     @media (max-width: 860px) {
@@ -1009,7 +1048,7 @@
     </section>
 
     <!-- ===================== THE REAL THREAT (reversed) ===================== -->
-    <section class="ceiling reverse" aria-labelledby="threat-title">
+    <section class="ceiling reverse threat" aria-labelledby="threat-title">
       <div class="container-x">
         <div class="ceiling-grid">
           <div class="ceiling-visual">
@@ -1022,7 +1061,14 @@
             <h2 class="ceiling-title" id="threat-title">It's Your Model, <span class="accent">Not Your People.</span></h2>
             <div class="ceiling-body">
               <p>Your best producers and CSRs don't leave for a small pay raise. They leave because they are <span class="kw">burned out</span>. They leave because they are bogged down with non-licensed, low-value tasks that a smarter system should handle. They leave because they are tired of fighting a chaotic workflow just to do their job.</p>
-              <p>When you route tasks based on "who's available" or by outdated job titles, you create bottlenecks and frustration. An unstructured agency isn't just inefficient—it's a <span class="kw">high-turnover machine</span> that costs you your best talent and stalls your growth.</p>
+              <ul class="threat-points">
+                <li><i class="bi bi-person-x"></i><span><strong>Misrouted work.</strong> Tasks land on "whoever's available" instead of the right licensed role.</span></li>
+                <li><i class="bi bi-hourglass-split"></i><span><strong>Bottlenecks by design.</strong> Outdated job titles decide the workflow, not skill or capacity.</span></li>
+                <li><i class="bi bi-arrow-down-right-circle"></i><span><strong>Talent drain.</strong> Your strongest people burn out first — and they're the hardest to replace.</span></li>
+              </ul>
+
+              <p class="threat-callout">An unstructured agency isn't just inefficient—it's a <span class="kw">high-turnover machine</span> that costs you your best talent and stalls your growth.</p>
+
               <div class="ceiling-actions">
                 <a class="btn btn-primary btn-lg" href="#">Learn About the Aegis Model <i class="bi bi-arrow-right"></i></a>
               </div>

@@ -1,0 +1,39 @@
+/* ===================== v4 — header shell, brand, right actions ===================== */
+
+/* ---------- Header shell (transparent, overlays the banner) ---------- */
+.site-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1400;
+  padding-top: var(--safe-t);
+  background: transparent;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, transform 0.35s ease;
+}
+/* solid background once scrolled past the top */
+.site-header.scrolled {
+  background: rgba(8,8,12,0.9);
+  -webkit-backdrop-filter: saturate(140%) blur(12px);
+  backdrop-filter: saturate(140%) blur(12px);
+  border-bottom-color: rgba(255,255,255,0.08);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+}
+.nav-inner { height: var(--nav-h); display: flex; align-items: center; justify-content: space-between; gap: 1.4rem; transition: height 0.3s ease; }
+.site-header.scrolled .nav-inner { height: 62px; }
+
+/* Brand */
+.brand { display: inline-flex; align-items: center; text-decoration: none; }
+.brand img { height: 32px; width: auto; display: block; filter: brightness(0) invert(1); }
+
+/* ---------- Right actions ---------- */
+.nav-actions { display: flex; align-items: center; gap: 0.7rem; }
+.icon-btn {
+  display: inline-grid; place-items: center; width: 42px; height: 42px;
+  border: 1px solid rgba(255,255,255,0.28); background: rgba(255,255,255,0.06); color: #fff;
+  cursor: pointer; border-radius: 999px; font-size: 1.05rem;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+.icon-btn:hover { color: #fff; border-color: var(--blue); background: rgba(241,89,42,0.2); }
+.desktop-only { display: inline-flex; }
+
+@media (max-width: 860px) {
+  .desktop-only { display: none; }
+}
