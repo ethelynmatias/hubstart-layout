@@ -115,6 +115,11 @@
   background-image: url('https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1600&q=80');
 }
 
+/* per-page photo: closing the deal */
+.hero-photo.sales {
+  background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80');
+}
+
 /* two-column banner grid: copy left, photo right */
 .hero-split {
   display: grid;
