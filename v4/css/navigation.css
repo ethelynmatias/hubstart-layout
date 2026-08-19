@@ -143,6 +143,17 @@
   transition: background 0.15s ease, color 0.15s ease;
 }
 
+/* brand logos used in place of an icon font */
+.submenu a .s-ico img {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.submenu a:hover .s-ico img {
+  filter: brightness(0) invert(1);
+}
+
 .submenu a .s-txt {
   display: flex;
   flex-direction: column;
@@ -305,6 +316,12 @@ body.menu-open .mobile-menu {
 
 .m-sub a i {
   color: var(--blue);
+}
+
+.m-sub a img {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
 }
 
 .m-sub a:hover {

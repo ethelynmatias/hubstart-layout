@@ -110,6 +110,11 @@
   background: url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
 }
 
+/* per-page photo: developers at work on code */
+.hero-photo.dev {
+  background-image: url('https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1600&q=80');
+}
+
 /* two-column banner grid: copy left, photo right */
 .hero-split {
   display: grid;
@@ -141,6 +146,10 @@
 
 .hero-banner.subpage .hero-title {
   color: var(--color-heading);
+}
+
+.hero-banner.subpage .hero-title .accent {
+  color: var(--color-primary);
 }
 
 .hero-banner.subpage .hero-sub {
@@ -1218,6 +1227,11 @@
   padding: clamp(3.5rem, 8vw, 6.5rem) 0;
 }
 
+/* white surface variant — keeps two adjacent proof sections from merging */
+.proof.on-white {
+  background: #ffffff;
+}
+
 /* parallax layer (JS translates it on scroll) */
 .proof-bg {
   position: absolute;
@@ -1519,6 +1533,70 @@
   color: var(--color-primary);
 }
 
+/* ---------- Check grid (benefit checkmarks) ---------- */
+.check-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  max-width: 940px;
+  margin: clamp(2.5rem, 5vw, 3.5rem) auto 0;
+  padding: 0;
+  text-align: center;
+}
+
+.check-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1.6rem;
+  border: 1px solid var(--color-line);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 10px 26px rgba(14,30,54,0.06);
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.check-item:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 18px 38px rgba(14,30,54,0.1);
+}
+
+.ci-mark {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 1.1rem;
+  border-radius: 50%;
+  background: var(--color-primary-tint);
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.check-item h3 {
+  margin: 0 0 0.5rem;
+  color: var(--ink);
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.check-item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 860px) {
+  .check-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .proof-note {
   margin: clamp(2rem, 4vw, 2.6rem) auto 0;
   max-width: 660px;
@@ -1556,6 +1634,10 @@
   letter-spacing: -0.015em;
   line-height: 1.12;
   font-size: clamp(1.7rem, 3.6vw, 2.6rem);
+}
+
+.how-title .accent {
+  color: var(--color-primary);
 }
 
 .how-sub {
