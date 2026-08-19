@@ -120,6 +120,16 @@
   background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80');
 }
 
+/* per-page photo: planning the rollout */
+.hero-photo.roadmap {
+  background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80');
+}
+
+/* per-page photo: finance paperwork */
+.hero-photo.finance {
+  background-image: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1600&q=80');
+}
+
 /* two-column banner grid: copy left, photo right */
 .hero-split {
   display: grid;
@@ -2054,6 +2064,10 @@
 
 .cta-actions {
   margin-top: 1.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.9rem;
 }
 
 /* orange button pops against the black band */
@@ -2167,5 +2181,232 @@
 
   .testi-card {
     flex-basis: 86vw;
+  }
+}
+
+/* ---------- Implementation roadmap: phased sections with progress ---------- */
+.phase {
+  position: relative;
+  background: #ffffff;
+  color: var(--color-body);
+  padding: clamp(3.5rem, 8vw, 6rem) 0;
+  border-top: 1px solid var(--color-line);
+}
+
+.phase.alt {
+  background: #EEF1F4;
+}
+
+/* the stepper: three steps joined by a rail that fills to the current phase */
+.phase-steps {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+  max-width: 760px;
+  margin: 0 auto clamp(2.2rem, 5vw, 3rem);
+  list-style: none;
+  padding: 0;
+}
+
+.phase-steps::before,
+.phase-steps::after {
+  content: "";
+  position: absolute;
+  top: 17px;
+  left: 16.66%;
+  right: 16.66%;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--color-line);
+}
+
+.phase-steps::after {
+  right: auto;
+  width: var(--fill, 0%);
+  background: var(--color-primary);
+  transition: width 0.4s ease;
+}
+
+.phase-step {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.ps-dot {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--color-line);
+  background: #fff;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.phase-step.is-done .ps-dot {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.phase-step.is-current .ps-dot {
+  border-color: var(--color-primary);
+  background: #fff;
+  color: var(--color-primary);
+  box-shadow: 0 0 0 5px var(--color-primary-tint);
+}
+
+.ps-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.phase-step.is-current .ps-label,
+.phase-step.is-done .ps-label {
+  color: var(--color-heading);
+}
+
+/* phase head */
+.phase-head {
+  max-width: 760px;
+  margin: 0 auto clamp(2rem, 4vw, 2.6rem);
+  text-align: center;
+}
+
+.phase-days {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 1rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  background: var(--color-primary-tint);
+  color: var(--color-primary);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.phase-title {
+  margin: 0 0 0.8rem;
+  color: var(--color-heading);
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  line-height: 1.14;
+  font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+}
+
+.phase-title .accent {
+  color: var(--color-primary);
+}
+
+.phase-sub {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.6;
+}
+
+/* deliverables */
+.phase-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.phase-card {
+  position: relative;
+  padding: 1.8rem 1.6rem;
+  border: 1px solid var(--color-line);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 10px 26px rgba(14,30,54,0.06);
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.phase-card:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 18px 38px rgba(14,30,54,0.1);
+}
+
+.phase-card .pf-ico {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  background: var(--color-primary-tint);
+  color: var(--color-primary);
+  font-size: 1.15rem;
+}
+
+.phase-card h3 {
+  margin: 0 0 0.45rem;
+  color: var(--color-heading);
+  font-size: 1.02rem;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.phase-card p {
+  margin: 0;
+  color: var(--color-body);
+  font-size: 0.94rem;
+  line-height: 1.55;
+}
+
+/* key outcome */
+.phase-outcome {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  max-width: 1000px;
+  margin: clamp(1.6rem, 3vw, 2.2rem) auto 0;
+  padding: 1.2rem 1.4rem;
+  border-radius: 14px;
+  border-left: 3px solid var(--color-primary);
+  background: var(--color-primary-tint);
+  color: var(--color-heading);
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.phase-outcome i {
+  flex: 0 0 auto;
+  margin-top: 0.15rem;
+  color: var(--color-primary);
+  font-size: 1.1rem;
+}
+
+.phase-outcome strong {
+  font-weight: 800;
+}
+
+@media (max-width: 860px) {
+  .phase-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .ps-label {
+    font-size: 0.68rem;
   }
 }
