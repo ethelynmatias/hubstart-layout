@@ -56,13 +56,42 @@
   });
 })();
 
-// Header: solid background + shrink on scroll
+// Header: solid background + shrink on scroll, and hide unless scrolling up
 (function () {
   var header = document.getElementById('siteHeader');
   if (!header) return;
-  function onScroll() {
-    header.classList.toggle('scrolled', window.scrollY > 40);
+
+  var lastY = window.scrollY;
+  var ticking = false;
+  var REVEAL_AT = 90;   // px scrolled before hiding is allowed at all
+  var DEADZONE = 6;     // ignore jitter / trackpad noise
+
+  function update() {
+    ticking = false;
+    var y = window.scrollY;
+    var delta = y - lastY;
+
+    header.classList.toggle('scrolled', y > 40);
+
+    // never hide near the top, while the mobile menu is open, or with a dropdown open
+    if (y <= REVEAL_AT || document.body.classList.contains('menu-open') || header.querySelector('.nav-item.open')) {
+      header.classList.remove('hidden');
+      lastY = y;
+      return;
+    }
+
+    if (Math.abs(delta) > DEADZONE) {
+      header.classList.toggle('hidden', delta > 0);
+      lastY = y;
+    }
   }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(update);
+    }
+  }, { passive: true });
+
+  update();
 })();

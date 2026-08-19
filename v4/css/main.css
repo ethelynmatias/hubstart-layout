@@ -1,4 +1,70 @@
 /* ===================== v4 — page sections (hero → CTA band) ===================== */
+/* ---------- Section labels / eyebrows ---------- */
+/* outlined chip: neutral border, navy label, single orange marker dot */
+.hero-eyebrow,
+.clients-eyebrow,
+.ceiling-eyebrow,
+.proof-eyebrow,
+.how-eyebrow,
+.testi-eyebrow,
+.cta-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.42rem 0.9rem;
+  border: 1px solid var(--color-line);
+  border-radius: 8px;
+  background: transparent;
+  font-size: 0.71rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: var(--color-heading);
+}
+
+.hero-eyebrow::before,
+.clients-eyebrow::before,
+.ceiling-eyebrow::before,
+.proof-eyebrow::before,
+.how-eyebrow::before,
+.testi-eyebrow::before,
+.cta-eyebrow::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+
+/* dark surfaces: hairline and label go light */
+.hero-eyebrow,
+.clients-eyebrow,
+.cta-eyebrow {
+  border-color: rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.82);
+}
+
+.hero-eyebrow {
+  margin: 0 0 1.2rem;
+}
+
+.clients-eyebrow,
+.proof-eyebrow,
+.how-eyebrow,
+.cta-eyebrow {
+  margin: 0 0 1.1rem;
+}
+
+.ceiling-eyebrow {
+  margin: 0 0 1.1rem;
+}
+
+.testi-eyebrow {
+  margin: 0 0 0.9rem;
+}
+
 /* ---------- Hero banner ---------- */
 .hero-banner {
   position: relative;
@@ -77,25 +143,6 @@
 
 .hero-inner > *:nth-child(4) {
   animation-delay: 0.46s;
-}
-
-.hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin: 0 0 1.1rem;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--color-primary);
-}
-
-.hero-eyebrow::before {
-  content: "";
-  width: 26px;
-  height: 2px;
-  background: var(--color-primary);
 }
 
 .hero-title {
@@ -418,26 +465,6 @@
   z-index: 1;
 }
 
-.clients-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin: 0 0 0.9rem;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--color-primary);
-}
-
-.clients-eyebrow::before,
-.clients-eyebrow::after {
-  content: "";
-  width: 26px;
-  height: 2px;
-  background: var(--color-primary);
-}
-
 .clients-title {
   margin: 0 0 0.6rem;
   color: var(--ink);
@@ -615,25 +642,6 @@
   grid-template-columns: 1.05fr 0.95fr;
   gap: clamp(2rem, 5vw, 4.5rem);
   align-items: center;
-}
-
-.ceiling-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin: 0 0 1rem;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--color-primary);
-}
-
-.ceiling-eyebrow::before {
-  content: "";
-  width: 26px;
-  height: 2px;
-  background: var(--color-primary);
 }
 
 .ceiling-title {
@@ -980,26 +988,6 @@
   z-index: 3;
 }
 
-.proof-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin: 0 0 0.9rem;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--color-primary);
-}
-
-.proof-eyebrow::before,
-.proof-eyebrow::after {
-  content: "";
-  width: 26px;
-  height: 2px;
-  background: var(--color-primary);
-}
-
 .proof-title {
   margin: 0 0 0.9rem;
   color: var(--ink);
@@ -1119,26 +1107,6 @@
   max-width: 680px;
   margin: 0 auto clamp(2.5rem, 5vw, 3.5rem);
   text-align: center;
-}
-
-.how-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin: 0 0 0.9rem;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--color-primary);
-}
-
-.how-eyebrow::before,
-.how-eyebrow::after {
-  content: "";
-  width: 26px;
-  height: 2px;
-  background: var(--color-primary);
 }
 
 .how-title {
@@ -1301,25 +1269,6 @@
   justify-content: space-between;
   gap: 1.5rem;
   margin-bottom: clamp(1.5rem, 3vw, 2.4rem);
-}
-
-.testi-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin: 0 0 0.8rem;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--color-primary);
-}
-
-.testi-eyebrow::before {
-  content: "";
-  width: 26px;
-  height: 2px;
-  background: var(--color-primary);
 }
 
 .testi-title {
@@ -1535,26 +1484,6 @@
   mask-image: linear-gradient(135deg, #000 0%, rgba(0,0,0,0.25) 40%, transparent 65%), linear-gradient(315deg, #000 0%, transparent 45%);
   -webkit-mask-composite: source-over;
   mask-composite: add;
-}
-
-.cta-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin: 0 0 0.9rem;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #FFD2C0;
-}
-
-.cta-eyebrow::before,
-.cta-eyebrow::after {
-  content: "";
-  width: 26px;
-  height: 2px;
-  background: #FFD2C0;
 }
 
 .cta-title {
