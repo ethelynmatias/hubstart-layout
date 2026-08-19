@@ -107,8 +107,8 @@
   height: 12px;
 }
 
-.nav-item:hover .submenu,
-.nav-item.open .submenu {
+.nav-item:hover > .submenu,
+.nav-item.open > .submenu {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
@@ -117,6 +117,140 @@
 
 .submenu li {
   list-style: none;
+}
+
+/* ---------- Nested (third-level) submenu ---------- */
+.submenu .has-sub {
+  position: relative;
+}
+
+.submenu .has-sub > a .sub-caret {
+  margin-left: auto;
+  align-self: center;
+  font-size: 0.75rem;
+  color: var(--muted);
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.submenu .has-sub:hover > a .sub-caret,
+.submenu .has-sub:focus-within > a .sub-caret {
+  color: var(--color-primary);
+  transform: translateX(2px);
+}
+
+.subsubmenu {
+  top: -0.5rem;
+  left: 100%;
+  margin-left: 10px;
+  width: 290px;
+}
+
+/* pointer arrow flips to face the parent panel */
+.subsubmenu::before {
+  top: 22px;
+  left: -7px;
+  border-top: none;
+  border-bottom: 1px solid var(--line);
+}
+
+/* hover bridge runs down the left edge instead of across the top */
+.subsubmenu::after {
+  top: 0;
+  bottom: 0;
+  left: -12px;
+  right: auto;
+  width: 12px;
+  height: auto;
+}
+
+.submenu .has-sub:hover > .subsubmenu,
+.submenu .has-sub:focus-within > .subsubmenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s;
+}
+
+/* narrow desktops: flip the nested panel to the left of its parent */
+@media (max-width: 1200px) {
+  .subsubmenu {
+    left: auto;
+    right: 100%;
+    margin-left: 0;
+    margin-right: 10px;
+  }
+
+  .subsubmenu::before {
+    left: auto;
+    right: -7px;
+    border-bottom: none;
+    border-left: none;
+    border-top: 1px solid var(--line);
+    border-right: 1px solid var(--line);
+  }
+
+  .subsubmenu::after {
+    left: auto;
+    right: -12px;
+  }
+}
+
+/* ---------- Mobile: nested group inside a mobile submenu ---------- */
+.m-subgroup > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0;
+  color: var(--ink-soft);
+  font-size: 1rem;
+}
+
+.m-subgroup > summary::-webkit-details-marker {
+  display: none;
+}
+
+.m-subgroup > summary i:first-child {
+  color: var(--blue);
+}
+
+.m-subgroup > summary .chev {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 0.8rem;
+  transition: transform 0.2s ease;
+}
+
+.m-subgroup[open] > summary .chev {
+  transform: rotate(180deg);
+}
+
+.m-sub2 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0 0 0.4rem 1.4rem;
+  border-left: 1px solid var(--line);
+  margin-left: 0.35rem;
+}
+
+.m-sub2 a {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  padding: 0.45rem 0;
+}
+
+.m-sub2 a i {
+  color: var(--blue);
+}
+
+.m-sub2 a:hover {
+  color: var(--blue);
 }
 
 .submenu a {

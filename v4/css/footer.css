@@ -19,7 +19,7 @@
   z-index: 0;
   pointer-events: none;
   /* team meeting around a table */
-  background: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+  background: url('../../assets/img/routing-engine-review.jpg') center/cover no-repeat;
   filter: grayscale(1) contrast(1.05);
   opacity: 0.12;
 }

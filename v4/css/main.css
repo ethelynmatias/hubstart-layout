@@ -81,7 +81,7 @@
   inset: -6%;
   z-index: 0;
   pointer-events: none;
-  background: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+  background: url('../../assets/img/team-working-together.jpg') center/cover no-repeat;
   will-change: transform;
   animation: kenburns 26s ease-in-out infinite alternate;
 }
@@ -107,27 +107,62 @@
   right: 0;
   width: 50%;
   z-index: 0;
-  background: url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+  background: url('../../assets/img/agency-meeting.jpg') center/cover no-repeat;
 }
 
 /* per-page photo: developers at work on code */
 .hero-photo.dev {
-  background-image: url('https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1600&q=80');
+  background-image: url('../../assets/img/developers-coding.jpg');
 }
 
 /* per-page photo: closing the deal */
 .hero-photo.sales {
-  background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80');
+  background-image: url('../../assets/img/deal-handshake.jpg');
 }
 
 /* per-page photo: planning the rollout */
 .hero-photo.roadmap {
-  background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80');
+  background-image: url('../../assets/img/roadmap-planning-desk.jpg');
 }
 
 /* per-page photo: finance paperwork */
 .hero-photo.finance {
-  background-image: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1600&q=80');
+  background-image: url('../../assets/img/finance-forms-calculator.jpg');
+}
+
+/* per-page photo: coaching session */
+.hero-photo.coaching {
+  background-image: url('../../assets/img/coaching-conversation.jpg');
+}
+
+/* per-page photo: students at work */
+.hero-photo.education {
+  background-image: url('../../assets/img/students-library.jpg');
+}
+
+/* per-page photo: recruiting floor */
+.hero-photo.staffing {
+  background-image: url('../../assets/img/recruiting-floor.jpg');
+}
+
+/* per-page photo: unified platform dashboards */
+.hero-photo.hubspot {
+  background-image: url('../../assets/img/reporting-dashboard-laptop.jpg');
+}
+
+/* per-page photo: the tooling itself */
+.hero-photo.tools {
+  background-image: url('../../assets/img/code-screen.jpg');
+}
+
+/* per-page photo: connected systems */
+.hero-photo.integrations {
+  background-image: url('../../assets/img/connected-data-network.jpg');
+}
+
+/* per-page photo: the team at work */
+.hero-photo.careers {
+  background-image: url('../../assets/img/team-around-table.jpg');
 }
 
 /* two-column banner grid: copy left, photo right */
@@ -657,7 +692,7 @@
   position: relative;
   overflow: hidden;
   border: 0;
-  background: linear-gradient(160deg, rgba(23,41,74,0.82) 0%, rgba(14,30,54,0.86) 58%, rgba(10,21,38,0.92) 100%), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80') center/cover no-repeat;
+  background: linear-gradient(160deg, rgba(23,41,74,0.82) 0%, rgba(14,30,54,0.86) 58%, rgba(10,21,38,0.92) 100%), url('../../assets/img/team-with-ai-agents.jpg') center/cover no-repeat;
 }
 
 .svc-feature .svc-cat {
@@ -1606,6 +1641,172 @@
   line-height: 1.55;
 }
 
+/* ---------- Integration catalogue ---------- */
+.int-cats {
+  max-width: 1000px;
+  margin: clamp(2.5rem, 5vw, 3.5rem) auto 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 4vw, 2.8rem);
+}
+
+.int-cat-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 1.1rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--color-line);
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+.int-cat-title i {
+  color: var(--color-primary);
+  font-size: 1.05rem;
+}
+
+.int-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 0.9rem;
+}
+
+.int-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--color-line);
+  border-radius: 14px;
+  background: #fff;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.int-card:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(14,30,54,0.08);
+}
+
+.int-ico {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--color-primary-tint);
+  color: var(--color-primary);
+  font-size: 1.05rem;
+}
+
+.int-card strong {
+  display: block;
+  color: var(--ink);
+  font-size: 0.94rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.int-card span {
+  display: block;
+  margin-top: 0.2rem;
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+/* custom-integration callout */
+.int-custom {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  max-width: 940px;
+  margin: clamp(2rem, 4vw, 2.6rem) auto 0;
+  padding: 1.3rem 1.5rem;
+  border-radius: 16px;
+  border: 1px solid var(--color-line);
+  background: var(--color-primary-tint);
+  text-align: left;
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+.int-custom > i {
+  flex: 0 0 auto;
+  color: var(--color-primary);
+  font-size: 1.4rem;
+}
+
+.int-custom > span {
+  flex: 1 1 320px;
+  font-size: 0.96rem;
+}
+
+.int-custom .btn {
+  flex: 0 0 auto;
+}
+
+/* compact bullet list inside a card */
+.mini-list {
+  list-style: none;
+  margin: 0.8rem 0 0;
+  padding: 0;
+  width: 100%;
+  align-self: stretch;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mini-list li {
+  position: relative;
+  padding-left: 1.1rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.mini-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+
+/* secondary links under a CTA button */
+.cta-links {
+  margin: 1.4rem 0 0;
+  color: rgba(255,255,255,0.62);
+  font-size: 0.92rem;
+}
+
+.cta-links a {
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.35);
+  margin-left: 0.7rem;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.cta-links a:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
 @media (max-width: 860px) {
   .check-grid {
     grid-template-columns: 1fr;
@@ -2408,5 +2609,148 @@
 @media (max-width: 560px) {
   .ps-label {
     font-size: 0.68rem;
+  }
+}
+
+
+/* ---------- Careers: open roles board ---------- */
+.roles {
+  --ink: var(--color-heading);
+  --ink-soft: var(--color-body);
+  --muted: var(--color-muted);
+  background: #ffffff;
+  color: var(--color-body);
+  padding: clamp(3.5rem, 8vw, 6.5rem) 0;
+}
+
+.roles-head {
+  max-width: 680px;
+  margin: 0 auto clamp(2.5rem, 5vw, 3.5rem);
+  text-align: center;
+}
+
+.roles-title {
+  margin: 0 0 0.8rem;
+  color: var(--ink);
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  line-height: 1.12;
+  font-size: clamp(1.7rem, 3.6vw, 2.6rem);
+}
+
+.roles-title .accent {
+  color: var(--color-primary);
+}
+
+.roles-sub {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 1.02rem;
+  line-height: 1.6;
+}
+
+.role-group {
+  max-width: 940px;
+  margin: 0 auto clamp(2rem, 4vw, 2.8rem);
+}
+
+.role-group-title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  margin: 0 0 1rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--color-line);
+  color: var(--ink);
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.role-group-title span {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.role-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.role-card {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.3rem 1.5rem;
+  border: 1px solid var(--color-line);
+  border-radius: 16px;
+  background: #fff;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.role-card:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 34px rgba(14,30,54,0.08);
+}
+
+.role-main h4 {
+  margin: 0 0 0.3rem;
+  color: var(--ink);
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.role-main p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.role-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.role-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-line);
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.role-chip i {
+  color: var(--color-primary);
+  font-size: 0.8rem;
+}
+
+.role-apply {
+  white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+  .role-card {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .role-apply {
+    justify-self: start;
   }
 }

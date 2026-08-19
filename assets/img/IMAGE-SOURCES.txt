@@ -1,0 +1,208 @@
+IMAGE SOURCES — hubstart-layout
+============================================================
+
+Every image in assets/img/ was downloaded from the URL listed under it.
+Downloaded 2026-08-19. Replace any of these with licensed brand photography
+before the site goes to production.
+
+------------------------------------------------------------
+PHOTOGRAPHY — Unsplash
+------------------------------------------------------------
+Unsplash License: free to use commercially, no permission needed,
+attribution appreciated but not required. https://unsplash.com/license
+Each file was fetched at w=1600, q=80 (auto=format, fit=crop).
+
+agency-meeting.jpg
+  source : https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80
+  photo  : photo-1552664730-d307ca884978
+  size   : 163,271 bytes
+  used in: v4/aegis-model.html, v4/css/main.css
+
+agent-laptop-copilot.jpg
+  source : https://images.unsplash.com/photo-1516387938699-a93567ec168e?auto=format&fit=crop&w=1600&q=80
+  photo  : photo-1516387938699-a93567ec168e
+  size   : 177,741 bytes
+  used in: v4/insurance-tools.html
+
+analytics-dashboard.jpg
+  source : https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80
+  photo  : photo-1551288049-bebda4e38f71
+  size   : 200,329 bytes
+  used in: v4/why-hubspot.html
+
+classroom-instruction.jpg
+  source : https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1600&q=80
+  photo  : photo-1509062522246-3755977927d7
+  size   : 188,854 bytes
+  used in: v4/education.html
+
+client-conversation.jpg
+  source : https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?auto=format&fit=crop&w=1600&q=80
+  photo  : photo-1600880292089-90a7e086ee0c
+  size   : 369,530 bytes
+  used in: v4/insurance-sales-transformation.html
+
+coaching-conversation.jpg
+  source : https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=1600&q=80
+  photo  : photo-1543269865-cbf427effbad
+  size   : 257,421 bytes
+  used in: v4/coaching.html, v4/css/main.css
+
+code-screen.jpg
+  source : https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=1600&q=80
+  photo  : photo-1555949963-aa79dcee981c
+  size   : 159,277 bytes
+  used in: v4/css/main.css, v4/insurance-tools.html
+
+colleagues-reporting-laptop.jpg
+  source : https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1600&q=80
+  photo  : photo-1551836022-d5d88e9218df
+  size   : 220,212 bytes
+  used in: template_v4.html, v4/index.html
+
+connected-data-network.jpg
+  source : https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=80
+  photo  : photo-1451187580459-43490279c0fa
+  size   : 200,049 bytes
+  used in: v4/css/main.css, v4/insurance-tools.html, v4/integrations.html
+
+deal-handshake.jpg
+  source : https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80
+  photo  : photo-1521791136064-7986c2920216
+  size   : 198,556 bytes
+  used in: v4/css/main.css, v4/insurance-sales-transformation.html
+
+developers-coding.jpg
+  source : https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1600&q=80
+  photo  : photo-1531482615713-2afd69097998
+  size   : 230,598 bytes
+  used in: v4/css/main.css, v4/insurance-ai-advantage.html, v4/why-hubspot.html
+
+finance-forms-calculator.jpg
+  source : https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1600&q=80
+  photo  : photo-1554224155-6726b3ff858f
+  size   : 160,437 bytes
+  used in: v4/css/main.css, v4/finance.html
+
+finance-policy-paperwork.jpg
+  source : https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1600&q=80
+  photo  : photo-1450101499163-c8848c66ca85
+  size   : 181,600 bytes
+  used in: v4/finance.html
+
+producer-at-work.jpg
+  source : https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1600&q=80
+  photo  : photo-1556761175-b413da4baf72
+  size   : 461,473 bytes
+  used in: template_v4.html, v4/aegis-model.html, v4/index.html
+
+recruiting-floor.jpg
+  source : https://images.unsplash.com/photo-1560264280-88b68371db39?auto=format&fit=crop&w=1600&q=80
+  photo  : photo-1560264280-88b68371db39
+  size   : 269,434 bytes
+  used in: v4/css/main.css, v4/staffing.html
+
+reporting-dashboard-laptop.jpg
+  source : https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80
+  photo  : photo-1460925895917-afdab827c52f
+  size   : 193,283 bytes
+  used in: v4/css/main.css, v4/why-hubspot.html
+
+roadmap-planning-desk.jpg
+  source : https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80
+  photo  : photo-1454165804606-c3d57bc86b40
+  size   : 237,187 bytes
+  used in: v4/css/main.css, v4/implementation-roadmap.html
+
+routing-engine-review.jpg
+  source : https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1600&q=80
+  photo  : photo-1600880292203-757bb62b4baf
+  size   : 226,974 bytes
+  used in: v4/aegis-model.html, v4/css/footer.css
+
+service-desk.jpg
+  source : https://images.unsplash.com/photo-1590650153855-d9e808231d41?auto=format&fit=crop&w=1600&q=80
+  photo  : photo-1590650153855-d9e808231d41
+  size   : 175,759 bytes
+  used in: v4/insurance-tools.html
+
+service-team-boardroom.jpg
+  source : https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1600&q=80
+  photo  : photo-1542744173-8e7e53415bb0
+  size   : 270,456 bytes
+  used in: v4/insurance-tools.html
+
+students-library.jpg
+  source : https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1600&q=80
+  photo  : photo-1523240795612-9a054b0db644
+  size   : 254,827 bytes
+  used in: v4/css/main.css, v4/education.html
+
+team-around-table.jpg
+  source : https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1600&q=80
+  photo  : photo-1517048676732-d65bc937f952
+  size   : 209,534 bytes
+  used in: v4/careers.html, v4/css/main.css
+
+team-with-ai-agents.jpg
+  source : https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80
+  photo  : photo-1522071820081-009f0129c71c
+  size   : 252,924 bytes
+  used in: v4/css/main.css, v4/insurance-ai-advantage.html
+
+team-working-together.jpg
+  source : https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80
+  photo  : photo-1521737604893-d14cc237f11d
+  size   : 263,338 bytes
+  used in: template_v4.html, v4/css/main.css, v4/index.html, v4/staffing.html
+
+workshop-session.jpg
+  source : https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&w=1600&q=80
+  photo  : photo-1552581234-26160f608093
+  size   : 285,600 bytes
+  used in: v4/coaching.html
+
+------------------------------------------------------------
+TESTIMONIAL AVATARS — randomuser.me
+------------------------------------------------------------
+Placeholder portraits of people who are not real Hubstart clients.
+These MUST be replaced with real client photos (with permission) or
+removed before launch — they currently sit next to named testimonials.
+
+avatar-amara-okoye.jpg
+  source : https://randomuser.me/api/portraits/women/68.jpg
+  size   : 6,948 bytes
+  used in: template_v4.html, v4/index.html
+
+avatar-chris-gray.jpg
+  source : https://randomuser.me/api/portraits/men/75.jpg
+  size   : 3,615 bytes
+  used in: template_v4.html, v4/index.html
+
+avatar-daniel-reyes.jpg
+  source : https://randomuser.me/api/portraits/men/54.jpg
+  size   : 5,276 bytes
+  used in: template_v4.html, v4/index.html
+
+avatar-helena-cicmil.jpg
+  source : https://randomuser.me/api/portraits/women/22.jpg
+  size   : 6,042 bytes
+  used in: template_v4.html, v4/index.html
+
+avatar-marcus-bianchi.jpg
+  source : https://randomuser.me/api/portraits/men/32.jpg
+  size   : 5,242 bytes
+  used in: template_v4.html, v4/index.html
+
+avatar-sarah-fischer.jpg
+  source : https://randomuser.me/api/portraits/women/44.jpg
+  size   : 3,539 bytes
+  used in: template_v4.html, v4/index.html
+
+------------------------------------------------------------
+BRAND ASSETS — assets/images/ (not downloaded, already in repo)
+------------------------------------------------------------
+hubstart.png       Hubstart logo — header and footer on every page.
+hubspot-logo.svg   HubSpot mark — Resources menu and section watermark.
+                   HubSpot name and logo are trademarks of HubSpot, Inc.
+hero-graphic.svg   Unused decorative graphic.
