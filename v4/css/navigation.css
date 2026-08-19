@@ -329,3 +329,20 @@ body.menu-open .mobile-menu {
     display: block;
   }
 }
+
+/* ---------- Subpages: dark nav labels over the white banner ---------- */
+body.subpage .site-header:not(.scrolled) .nav-link {
+  color: var(--color-body);
+}
+
+body.subpage .site-header:not(.scrolled) .nav-link:hover,
+body.subpage .site-header:not(.scrolled) .nav-item:hover .nav-link,
+body.subpage .site-header:not(.scrolled) .nav-item.open .nav-link {
+  color: var(--color-heading);
+  background: rgba(14,30,54,0.05);
+}
+
+body.subpage .site-header:not(.scrolled) .nav-link.active,
+body.subpage .site-header:not(.scrolled) .nav-link.active:hover {
+  color: var(--color-heading);
+}

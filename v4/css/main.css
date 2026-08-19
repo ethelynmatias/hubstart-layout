@@ -86,6 +86,94 @@
   animation: kenburns 26s ease-in-out infinite alternate;
 }
 
+/* ---------- Subpage banner: white band, photo on the right half ---------- */
+.hero-banner.subpage {
+  background: #ffffff;
+  border-bottom: 1px solid var(--color-line);
+  padding: calc(var(--nav-h) + var(--safe-t) + clamp(1.5rem, 3vw, 2.5rem)) 0 clamp(3rem, 6vw, 4.5rem);
+}
+
+/* the dark scrim + dot texture belong to the homepage hero only */
+.hero-banner.subpage::before {
+  content: none;
+}
+
+/* photo fills the right half of the page, full banner height */
+.hero-photo {
+  position: absolute;
+  /* starts right under the fixed nav, runs to the bottom of the band */
+  top: calc(var(--nav-h) + var(--safe-t));
+  bottom: 0;
+  right: 0;
+  width: 50%;
+  z-index: 0;
+  background: url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+}
+
+/* two-column banner grid: copy left, photo right */
+.hero-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+/* copy sits in a gray card lifted 3% over the photo */
+.hero-banner.subpage .hero-inner {
+  position: relative;
+  z-index: 1;
+  grid-column: 1;
+  /* reach well past the column so the card sits over the photo */
+  width: calc(100% + clamp(5rem, 16vw, 13rem));
+  max-width: none;
+  margin-top: 3%;
+  padding: clamp(1.8rem, 3.5vw, 2.8rem);
+  background: #F1F3F6;
+  border: 1px solid var(--color-line);
+  border-radius: 20px;
+  box-shadow: 0 26px 60px rgba(14,30,54,0.14);
+}
+
+/* light-surface type inside the card */
+.hero-banner.subpage .hero-eyebrow {
+  border-color: var(--color-line);
+  color: var(--color-heading);
+}
+
+.hero-banner.subpage .hero-title {
+  color: var(--color-heading);
+}
+
+.hero-banner.subpage .hero-sub {
+  color: var(--color-body);
+}
+
+.hero-banner.subpage .btn-outline {
+  border-color: var(--color-line);
+  color: var(--color-heading);
+}
+
+@media (max-width: 860px) {
+  .hero-split {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-photo {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    width: 100%;
+    height: 260px;
+    margin-top: 2rem;
+    border-radius: 18px;
+    display: block;
+  }
+
+  .hero-banner.subpage .hero-inner {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
 /* gradient darken + subtle dot texture overlay */
 .hero-banner::before {
   content: "";
@@ -176,6 +264,164 @@
   }
 
   .hero-inner > * {
+    opacity: 1;
+    animation: none;
+  }
+}
+
+/* ---------- Subpage header banner ---------- */
+.page-hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: linear-gradient(150deg, #08080C 0%, #0E1626 55%, #131A2C 100%);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding: calc(var(--nav-h) + var(--safe-t) + clamp(3rem, 7vw, 5rem)) 0 clamp(3rem, 7vw, 5rem);
+  color: rgba(255,255,255,0.78);
+}
+
+/* drifting blueprint grid */
+.page-hero-grid {
+  position: absolute;
+  inset: -40% -10%;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 64px 64px;
+  transform: perspective(700px) rotateX(58deg);
+  transform-origin: center top;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 20%, #000 15%, transparent 70%);
+  mask-image: radial-gradient(ellipse at 50% 20%, #000 15%, transparent 70%);
+  animation: gridDrift 22s linear infinite;
+}
+
+/* slow orange glow sweeping behind the copy */
+.page-hero-glow {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  top: -30%;
+  right: -10%;
+  width: 620px;
+  height: 620px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(241,89,42,0.28) 0%, rgba(241,89,42,0.06) 45%, transparent 70%);
+  filter: blur(12px);
+  animation: glowFloat 14s ease-in-out infinite alternate;
+}
+
+.page-hero .container-x {
+  position: relative;
+  z-index: 1;
+}
+
+.page-hero-inner {
+  max-width: 760px;
+}
+
+.page-hero-inner > * {
+  opacity: 0;
+  animation: heroReveal 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.page-hero-inner > *:nth-child(1) { animation-delay: 0.05s; }
+.page-hero-inner > *:nth-child(2) { animation-delay: 0.16s; }
+.page-hero-inner > *:nth-child(3) { animation-delay: 0.28s; }
+.page-hero-inner > *:nth-child(4) { animation-delay: 0.4s; }
+.page-hero-inner > *:nth-child(5) { animation-delay: 0.52s; }
+
+/* breadcrumb */
+.page-crumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 1.1rem;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.5);
+}
+
+.page-crumbs a {
+  color: rgba(255,255,255,0.72);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.page-crumbs a:hover {
+  color: var(--color-primary);
+}
+
+.page-crumbs i {
+  font-size: 0.7rem;
+  opacity: 0.6;
+}
+
+.page-hero-title {
+  margin: 0 0 1rem;
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+  font-size: clamp(1.9rem, 4.4vw, 3rem);
+}
+
+.page-hero-title .accent {
+  color: var(--color-primary);
+}
+
+.page-hero-sub {
+  margin: 0 0 1.8rem;
+  max-width: 660px;
+  font-size: clamp(0.98rem, 1.4vw, 1.08rem);
+  line-height: 1.65;
+  color: rgba(255,255,255,0.72);
+}
+
+.page-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+/* hairline that draws itself along the bottom edge */
+.page-hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  z-index: 1;
+  background: linear-gradient(90deg, var(--color-primary), rgba(241,89,42,0));
+  transform-origin: left center;
+  animation: rulerDraw 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.35s backwards;
+}
+
+@keyframes gridDrift {
+  from { background-position: 0 0, 0 0; }
+  to   { background-position: 0 64px, 64px 0; }
+}
+
+@keyframes glowFloat {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(-6%, 8%) scale(1.12); }
+}
+
+@keyframes rulerDraw {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-hero-grid,
+  .page-hero-glow,
+  .page-hero::after {
+    animation: none;
+  }
+
+  .page-hero-inner > * {
     opacity: 1;
     animation: none;
   }
@@ -882,6 +1128,11 @@
 /* ---------- The Real Threat (same circular treatment, reversed) ---------- */
 .ceiling.threat {
   background: #ffffff;
+}
+
+/* image-right variant of the threat layout: give the copy the wider column */
+.ceiling.threat:not(.reverse) .ceiling-grid {
+  grid-template-columns: 1.1fr 0.9fr;
 }
 
 .ceiling.threat .ceiling-grid {

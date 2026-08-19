@@ -89,3 +89,50 @@
     display: none;
   }
 }
+
+/* ---------- Subpages: white banner behind the header, so use dark ink ---------- */
+body.subpage .site-header:not(.scrolled) {
+  /* opaque so the banner photo can't scroll through the bar */
+  background: #ffffff;
+  border-bottom-color: var(--color-line);
+}
+
+/* logo is dark artwork — drop the invert that suits the dark homepage header */
+body.subpage .site-header:not(.scrolled) .brand img {
+  filter: none;
+}
+
+body.subpage .site-header:not(.scrolled) .icon-btn {
+  border-color: var(--color-line);
+  background: #fff;
+  color: var(--color-heading);
+}
+
+body.subpage .site-header:not(.scrolled) .icon-btn:hover {
+  border-color: var(--color-primary);
+  background: var(--color-primary-tint);
+  color: var(--color-primary);
+}
+
+body.subpage .site-header:not(.scrolled) .nav-toggle span {
+  background: var(--color-heading);
+}
+
+/* while the full-screen menu is open the backdrop is dark again */
+body.subpage.menu-open .site-header:not(.scrolled) {
+  background: var(--bg);
+}
+
+body.subpage.menu-open .site-header:not(.scrolled) .brand img {
+  filter: brightness(0) invert(1);
+}
+
+body.subpage.menu-open .site-header:not(.scrolled) .nav-toggle span {
+  background: var(--ink);
+}
+
+body.subpage.menu-open .site-header:not(.scrolled) .icon-btn {
+  border-color: rgba(255,255,255,0.28);
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+}

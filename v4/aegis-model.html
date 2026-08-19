@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#000000" />
+  <title>Hubstart — The Aegis Model</title>
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <!-- Body / heading font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Theme palette (from theme/theme-color.png) -->
+  <link rel="stylesheet" href="../theme/theme.css" />
+  <!-- v4 stylesheets -->
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/header.css" />
+  <link rel="stylesheet" href="css/navigation.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+</head>
+<body class="subpage">
+
+  <!-- ===================== HEADER / NAV (see header.html) ===================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="container-x nav-inner">
+
+      <!-- Brand -->
+      <a class="brand" href="index.html" aria-label="Hubstart home">
+        <img src="../assets/images/hubstart.png" alt="Hubstart" />
+      </a>
+
+      <!-- Center: primary nav (see navigation.html) -->
+      <nav class="nav-menu" aria-label="Primary">
+        <div class="nav-item">
+          <a class="nav-link" href="index.html">Home</a>
+        </div>
+
+        <div class="nav-item">
+          <button class="nav-link active" type="button" aria-haspopup="true" aria-expanded="false">Services <i class="bi bi-chevron-down caret"></i></button>
+          <ul class="submenu">
+            <li><a href="aegis-model.html"><span class="s-ico"><i class="bi bi-shield-check"></i></span><span class="s-txt"><strong>Aegis Model</strong><span>Intelligent task routing</span></span></a></li>
+            <li><a href="#"><span class="s-ico"><i class="bi bi-cpu"></i></span><span class="s-txt"><strong>Insurance AI Advantage</strong><span>AI Agents end to end</span></span></a></li>
+            <li><a href="#"><span class="s-ico"><i class="bi bi-diagram-3"></i></span><span class="s-txt"><strong>Intelligent Routing</strong><span>Route by skill &amp; licensing</span></span></a></li>
+            <li><a href="#"><span class="s-ico"><i class="bi bi-graph-up-arrow"></i></span><span class="s-txt"><strong>Sales Transformation</strong><span>Turn savings into revenue</span></span></a></li>
+            <li><a href="#"><span class="s-ico"><i class="bi bi-hubspot"></i></span><span class="s-txt"><strong>HubSpot Enablement</strong><span>Certified partner expertise</span></span></a></li>
+          </ul>
+        </div>
+
+        <div class="nav-item">
+          <button class="nav-link" type="button" aria-haspopup="true" aria-expanded="false">Industry <i class="bi bi-chevron-down caret"></i></button>
+          <ul class="submenu">
+            <li><a href="#"><span class="s-ico"><i class="bi bi-bank"></i></span><span class="s-txt"><strong>Finance &amp; Insurance</strong><span>End producer walkouts</span></span></a></li>
+            <li><a href="#"><span class="s-ico"><i class="bi bi-mortarboard"></i></span><span class="s-txt"><strong>Coaching</strong><span>Automate enrollment</span></span></a></li>
+            <li><a href="#"><span class="s-ico"><i class="bi bi-book"></i></span><span class="s-txt"><strong>Education</strong><span>Orchestrate admissions</span></span></a></li>
+            <li><a href="#"><span class="s-ico"><i class="bi bi-briefcase"></i></span><span class="s-txt"><strong>Staffing</strong><span>Match, route &amp; place faster</span></span></a></li>
+          </ul>
+        </div>
+
+        <div class="nav-item">
+          <button class="nav-link" type="button" aria-haspopup="true" aria-expanded="false">Resources <i class="bi bi-chevron-down caret"></i></button>
+          <ul class="submenu">
+            <li><a href="#"><span class="s-ico"><i class="bi bi-chat-quote"></i></span><span class="s-txt"><strong>Customer Stories</strong><span>Results from real agencies</span></span></a></li>
+            <li><a href="#"><span class="s-ico"><i class="bi bi-journal-text"></i></span><span class="s-txt"><strong>Blog &amp; Insights</strong><span>Guides &amp; playbooks</span></span></a></li>
+            <li><a href="#"><span class="s-ico"><i class="bi bi-tools"></i></span><span class="s-txt"><strong>Tools &amp; Integrations</strong><span>Insurance tech stack</span></span></a></li>
+            <li><a href="#"><span class="s-ico"><i class="bi bi-graph-up"></i></span><span class="s-txt"><strong>Agentic Integration Score</strong><span>Discover your AIS</span></span></a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Right: search + book consultation + hamburger -->
+      <div class="nav-actions">
+        <button class="icon-btn" type="button" aria-label="Search"><i class="bi bi-search"></i></button>
+        <a class="btn btn-primary desktop-only" href="#">Book a Consultation</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== MOBILE MENU (see navigation.html) ===================== -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile menu" aria-modal="true">
+    <a class="m-link" href="index.html">Home <i class="bi bi-arrow-right"></i></a>
+    <details class="m-group">
+      <summary>Services <i class="bi bi-chevron-down chev"></i></summary>
+      <div class="m-sub">
+        <a href="aegis-model.html"><i class="bi bi-shield-check"></i> Aegis Model</a>
+        <a href="#"><i class="bi bi-cpu"></i> Insurance AI Advantage</a>
+        <a href="#"><i class="bi bi-diagram-3"></i> Intelligent Routing</a>
+        <a href="#"><i class="bi bi-graph-up-arrow"></i> Sales Transformation</a>
+        <a href="#"><i class="bi bi-hubspot"></i> HubSpot Enablement</a>
+      </div>
+    </details>
+    <details class="m-group">
+      <summary>Industry <i class="bi bi-chevron-down chev"></i></summary>
+      <div class="m-sub">
+        <a href="#"><i class="bi bi-bank"></i> Finance &amp; Insurance</a>
+        <a href="#"><i class="bi bi-mortarboard"></i> Coaching</a>
+        <a href="#"><i class="bi bi-book"></i> Education</a>
+        <a href="#"><i class="bi bi-briefcase"></i> Staffing</a>
+      </div>
+    </details>
+    <details class="m-group">
+      <summary>Resources <i class="bi bi-chevron-down chev"></i></summary>
+      <div class="m-sub">
+        <a href="#"><i class="bi bi-chat-quote"></i> Customer Stories</a>
+        <a href="#"><i class="bi bi-journal-text"></i> Blog &amp; Insights</a>
+        <a href="#"><i class="bi bi-tools"></i> Tools &amp; Integrations</a>
+        <a href="#"><i class="bi bi-graph-up"></i> Agentic Integration Score</a>
+      </div>
+    </details>
+    <a class="m-link" href="#">Search <i class="bi bi-search"></i></a>
+    <div class="m-footer">
+      <a class="btn btn-primary btn-lg" href="#">Book a Consultation <i class="bi bi-arrow-right"></i></a>
+    </div>
+  </div>
+
+
+  <main>
+    <!-- ===================== PAGE HERO ===================== -->
+    <section class="hero-banner subpage" aria-labelledby="hero-title">
+      <div class="container-x hero-split">
+        <div class="hero-inner">
+          <p class="hero-eyebrow">The Architecture of a Future-Ready Agency</p>
+          <h1 class="hero-title" id="hero-title">The Aegis Protocol isn't just a collection of tools; it's a new operating system for your insurance agency.</h1>
+          <p class="hero-sub">It's built on a foundation of strategic frameworks designed to replace chaos with clarity, manual effort with intelligent automation, and guesswork with data-driven performance. Hubstart can create overall strategies to increase operational efficiency, reducing costs, and improving overall productivity.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="#">Book a Consultation <i class="bi bi-arrow-right"></i></a>
+            <a class="btn btn-outline btn-lg" href="#">Book a Discovery Call to Analyze Your Structure</a>
+          </div>
+        </div>
+
+        <span class="hero-photo" aria-hidden="true"></span>
+      </div>
+    </section>
+
+    <!-- ===================== THE FOUNDATION ===================== -->
+    <section class="ceiling threat" aria-labelledby="foundation-title">
+      <div class="container-x">
+        <div class="ceiling-grid">
+          <div>
+            <p class="ceiling-eyebrow">The Foundation</p>
+            <h2 class="ceiling-title" id="foundation-title">Your Central <span class="accent">Routing Engine</span></h2>
+            <div class="ceiling-body">
+              <p>The heart of a modern agency is its Routing Engine. Instead of tasks landing randomly in inboxes, every piece of work—from a form submission, to a phone call, to an email—is systematically handled.</p>
+
+              <ul class="threat-points">
+                <li><i class="bi bi-inbox"></i><span><strong>Intake.</strong> All work enters a single, structured system.</span></li>
+                <li><i class="bi bi-tags"></i><span><strong>Classification.</strong> Each task is instantly categorized into one of 22 specific Task Buckets (e.g., COI Issuance, New Business Intake, Claims Follow-up).</span></li>
+                <li><i class="bi bi-signpost-split"></i><span><strong>Routing.</strong> The task is automatically assigned to the most efficient handler based on pre-defined logic.</span></li>
+              </ul>
+
+              <div class="ceiling-actions">
+                <a class="btn btn-primary btn-lg" href="#">Talk to Expert <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="ceiling-visual">
+            <div class="ceiling-frame">
+              <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1100&q=80" alt="Agency team reviewing the routing engine" loading="lazy" />
+              <span class="ceiling-tag"><i class="bi bi-diagram-3-fill"></i> Intelligent routing</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== THE SCOREBOARD ===================== -->
+    <section class="proof" aria-labelledby="scoreboard-title">
+      <span class="proof-bg" aria-hidden="true"></span>
+      <div class="container-x">
+        <p class="proof-eyebrow">The Scoreboard</p>
+        <h2 class="proof-title" id="scoreboard-title">New Metrics for a <span class="accent">New Era</span></h2>
+        <p class="proof-sub">You can't fix what you don't measure. Legacy metrics like "revenue per employee" are dangerously outdated because they don't account for the power of automation and intelligent systems.</p>
+
+        <div class="proof-cards">
+          <div class="proof-card highlight">
+            <span class="pc-badge">North Star</span>
+            <span class="pc-label">Agency Intelligence Efficiency Score</span>
+            <div class="pc-num">AIES</div>
+            <div class="pc-rhl">Your North Star metric</div>
+            <p>A composite score of your operational intelligence.</p>
+          </div>
+          <div class="proof-card">
+            <span class="pc-label">Revenue per Human Layer</span>
+            <div class="pc-num">RHL</div>
+            <div class="pc-rhl">True labor efficiency</div>
+            <p>Measures how much revenue you generate per human team member, revealing your true labor efficiency.</p>
+          </div>
+          <div class="proof-card">
+            <span class="pc-label">Labor Dependence Index</span>
+            <div class="pc-num">LDI</div>
+            <div class="pc-rhl">Drive this number down</div>
+            <p>Tracks how much work is still reliant on your expensive, licensed staff. The goal is to drive this number down.</p>
+          </div>
+          <div class="proof-card">
+            <span class="pc-label">Swing Efficiency Score</span>
+            <div class="pc-num">SES</div>
+            <div class="pc-rhl">Savings turned into growth</div>
+            <p>Measures if you are successfully redirecting saved time and money into real growth activities.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== THE FRAMEWORKS ===================== -->
+    <section class="ceiling reverse threat" aria-labelledby="frameworks-title">
+      <div class="container-x">
+        <div class="ceiling-grid">
+          <div class="ceiling-visual">
+            <div class="ceiling-frame">
+              <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1100&q=80" alt="Team orchestrating work across the operating layers" loading="lazy" />
+              <span class="ceiling-tag"><i class="bi bi-layers-fill"></i> Operating layers</span>
+            </div>
+          </div>
+          <div>
+            <p class="ceiling-eyebrow">The Frameworks</p>
+            <h2 class="ceiling-title" id="frameworks-title">Structure Over <span class="accent">Survival</span></h2>
+            <div class="ceiling-body">
+              <ul class="threat-points">
+                <li><i class="bi bi-kanban"></i><span><strong>Micro-Project Framework.</strong> Every task, from a simple COI to a complex renewal, is treated as a trackable "micro-project" with a clear owner, status, and deadline. Nothing gets lost.</span></li>
+                <li><i class="bi bi-people"></i><span><strong>Human-AI Operating Layers.</strong> Humans are no longer task-doers; they are orchestrators of a system where bots and VEs do the heavy lifting.</span></li>
+              </ul>
+
+              <div class="ceiling-actions">
+                <a class="btn btn-primary btn-lg" href="#">Talk to Expert <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CTA BAND ===================== -->
+    <section class="cta-band" aria-labelledby="cta-title">
+      <span class="cta-dots" aria-hidden="true"></span>
+      <div class="container-x">
+        <p class="cta-eyebrow">Ready when you are</p>
+        <h2 class="cta-title" id="cta-title">Contact us to get started</h2>
+        <p class="cta-text">Book a discovery call and we'll analyze your structure — mapping your work against the routing engine, the scoreboard, and the operating layers.</p>
+        <div class="cta-actions">
+          <a class="btn btn-primary btn-lg" href="#">Talk to Expert <i class="bi bi-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER (see footer.html) ===================== -->
+  <footer class="site-footer">
+    <div class="container-x">
+      <div class="footer-grid">
+        <div class="foot-brand">
+          <img src="../assets/images/hubstart.png" alt="Hubstart" />
+          <p class="foot-desc">Transform your insurance agency with the Aegis Protocol — an intelligent operating system built for the modern agency.</p>
+          <div class="foot-social">
+            <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+            <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" aria-label="X (Twitter)"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          </div>
+        </div>
+        <nav class="foot-col" aria-label="Main menu">
+          <h6>Main Menu</h6>
+          <a class="foot-link" href="index.html">Home</a>
+          <a class="foot-link" href="#">Book a Consultation</a>
+          <a class="foot-link" href="#">Why HubSpot</a>
+        </nav>
+        <nav class="foot-col" aria-label="Services">
+          <h6>Services</h6>
+          <a class="foot-link" href="aegis-model.html">Aegis Model</a>
+          <a class="foot-link" href="#">Insurance AI Advantage</a>
+          <a class="foot-link" href="#">Insurance Sales Transformation</a>
+          <a class="foot-link" href="#">Implementation Roadmap</a>
+        </nav>
+        <nav class="foot-col" aria-label="Industry solutions">
+          <h6>Industry Solutions</h6>
+          <a class="foot-link" href="#">Finance &amp; Insurance</a>
+          <a class="foot-link" href="#">Coaching</a>
+          <a class="foot-link" href="#">Education</a>
+          <a class="foot-link" href="#">Staffing</a>
+        </nav>
+        <nav class="foot-col" aria-label="Tools and resources">
+          <h6>Tools &amp; Resources</h6>
+          <a class="foot-link" href="#">Insurance Tools</a>
+          <a class="foot-link" href="#">Integrations</a>
+        </nav>
+      </div>
+      <div class="foot-bottom">
+        <small>© 2026. All rights reserved.</small>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" id="toTop" type="button" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
+
+  <!-- v4 scripts -->
+  <script src="js/navigation.js" defer></script>
+  <script src="js/sliders.js" defer></script>
+  <script src="js/ui.js" defer></script>
+</body>
+</html>
