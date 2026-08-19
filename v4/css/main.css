@@ -306,9 +306,9 @@
 
 /* ---------- The Proof in Two Numbers (dark) ---------- */
 .proof {
-  --ink: #ffffff; --muted: #8a97a5;
+  --ink: var(--color-heading); --ink-soft: #1E2732; --muted: #2C3844;
   position: relative; overflow: hidden; text-align: center;
-  background: #0B1220; color: var(--ink-soft);
+  background: #EEF1F4; color: var(--ink-soft);
   padding: clamp(3.5rem, 8vw, 6.5rem) 0;
 }
 /* parallax layer (JS translates it on scroll) */
@@ -316,25 +316,11 @@
   position: absolute; top: -20%; left: 0; width: 100%; height: 140%; z-index: 0; pointer-events: none;
   overflow: hidden; will-change: transform;
 }
-/* no photo — subtle color wash only */
+/* HubSpot sprocket watermark on the light gray band */
 .proof-bg::before {
   content: ""; position: absolute; inset: -8%;
-  background:
-    radial-gradient(60% 60% at 20% 15%, rgba(241,89,42,0.18), transparent 60%),
-    radial-gradient(55% 55% at 85% 80%, rgba(60,120,200,0.16), transparent 65%);
-}
-/* orange + dark overlay */
-.proof::after {
-  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background: linear-gradient(120deg, rgba(9,14,26,0.9) 0%, rgba(14,10,8,0.78) 52%, rgba(241,89,42,0.5) 100%);
-}
-/* dot texture on top of overlay */
-.proof::before {
-  content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
-  background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1.2px);
-  background-size: 20px 20px;
-  -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 55%);
-  mask-image: linear-gradient(180deg, #000 0%, transparent 55%);
+  background: url('../../assets/images/hubspot-logo.svg') right -8% bottom -12%/min(72vw, 760px) no-repeat;
+  opacity: 0.1;
 }
 .proof > .container-x { position: relative; z-index: 3; }
 .proof-eyebrow {
@@ -342,7 +328,7 @@
   font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-primary);
 }
 .proof-eyebrow::before, .proof-eyebrow::after { content: ""; width: 26px; height: 2px; background: var(--color-primary); }
-.proof-title { margin: 0 0 0.9rem; color: #fff; font-weight: 800; letter-spacing: -0.015em; font-size: clamp(2rem, 5vw, 3.2rem); }
+.proof-title { margin: 0 0 0.9rem; color: var(--ink); font-weight: 800; letter-spacing: -0.015em; font-size: clamp(2rem, 5vw, 3.2rem); }
 .proof-title .accent { color: var(--color-primary); }
 .proof-sub { margin: 0 auto; color: var(--ink-soft); max-width: 660px; font-size: 1.02rem; line-height: 1.6; }
 .proof-cards {
@@ -351,17 +337,18 @@
 }
 .proof-card {
   position: relative; padding: 2rem; border-radius: 18px;
-  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.14);
+  background: #fff; border: 1px solid var(--color-line);
+  box-shadow: 0 10px 26px rgba(14,30,54,0.06);
 }
 .proof-card .pc-label { text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; font-weight: 700; color: var(--muted); }
-.proof-card .pc-num { font-size: clamp(2.4rem, 5vw, 3.4rem); font-weight: 800; color: #fff; line-height: 1; margin: 0.5rem 0 0.25rem; }
+.proof-card .pc-num { font-size: clamp(2.4rem, 5vw, 3.4rem); font-weight: 800; color: var(--ink); line-height: 1; margin: 0.5rem 0 0.25rem; }
 .proof-card .pc-rhl { font-size: 0.78rem; color: var(--muted); margin-bottom: 1rem; }
 .proof-card p { margin: 0; color: var(--ink-soft); font-size: 0.95rem; line-height: 1.55; }
 .proof-card .pc-badge { position: absolute; top: 1.2rem; right: 1.2rem; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; background: var(--color-primary); padding: 0.2rem 0.5rem; border-radius: 999px; }
-.proof-card.highlight { border-color: var(--color-primary); background: linear-gradient(160deg, rgba(241,89,42,0.16), rgba(241,89,42,0.03)); }
+.proof-card.highlight { border-color: var(--color-primary); background: linear-gradient(160deg, var(--color-primary-tint), #fff); }
 .proof-card.highlight .pc-num, .proof-card.highlight .pc-label { color: var(--color-primary); }
 .proof-note { margin: clamp(2rem, 4vw, 2.6rem) auto 0; max-width: 660px; color: var(--ink-soft); font-size: 1rem; line-height: 1.6; }
-.proof-note .kw { color: #fff; background: rgba(255,255,255,0.1); }
+.proof-note .kw { color: var(--color-primary); background: var(--color-primary-tint); }
 
 /* ---------- How We Work (staggered masonry steps) ---------- */
 .how {
@@ -461,7 +448,7 @@
 /* ---------- Get Resources Now (CTA band) ---------- */
 .cta-band {
   position: relative; overflow: hidden; text-align: center; color: #fff;
-  background: linear-gradient(135deg, #5E1F0C 0%, #A5361A 52%, #D24C1C 100%);
+  background: #000000;
   padding: clamp(3.5rem, 8vw, 6rem) 0;
 }
 .cta-band::before {
@@ -501,10 +488,10 @@
 .cta-guarantee i { color: #fff; font-size: 1.1rem; }
 .cta-guarantee strong { color: #fff; }
 .cta-actions { margin-top: 1.9rem; }
-/* white button for contrast on the dark-orange band */
-.cta-band .btn-primary { background: #fff; color: #A5361A; border-color: transparent; }
-.cta-band .btn-primary::before { background: #6B2410; }
-.cta-band .btn-primary:hover { color: #fff; border-color: #6B2410; }
+/* orange button pops against the black band */
+.cta-band .btn-primary { background: var(--color-primary); color: #fff; border-color: transparent; }
+.cta-band .btn-primary::before { background: #fff; }
+.cta-band .btn-primary:hover { color: #111; border-color: #fff; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {
