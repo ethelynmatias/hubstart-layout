@@ -286,14 +286,14 @@
   color: #fff;
 }
 
-/* hover: darker navy fill slides in from left to right */
+/* hover: black fill slides in from left to right */
 .svc-grid .svc-card:nth-child(n+2):nth-child(-n+5)::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background: radial-gradient(rgba(255,255,255,0.28) 0.6px, transparent 1px) 0 0 / 11px 11px, linear-gradient(160deg, #FB8A5E 0%, #F26A3C 55%, #EF5A24 100%);
+  background: radial-gradient(rgba(255,255,255,0.16) 0.6px, transparent 1px) 0 0 / 11px 11px, linear-gradient(160deg, #14141A 0%, #0B0B0F 55%, #000000 100%);
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 0.5s cubic-bezier(0.7, 0, 0.2, 1);
