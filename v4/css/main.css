@@ -566,6 +566,12 @@
   border-top: 1px solid var(--color-line);
 }
 
+/* academy band is light, so the label reverts to the light-surface treatment */
+.clients.academy .clients-eyebrow {
+  border-color: var(--color-line);
+  color: var(--color-heading);
+}
+
 .clients.academy::before {
   background-image: radial-gradient(rgba(14,30,54,0.08) 1px, transparent 1.4px);
 }
@@ -875,7 +881,7 @@
 
 /* ---------- The Real Threat (same circular treatment, reversed) ---------- */
 .ceiling.threat {
-  background: #F7F9FB;
+  background: #ffffff;
 }
 
 .ceiling.threat .ceiling-grid {
@@ -904,7 +910,7 @@
   display: flex;
   align-items: flex-start;
   gap: 0.85rem;
-  background: #fff;
+  background: #F7F9FB;
   border: 1px solid var(--color-line);
   border-radius: 14px;
   padding: 0.95rem 1.1rem;
