@@ -1,12 +1,12 @@
 /* ===================== v4 — footer (gray, grayscale photo backdrop) ===================== */
 .site-footer {
   --ink: var(--color-heading);
-  --ink-soft: #1E2732;
-  --muted: #2C3844;
+  --ink-soft: #1e2732;
+  --muted: #2c3844;
   --line: var(--color-line);
   position: relative;
   overflow: hidden;
-  background: #EEF1F4;
+  background: #eef1f4;
   color: var(--ink-soft);
   padding: clamp(3.5rem, 8vw, 6rem) 0 2rem;
 }
@@ -79,7 +79,7 @@
   transform: translateY(-2px);
 }
 
-.foot-col h6 {
+.foot-col .foot-head {
   margin: 0 0 1rem;
   color: var(--ink);
   font-size: 0.78rem;

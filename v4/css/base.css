@@ -7,8 +7,7 @@
   --muted: #8a8a94;
   --line: #26262c;
   /* Accent pulled from the theme palette */
-  --blue: var(--color-primary);
-  /* #F1592A coral-orange */
+  --blue: var(--color-primary); /* #f1592a coral-orange */
   --nav-h: 74px;
   --container-max: 1320px;
   --safe-t: env(safe-area-inset-top, 0px);
@@ -97,7 +96,7 @@ a {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(160deg, #17294A 0%, #0E1E36 60%, #0A1526 100%);
+  background: linear-gradient(160deg, #17294a 0%, #0e1e36 60%, #0a1526 100%);
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 0.45s cubic-bezier(0.7, 0, 0.2, 1);
@@ -108,7 +107,7 @@ a {
 }
 
 .btn-primary:hover {
-  border-color: #0E1E36;
+  border-color: #0e1e36;
 }
 
 .btn-outline {
