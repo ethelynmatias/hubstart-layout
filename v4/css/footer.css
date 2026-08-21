@@ -20,6 +20,8 @@
   pointer-events: none;
   /* team meeting around a table */
   background: url('../../assets/img/routing-engine-review.jpg') center/cover no-repeat;
+  background: -webkit-image-set(url('../../assets/img/routing-engine-review.webp') type('image/webp'), url('../../assets/img/routing-engine-review.jpg') type('image/jpeg')) center/cover no-repeat;
+  background: image-set(url('../../assets/img/routing-engine-review.webp') type('image/webp'), url('../../assets/img/routing-engine-review.jpg') type('image/jpeg')) center/cover no-repeat;
   filter: grayscale(1) contrast(1.05);
   opacity: 0.12;
 }

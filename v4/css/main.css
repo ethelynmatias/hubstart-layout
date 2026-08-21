@@ -85,6 +85,8 @@
   z-index: 0;
   pointer-events: none;
   background: url('../../assets/img/team-working-together.jpg') center/cover no-repeat;
+  background: -webkit-image-set(url('../../assets/img/team-working-together.webp') type('image/webp'), url('../../assets/img/team-working-together.jpg') type('image/jpeg')) center/cover no-repeat;
+  background: image-set(url('../../assets/img/team-working-together.webp') type('image/webp'), url('../../assets/img/team-working-together.jpg') type('image/jpeg')) center/cover no-repeat;
   will-change: transform;
   animation: kenburns 26s ease-in-out infinite alternate;
 }
@@ -111,61 +113,85 @@
   width: 50%;
   z-index: 0;
   background: url('../../assets/img/agency-meeting.jpg') center/cover no-repeat;
+  background: -webkit-image-set(url('../../assets/img/agency-meeting.webp') type('image/webp'), url('../../assets/img/agency-meeting.jpg') type('image/jpeg')) center/cover no-repeat;
+  background: image-set(url('../../assets/img/agency-meeting.webp') type('image/webp'), url('../../assets/img/agency-meeting.jpg') type('image/jpeg')) center/cover no-repeat;
 }
 
 /* per-page photo: developers at work on code */
 .hero-photo.dev {
   background-image: url('../../assets/img/developers-coding.jpg');
+  background-image: -webkit-image-set(url('../../assets/img/developers-coding.webp') type('image/webp'), url('../../assets/img/developers-coding.jpg') type('image/jpeg'));
+  background-image: image-set(url('../../assets/img/developers-coding.webp') type('image/webp'), url('../../assets/img/developers-coding.jpg') type('image/jpeg'));
 }
 
 /* per-page photo: closing the deal */
 .hero-photo.sales {
   background-image: url('../../assets/img/deal-handshake.jpg');
+  background-image: -webkit-image-set(url('../../assets/img/deal-handshake.webp') type('image/webp'), url('../../assets/img/deal-handshake.jpg') type('image/jpeg'));
+  background-image: image-set(url('../../assets/img/deal-handshake.webp') type('image/webp'), url('../../assets/img/deal-handshake.jpg') type('image/jpeg'));
 }
 
 /* per-page photo: planning the rollout */
 .hero-photo.roadmap {
   background-image: url('../../assets/img/roadmap-planning-desk.jpg');
+  background-image: -webkit-image-set(url('../../assets/img/roadmap-planning-desk.webp') type('image/webp'), url('../../assets/img/roadmap-planning-desk.jpg') type('image/jpeg'));
+  background-image: image-set(url('../../assets/img/roadmap-planning-desk.webp') type('image/webp'), url('../../assets/img/roadmap-planning-desk.jpg') type('image/jpeg'));
 }
 
 /* per-page photo: finance paperwork */
 .hero-photo.finance {
   background-image: url('../../assets/img/finance-forms-calculator.jpg');
+  background-image: -webkit-image-set(url('../../assets/img/finance-forms-calculator.webp') type('image/webp'), url('../../assets/img/finance-forms-calculator.jpg') type('image/jpeg'));
+  background-image: image-set(url('../../assets/img/finance-forms-calculator.webp') type('image/webp'), url('../../assets/img/finance-forms-calculator.jpg') type('image/jpeg'));
 }
 
 /* per-page photo: coaching session */
 .hero-photo.coaching {
   background-image: url('../../assets/img/coaching-conversation.jpg');
+  background-image: -webkit-image-set(url('../../assets/img/coaching-conversation.webp') type('image/webp'), url('../../assets/img/coaching-conversation.jpg') type('image/jpeg'));
+  background-image: image-set(url('../../assets/img/coaching-conversation.webp') type('image/webp'), url('../../assets/img/coaching-conversation.jpg') type('image/jpeg'));
 }
 
 /* per-page photo: students at work */
 .hero-photo.education {
   background-image: url('../../assets/img/students-library.jpg');
+  background-image: -webkit-image-set(url('../../assets/img/students-library.webp') type('image/webp'), url('../../assets/img/students-library.jpg') type('image/jpeg'));
+  background-image: image-set(url('../../assets/img/students-library.webp') type('image/webp'), url('../../assets/img/students-library.jpg') type('image/jpeg'));
 }
 
 /* per-page photo: recruiting floor */
 .hero-photo.staffing {
   background-image: url('../../assets/img/recruiting-floor.jpg');
+  background-image: -webkit-image-set(url('../../assets/img/recruiting-floor.webp') type('image/webp'), url('../../assets/img/recruiting-floor.jpg') type('image/jpeg'));
+  background-image: image-set(url('../../assets/img/recruiting-floor.webp') type('image/webp'), url('../../assets/img/recruiting-floor.jpg') type('image/jpeg'));
 }
 
 /* per-page photo: unified platform dashboards */
 .hero-photo.hubspot {
   background-image: url('../../assets/img/reporting-dashboard-laptop.jpg');
+  background-image: -webkit-image-set(url('../../assets/img/reporting-dashboard-laptop.webp') type('image/webp'), url('../../assets/img/reporting-dashboard-laptop.jpg') type('image/jpeg'));
+  background-image: image-set(url('../../assets/img/reporting-dashboard-laptop.webp') type('image/webp'), url('../../assets/img/reporting-dashboard-laptop.jpg') type('image/jpeg'));
 }
 
 /* per-page photo: the tooling itself */
 .hero-photo.tools {
   background-image: url('../../assets/img/code-screen.jpg');
+  background-image: -webkit-image-set(url('../../assets/img/code-screen.webp') type('image/webp'), url('../../assets/img/code-screen.jpg') type('image/jpeg'));
+  background-image: image-set(url('../../assets/img/code-screen.webp') type('image/webp'), url('../../assets/img/code-screen.jpg') type('image/jpeg'));
 }
 
 /* per-page photo: connected systems */
 .hero-photo.integrations {
   background-image: url('../../assets/img/connected-data-network.jpg');
+  background-image: -webkit-image-set(url('../../assets/img/connected-data-network.webp') type('image/webp'), url('../../assets/img/connected-data-network.jpg') type('image/jpeg'));
+  background-image: image-set(url('../../assets/img/connected-data-network.webp') type('image/webp'), url('../../assets/img/connected-data-network.jpg') type('image/jpeg'));
 }
 
 /* per-page photo: the team at work */
 .hero-photo.careers {
   background-image: url('../../assets/img/team-around-table.jpg');
+  background-image: -webkit-image-set(url('../../assets/img/team-around-table.webp') type('image/webp'), url('../../assets/img/team-around-table.jpg') type('image/jpeg'));
+  background-image: image-set(url('../../assets/img/team-around-table.webp') type('image/webp'), url('../../assets/img/team-around-table.jpg') type('image/jpeg'));
 }
 
 /* two-column banner grid: copy left, photo right */
@@ -534,6 +560,8 @@
   overflow: hidden;
   border: 0;
   background: linear-gradient(160deg, rgba(23,41,74,0.82) 0%, rgba(14,30,54,0.86) 58%, rgba(10,21,38,0.92) 100%), url('../../assets/img/team-with-ai-agents.jpg') center/cover no-repeat;
+  background: linear-gradient(160deg, rgba(23,41,74,0.82) 0%, rgba(14,30,54,0.86) 58%, rgba(10,21,38,0.92) 100%), -webkit-image-set(url('../../assets/img/team-with-ai-agents.webp') type('image/webp'), url('../../assets/img/team-with-ai-agents.jpg') type('image/jpeg')) center/cover no-repeat;
+  background: linear-gradient(160deg, rgba(23,41,74,0.82) 0%, rgba(14,30,54,0.86) 58%, rgba(10,21,38,0.92) 100%), image-set(url('../../assets/img/team-with-ai-agents.webp') type('image/webp'), url('../../assets/img/team-with-ai-agents.jpg') type('image/jpeg')) center/cover no-repeat;
 }
 
 .svc-feature .svc-cat {

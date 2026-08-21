@@ -39,6 +39,20 @@ a {
   color: inherit;
 }
 
+/* <picture> wrappers must not create a box of their own — the <img> keeps
+   participating in the parent layout exactly as it did before */
+picture {
+  display: contents;
+}
+
+/* the width/height attributes on every <img> are presentational hints for the
+   CSS width/height properties, so intrinsic height must be released wherever a
+   rule sizes an image by width alone (e.g. the circular .ceiling-frame) */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 .container-x {
   width: 100%;
   max-width: var(--container-max);
