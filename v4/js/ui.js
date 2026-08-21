@@ -23,6 +23,7 @@
     '.how-head', '.how-card', '.how-note',
     '.proof-eyebrow', '.proof-title', '.proof-sub', '.proof-card', '.proof-note',
     '.testi-head', '.testi-card',
+    '.events-head', '.event-card', '.events-actions',
     '.cta-eyebrow', '.cta-title', '.cta-text', '.cta-guarantee', '.cta-actions',
     '.footer-grid > *'
   ].join(', ');
